@@ -1,0 +1,18 @@
+.mode column
+.headers on
+.nullvalue (NULL)
+
+-- always explain query plan
+.eqp on
+pragma foreign_keys = ON;
+
+.print "Databases:"
+.databases
+.print "\nTables:"
+.tables
+.print "\n"
+
+
+.changes on
+.timer on
+
