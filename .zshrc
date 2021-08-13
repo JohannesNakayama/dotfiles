@@ -27,6 +27,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export EDITOR=vim
+export PATH=$HOME/diff-so-fancy:$PATH
+
+export EDITOR=nvim
 v() { $EDITOR $(rg --files | fzf) }
 alias config='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+alias vim=nvim
+alias vz='nvim ~/.zshrc'
+alias vv='nvim ~/.config/nvim/init.vim'
+alias l='ls -lha'
+#vvv a vim keybindings in the terminal
