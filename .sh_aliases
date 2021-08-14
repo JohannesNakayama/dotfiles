@@ -1,0 +1,14 @@
+# git alias for dotfile manegement
+alias config='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+
+# use nvim by default
+alias vim=nvim
+
+# vim aliases for frequently modified files
+alias vz='nvim ~/.zshrc'
+alias vv='nvim ~/.config/nvim/init.vim'
+
+alias l='ls -lha'
+
+# fuzzy search file opening
+v() { $EDITOR $(rg --files | fzf) }
