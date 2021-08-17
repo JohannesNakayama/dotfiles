@@ -31,7 +31,7 @@ ZSH_THEME="agnoster"
 # Zsh plugins
 plugins=(
     git 
-    vi-mode
+    # vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
