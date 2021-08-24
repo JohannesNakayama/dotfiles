@@ -9,6 +9,7 @@ alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 
 alias l='ls -lha'
+alias p='cd ~/Projects && l'
 
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
