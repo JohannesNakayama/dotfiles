@@ -8,6 +8,18 @@
 [interactive]
     diffFilter = diff-so-fancy --patch
 
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
+[diff]
+    algorithm = histogram
+
+[commit]
+    verbose = true
+
 [alias]
     st = status
     co = checkout

@@ -97,3 +97,8 @@ export PATH=$HOME/diff-so-fancy:$PATH
 export EDITOR=nvim
 
 source ~/.sh_aliases
+
+# Ruby
+export GEM_HOME=$HOME/.gem
+export PATH=$HOME/.gem/bin:$PATH
+
