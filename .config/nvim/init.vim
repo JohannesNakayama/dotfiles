@@ -13,16 +13,17 @@ call plug#begin('~/.vim/plugged')
         Plug 'tpope/vim-surround'                           " surround text with quotes, parantheses, ...
         Plug 'PeterRincker/vim-argumentative'               " text object ',' / also provides argument movements with >, ],
         Plug 'tpope/vim-eunuch'                             " unix commands
-        Plug 'zirrostig/vim-schlepp'                        " Move selections / lines
+        Plug 'zirrostig/vim-schlepp'                        " move selections / lines
         Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
         Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
         Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
         Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
         Plug 'junegunn/fzf.vim'
-        Plug 'drewtempelmeyer/palenight.vim'
-        Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
+        Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
+        Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
+        Plug 'vim-airline/vim-airline'                      " status / tabline
+        Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
         let g:airline#extensions#tabline#enabled = 1
 call plug#end()
@@ -47,7 +48,9 @@ set expandtab                     " always uses spaces instead of tab characters
 set nostartofline                 " keep column position when switching buffers
 set background=dark
 set termguicolors                 " true color support
-colorscheme palenight
+" colorscheme palenight
+colorscheme neodark
+
 
 " don't lose selection when indenting
 vnoremap < <gv
