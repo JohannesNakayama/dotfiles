@@ -1,0 +1,43 @@
+[global_config]
+  handle_size = 1
+  window_state = maximise
+  borderless = True
+  title_transmit_fg_color = "#ffbe6f"
+  title_transmit_bg_color = "#a51d2d"
+  title_receive_bg_color = "#99c1f1"
+  title_inactive_fg_color = "#8ff0a4"
+  title_inactive_bg_color = "#3584e4"
+  inactive_color_offset = 0.7321428571428571
+  enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    background_darkness = 0.94
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    foreground_color = "#839496"
+  [[Aci]]
+    background_color = "#0d1926"
+    background_darkness = 0.94
+    background_type = transparent
+    cursor_color = "#c4e9ff"
+    foreground_color = "#b4e1fd"
+    palette = "#363636:#ff0883:#83ff08:#ff8308:#0883ff:#8308ff:#08ff83:#b6b6b6:#363636:#ff0883:#83ff08:#ff8308:#0883ff:#8308ff:#08ff83:#b6b6b6"
+  [[Aurora]]
+    background_color = "#0f1c21"
+    background_darkness = 0.94
+    background_type = transparent
+    cursor_color = "#00485a"
+    foreground_color = "#80b6ad"
+    palette = "#0f1c21:#046655:#04c975:#b5bd68:#308891:#94a5bc:#8abeb7:#80b6ad:#0f1c21:#046655:#04c975:#b5bd68:#308891:#94a5bc:#8abeb7:#80b6ad"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
