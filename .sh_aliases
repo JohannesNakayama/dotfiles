@@ -13,6 +13,7 @@ alias p='cd ~/Projects && l'
 alias ls='ls -lh'
 
 alias rss='snownews'
+alias todo='task list'
 
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
