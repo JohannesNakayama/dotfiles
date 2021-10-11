@@ -24,5 +24,8 @@
     st = status
     co = checkout
     cl = clone
+    yes = commit
+    no = reset
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
