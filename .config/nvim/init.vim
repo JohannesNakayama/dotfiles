@@ -4,8 +4,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 " plugins
 call plug#begin('~/.vim/plugged')
+
         Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
         Plug 'tpope/vim-sensible'                           " sane defaults
         Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
@@ -20,13 +22,19 @@ call plug#begin('~/.vim/plugged')
         Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
         Plug 'junegunn/fzf.vim'
+        Plug 'vifm/vifm.vim'                                " vifm file manager integration
+        Plug 'vimwiki/vimwiki'                              " personal wiki
         Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
         Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
         Plug 'vim-airline/vim-airline'                      " status / tabline
         Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
         let g:airline#extensions#tabline#enabled = 1
+        let g:vimwiki_list = [{'path': '~/vimwiki/',
+                              \ 'syntax': 'markdown', 'ext': '.md'}]
+
 call plug#end()
+
 
 set number                        " show line number
 set cursorline                    " highlight current line
@@ -48,8 +56,10 @@ set expandtab                     " always uses spaces instead of tab characters
 set nostartofline                 " keep column position when switching buffers
 set background=dark
 set termguicolors                 " true color support
-" colorscheme palenight
-colorscheme neodark
+
+
+" set color scheme
+colorscheme neodark               " available colorschemes: palenight, neodark
 
 
 " don't lose selection when indenting
@@ -80,6 +90,12 @@ nnoremap <Leader>ü :BufOnly<CR>
 vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
 nmap <leader>e :ProjectFiles<CR>
+
+
+" required for vimwiki
+set nocompatible
+filetype plugin on
+syntax on
 
 " create non-existing parent directories on save
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save

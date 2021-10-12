@@ -7,6 +7,7 @@ alias vim=nvim
 # vim aliases for frequently modified files
 alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
+alias vw='nvim ~/vimwiki/index.md'
 
 alias l='ls -lha'
 alias p='cd ~/Projects && l'
