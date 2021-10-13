@@ -30,8 +30,6 @@ call plug#begin('~/.vim/plugged')
         Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
         let g:airline#extensions#tabline#enabled = 1
-        let g:vimwiki_list = [{'path': '~/vimwiki/',
-                              \ 'syntax': 'markdown', 'ext': '.md'}]
 
 call plug#end()
 
