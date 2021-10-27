@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'zirrostig/vim-schlepp'                        " move selections / lines
         Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
         Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
+        Plug 'jalvesaq/Nvim-R'                              " R programming language
         Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
         Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
@@ -89,6 +90,11 @@ vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
 nmap <leader>e :ProjectFiles<CR>
 
+
+" remap some keys of nvim-r
+nmap , <Plug>RDSendLine
+vmap , <Plug>RDSendSelection
+vmap ,e <Plug>RESendSelection
 
 " required for vimwiki
 set nocompatible
