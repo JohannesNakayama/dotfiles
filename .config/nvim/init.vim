@@ -60,6 +60,8 @@ set termguicolors                 " true color support
 " set color scheme
 colorscheme neodark               " available colorschemes: palenight, neodark
 
+" set background to match terminal
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
 " don't lose selection when indenting
 vnoremap < <gv

@@ -102,3 +102,6 @@ source ~/.sh_aliases
 export GEM_HOME=$HOME/.gem
 export PATH=$HOME/.gem/bin:$PATH
 
+
+
+
