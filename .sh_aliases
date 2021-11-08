@@ -9,14 +9,20 @@ alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
 
-alias l='ls -lha'
+# short cut to projects
 alias p='cd ~/Projects && l'
-alias ls='ls -lh'
 
+# ls aliases
+alias l='ls -lha'
+alias ll='ls -alF'
+alias la='ls -A'
+
+# freqently used commands with long names
 alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
-
+alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
 
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
+
