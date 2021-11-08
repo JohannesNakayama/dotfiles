@@ -193,6 +193,6 @@ bar {
 exec --no-startup-id xrandr --output eDP-1 --mode 1600x900
 
 # Wallpaper
-exec --no-startup-id nitrogen --restore
-
+# exec --no-startup-id nitrogen --restore
+exec --no-startup-id feh -g 640x480 --bg-fill ~/Pictures/scenic-landscape.jpg
 
