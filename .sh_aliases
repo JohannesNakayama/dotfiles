@@ -22,6 +22,7 @@ alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
+alias cst='config status'
 
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
