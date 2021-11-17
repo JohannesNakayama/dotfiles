@@ -26,3 +26,4 @@ alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tm
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
 
+blog() { mv $1 $HOME/Projects/blog/blog/_drafts }
