@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
         Plug 'vim-airline/vim-airline'                      " status / tabline
         Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
+        Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
 
         let g:airline#extensions#tabline#enabled = 1
 
