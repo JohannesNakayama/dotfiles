@@ -16,6 +16,7 @@ alias p='cd ~/Projects && l'
 alias l='ls -lha'
 alias ll='ls -alF'
 alias la='ls -A'
+alias lt='tree'
 
 # freqently used commands with long names
 alias rss='snownews'
