@@ -25,6 +25,10 @@ alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
 alias cst='config status'
 
+# python aliases
+alias python='python3'
+alias pip='pip3'
+
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
 
