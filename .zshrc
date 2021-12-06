@@ -30,7 +30,7 @@ ZSH_THEME="agnoster"
 
 # Zsh plugins
 plugins=(
-    git 
+    git
     zsh-vi-mode
 )
 
@@ -93,7 +93,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Add diff-so-fancy to path
 export PATH=$HOME/diff-so-fancy:$PATH
 
-# default editor nvim
+# Default editor nvim
 export EDITOR=nvim
 
 source ~/.sh_aliases
@@ -101,7 +101,5 @@ source ~/.sh_aliases
 # Ruby
 export GEM_HOME=$HOME/.gem
 export PATH=$HOME/.gem/bin:$PATH
-
-
 
 
