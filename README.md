@@ -1,16 +1,28 @@
+# Setup Machine
+
+todo
+
+
 # Useful Tools
 
-* hnterm
-* snownews
-* powerlevel10k
-* sqlite
-* diff-so-fancy
-* taskwarrior
-* xmonad
-* fzf
-* terminator
 * asciinema
+* bundle, jekyll
+* diff-so-fancy
+* fzf
+* grip
+* hnterm
+* i3 / i3-gaps
+* powerlevel10k
 * qutebrowser
-* wikit
+* snownews
+* sqlite3
+* taskwarrior
+* terminator
+* tmate
+* tmux
 * tig
+* vifm
+* vimwiki
+* wikit
+* xmonad
 * zsh
