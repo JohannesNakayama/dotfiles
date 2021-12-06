@@ -13,8 +13,8 @@ alias vw='nvim ~/vimwiki/index.wiki'
 alias p='cd ~/Projects && l'
 
 # ls aliases
-alias l='ls -lha'
-alias ll='ls -alF'
+alias l='ls -lh'
+alias ll='ls -alhF'
 alias la='ls -A'
 alias lt='tree'
 
