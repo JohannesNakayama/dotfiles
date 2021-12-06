@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<opml version="2.0">
+    <head>
+	<title>snownews subscriptions</title>
+    </head>
+    <body>
+	<outline text="Felix Dietze’s blog" xmlUrl="https://felx.me/feed.xml"/>
+	<outline text="the singularity is nearer" xmlUrl="https://geohot.github.io/blog/feed"/>
+	<outline text="Paul Graham: Essays" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
+	<outline text="Unenumerated" xmlUrl="https://unenumerated.blogspot.com/atom.xml"/>
+	<outline text="Apocryphon" xmlUrl="https://apocryphon.de/feed.xml"/>
+	<outline text="BMBF Bekanntmachungen" xmlUrl="https://www.bmbf.de/rss/bekanntmachungen.rss"/>
+	<outline text="Deliberati" xmlUrl="https://deliberati.gitlab.io/feed.xml"/>
+	<outline text="DYNOMIGHT" xmlUrl="https://dynomight.net/feed.xml"/>
+	<outline text="[[ Unread Headlines" xmlUrl="smartfeed:/newitems"/>
+    </body>
+</opml>
