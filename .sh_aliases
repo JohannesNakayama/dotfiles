@@ -9,14 +9,21 @@ alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
 
-# short cut to projects
+# short cuts to frequently used directories
 alias p='cd ~/Projects && l'
+alias blog='cd ~/Projects/.blog && tree -L 2'
+alias learn='cd ~/Projects/.learning && tree -L 2'
+alias teach='cd ~/Projects/.teaching && tree -L 2'
+alias write='cd ~/Projects/.writing && tree -L 2'
+alias review='cd ~/Projects/.reviews && tree -L 2'
+
+
 
 # ls aliases
 alias l='ls -lh'
 alias ll='ls -alhF'
 alias la='ls -A'
-alias lt='tree'
+alias lt='tree -L 2'
 
 # freqently used commands with long names
 alias rss='snownews'
@@ -32,4 +39,3 @@ alias pip='pip3'
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
 
-blog() { mv $1 $HOME/Projects/blog/blog/_drafts }
