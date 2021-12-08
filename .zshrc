@@ -52,7 +52,6 @@ compinit
 
 
 # Configure powerlevel10k
-source ~/powerlevel10k/powerlevel10k.zsh-theme  # load p10k theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh    # run config wizard or source config
 
 
