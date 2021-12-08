@@ -1,6 +1,8 @@
 # Setup Machine
 
+
 *Install and configure the basics:*
+* change keyboard layout to neo2
 * [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [setup](https://docs.github.com/en/get-started/quickstart/set-up-git) git / github
 * vim (if not installed) -> nvim
 * [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
@@ -10,6 +12,7 @@
 
 
 *Set login shell to zsh:*
+
 `chsh -s /bin/zsh`
 
 
@@ -42,6 +45,14 @@
 * if gnome desktop is default, switch to KDE plasma
 * avoid snap
 * use brave profiles for separation of tasks
+
+
+
+# Next Steps
+
+* clean up `.config/nvim/init.vim`
+* configure i3 / i3-gaps (rewrite config)
+* learn scala (including ecosystem)
 
 
 *Checkout, maybe install:*
