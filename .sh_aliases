@@ -17,13 +17,16 @@ alias teach='cd ~/Projects/.teaching && tree -L 2'
 alias write='cd ~/Projects/.writing && tree -L 2'
 alias review='cd ~/Projects/.reviews && tree -L 2'
 
-
-
 # ls aliases
 alias l='ls -lh'
 alias ll='ls -alhF'
 alias la='ls -A'
 alias lt='tree -L 2'
+
+# even shorter git aliases
+alias gst='git st'
+alias gy='git commit'
+alias gn='git reset'
 
 # freqently used commands with long names
 alias rss='snownews'
@@ -38,4 +41,3 @@ alias pip='pip3'
 
 # fuzzy search file opening
 v() { $EDITOR $(rg --files | fzf) }
-
