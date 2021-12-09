@@ -57,3 +57,4 @@ compinit
 
 # Load shell aliases
 source ~/.sh_aliases
+
