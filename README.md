@@ -43,6 +43,7 @@
 * taskwarrior
 * tmate
 * tmux
+* tree
 * tig
 * [vimwiki](https://github.com/vimwiki/vimwiki)
 * [snownews](https://github.com/msharov/snownews)
