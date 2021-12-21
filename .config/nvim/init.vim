@@ -1,3 +1,5 @@
+" TODO: configure <leader>
+
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -8,29 +10,31 @@ endif
 " plugins
 call plug#begin('~/.vim/plugged')
 
-        Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
-        Plug 'tpope/vim-sensible'                           " sane defaults
-        Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
-        Plug 'tpope/vim-commentary'                         " commenting
-        Plug 'tpope/vim-surround'                           " surround text with quotes, parantheses, ...
-        Plug 'PeterRincker/vim-argumentative'               " text object ',' / also provides argument movements with >, ],
-        Plug 'tpope/vim-eunuch'                             " unix commands
-        Plug 'zirrostig/vim-schlepp'                        " move selections / lines
-        Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
-        Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
-        Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
-        Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
-        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
-        Plug 'junegunn/fzf.vim'
-        Plug 'vifm/vifm.vim'                                " vifm file manager integration
-        Plug 'vimwiki/vimwiki'                              " personal wiki
-        Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
-        Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
-        Plug 'vim-airline/vim-airline'                      " status / tabline
-        Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
-        Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
+    Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
+    Plug 'tpope/vim-sensible'                           " sane defaults
+    Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
+    Plug 'tpope/vim-commentary'                         " commenting
+    Plug 'tpope/vim-surround'                           " surround text with quotes, parantheses, ...
+    Plug 'PeterRincker/vim-argumentative'               " text object ',' / also provides argument movements with >, ],
+    Plug 'tpope/vim-eunuch'                             " unix commands
+    Plug 'zirrostig/vim-schlepp'                        " move selections / lines
+    Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
+    Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
+    Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
+    Plug 'tpope/vim-repeat'       " enable dot-command for Plugins
+    Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
+    Plug 'junegunn/fzf.vim'
+    Plug 'vifm/vifm.vim'                                " vifm file manager integration
+    Plug 'vimwiki/vimwiki'                              " personal wiki
+    Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
+    Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
+    Plug 'vim-airline/vim-airline'                      " status / tabline
+    Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
+    Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
+    Plug 'junegunn/goyo.vim'                            " writing focus mode
 
-        let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
 
 call plug#end()
 
@@ -57,20 +61,40 @@ set background=dark
 set termguicolors                 " true color support
 
 
+" UPPERCASE current word
+inoremap <c-u> <esc>viwUea
+
+
+" " - FIGURE OUT HOW TO STOP DELETING IF IN FIRST/LAST LINE
+" " move current line one line up/down
+" nmap <s-up> Vd<up>P
+" nmap <s-down> Vdp
+
+
+" <space> /
+
 " set color scheme
 colorscheme neodark               " available colorschemes: palenight, neodark
 
 " set background to match terminal
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
-" don't lose selection when indenting
+" vim terminal mode <- fdietze/dotfiles
+if has('nvim')
+    nmap <leader>gs :nohlsearch<CR>:term tig status<CR>i
+else
+    nmap <leader>gs :nohlsearch<CR>:silent !tig status<CR>:GitGutter(All)<CR>:redraw!<CR>
+endif
+
+" don't lose selection when indenting //<- fdietze/dotfiles
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
+" shortcut to init.vim from within (n)vim
 nnoremap <Leader>vv :e ~/.config/nvim/init.vim<CR>
 
-" prefix for kedbindings
+" prefix for keybindings
 let mapleader="\<space>"
 
 " l/L: next/prev buffer
@@ -114,6 +138,7 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
+" BROKEN (HOW TO FIX?)
 " smart home
 function! SmartHome()
   " https://vim.fandom.com/wiki/Smart_home
