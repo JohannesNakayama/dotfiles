@@ -8,6 +8,7 @@ alias vim=nvim
 alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
+alias va='nvim ~/.sh_aliases'
 
 # short cuts to frequently used directories
 alias p='cd ~/Projects && l'
