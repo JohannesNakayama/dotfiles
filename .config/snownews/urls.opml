@@ -7,9 +7,10 @@
 	<outline text="Felix Dietze’s blog" xmlUrl="https://felx.me/feed.xml"/>
 	<outline text="the singularity is nearer" xmlUrl="https://geohot.github.io/blog/feed"/>
 	<outline text="Paul Graham: Essays" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
+	<outline text="Gwern.net Newsletter" xmlUrl="https://gwern.substack.com/feed"/>
+	<outline text="Apocryphon" xmlUrl="https://apocryphon.de/feed.xml"/>
 	<outline text="Vitalik Buterin's website" xmlUrl="https://vitalik.ca/feed.xml"/>
 	<outline text="Unenumerated" xmlUrl="https://unenumerated.blogspot.com/atom.xml"/>
-	<outline text="Apocryphon" xmlUrl="https://apocryphon.de/feed.xml"/>
 	<outline text="Deliberati" xmlUrl="https://deliberati.gitlab.io/feed.xml"/>
 	<outline text="DYNOMIGHT" xmlUrl="https://dynomight.net/feed.xml"/>
 	<outline text="LessWrong" xmlUrl="https://www.lesswrong.com/feed.xml?view=curated-rss"/>
