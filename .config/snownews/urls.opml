@@ -13,8 +13,9 @@
 	<outline text="Unenumerated" xmlUrl="https://unenumerated.blogspot.com/atom.xml"/>
 	<outline text="Deliberati" xmlUrl="https://deliberati.gitlab.io/feed.xml"/>
 	<outline text="DYNOMIGHT" xmlUrl="https://dynomight.net/feed.xml"/>
+	<outline text="Moxie Marlinspike" xmlUrl="https://moxie.org/feed.xml"/>
 	<outline text="LessWrong" xmlUrl="https://www.lesswrong.com/feed.xml?view=curated-rss"/>
-	<outline text="BMBF Bekanntmachungen" xmlUrl="https://www.bmbf.de/rss/bekanntmachungen.rss"/>
+	<outline text="Gavin Andresen" xmlUrl="http://gavinandresen.ninja/feed"/>
 	<outline text="[[ Unread Headlines" xmlUrl="smartfeed:/newitems"/>
     </body>
 </opml>
