@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'                            " writing focus mode
 
     let g:airline#extensions#tabline#enabled = 1
+    let g:scala_scaladoc_indent = 1
 
 call plug#end()
 
@@ -64,6 +65,15 @@ set termguicolors                 " true color support
 " UPPERCASE current word
 inoremap <c-u> <esc>viwUea
 
+" Closing brackets and quotation marks
+" https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " " - FIGURE OUT HOW TO STOP DELETING IF IN FIRST/LAST LINE
 " " move current line one line up/down
