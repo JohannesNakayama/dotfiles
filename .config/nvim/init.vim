@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
     Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
     Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
-    Plug 'tpope/vim-repeat'       " enable dot-command for Plugins
+    Plug 'tpope/vim-repeat'                             " enable dot-command for Plugins
     Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
     Plug 'junegunn/fzf.vim'
@@ -67,13 +67,13 @@ inoremap <c-u> <esc>viwUea
 
 " Closing brackets and quotation marks
 " https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap {<CR> {<CR>}<ESC>O
+" inoremap {;<CR> {<CR>};<ESC>O
 
 " " - FIGURE OUT HOW TO STOP DELETING IF IN FIRST/LAST LINE
 " " move current line one line up/down
