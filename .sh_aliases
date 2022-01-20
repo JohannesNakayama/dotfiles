@@ -10,14 +10,6 @@ alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.sh_aliases'
 
-# short cuts to frequently used directories
-alias p='cd ~/Projects && l'
-alias blog='cd ~/Projects/.blog && tree -L 2'
-alias learn='cd ~/Projects/.learning && tree -L 2'
-alias teach='cd ~/Projects/.teaching && tree -L 2'
-alias write='cd ~/Projects/.writing && tree -L 2'
-alias review='cd ~/Projects/.reviews && tree -L 2'
-
 # ls aliases
 alias l='ls -lh'
 alias ll='ls -alhF'
@@ -29,6 +21,14 @@ alias gst='git st'
 alias gy='git commit'
 alias gn='git reset'
 
+# short cuts to frequently used directories
+alias p='cd ~/Projects && ll'
+alias blog='cd ~/Projects/.blog && ll'
+alias learn='cd ~/Projects/.learning && ll'
+alias teach='cd ~/Projects/.teaching && ll'
+alias write='cd ~/Projects/.writing && ll'
+alias review='cd ~/Projects/.reviews && ll'
+
 # freqently used commands with long names
 alias rss='snownews'
 alias todo='task list'
@@ -38,6 +38,7 @@ alias cst='config status'
 alias scalac3='scala3-compiler'
 alias amm='amm --no-remote-logging'
 alias wiki='http-server $HOME/vimwiki_html -o'
+alias serve='http-server'
 
 # python aliases
 alias python='python3'
