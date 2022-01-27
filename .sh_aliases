@@ -39,6 +39,8 @@ alias scalac3='scala3-compiler'
 alias amm='amm --no-remote-logging'
 alias wiki='http-server $HOME/vimwiki_html -o'
 alias serve='http-server'
+alias prp='pipenv run python'
+alias pipsh='pipenv shell'
 
 # python aliases
 alias python='python3'
