@@ -27,13 +27,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'vifm/vifm.vim'                                " vifm file manager integration
     Plug 'vimwiki/vimwiki'                              " personal wiki
+    " Plug 'tools-life/taskwiki'                          " taskwarrior support for vimwiki
     Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
     Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
     Plug 'vim-airline/vim-airline'                      " status / tabline
     Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
     Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
     Plug 'junegunn/goyo.vim'                            " writing focus mode
-
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
+    
     let g:airline#extensions#tabline#enabled = 1
     let g:scala_scaladoc_indent = 1
 
