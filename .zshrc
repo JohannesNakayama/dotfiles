@@ -9,7 +9,6 @@ fi
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH                    # base PATH
-export PATH=~/julia-1.6.2/bin:$PATH                           # Julia
 export PATH=$HOME/.npm-packages/bin:$PATH                     # npm packages
 export PATH="$PATH:/home/johannes/.local/share/coursier/bin"  # ammonite REPL
 export PATH=$HOME/diff-so-fancy:$PATH                         # diff-so-fancy
