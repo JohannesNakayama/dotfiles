@@ -18,8 +18,17 @@ alias lt='tree -L 2'
 
 # even shorter git aliases
 alias gst='git st'
+alias ga='git add'
 alias gy='git commit'
 alias gn='git reset'
+alias gcl='git clone'
+alias hiku='git pull'
+alias osu='git push'
+
+# config aliases
+alias cst='config status'
+alias cy='config commit'
+alias cn='config reset'
 
 # short cuts to frequently used directories
 alias p='cd ~/Projects && ll'
@@ -34,12 +43,10 @@ alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
-alias cst='config status'
 alias scalac3='scala3-compiler'
 alias amm='amm --no-remote-logging'
 alias wiki='http-server $HOME/vimwiki_html -o'
 alias serve='http-server'
-alias prp='pipenv run python'
 alias pipsh='pipenv shell'
 
 # python aliases
