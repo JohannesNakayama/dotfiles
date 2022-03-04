@@ -17,13 +17,12 @@ alias la='ls -A'
 alias lt='tree -L 2'
 
 # even shorter git aliases
+alias g='git'
 alias gst='git st'
 alias ga='git add'
 alias gy='git commit'
 alias gn='git reset'
 alias gcl='git clone'
-alias hiku='git pull'
-alias osu='git push'
 
 # config aliases
 alias cst='config status'
@@ -48,6 +47,7 @@ alias amm='amm --no-remote-logging'
 alias wiki='http-server $HOME/vimwiki_html -o'
 alias serve='http-server'
 alias pipsh='pipenv shell'
+alias air='~/go/bin/air'
 
 # python aliases
 alias python='python3'
