@@ -16,6 +16,7 @@
 	<outline text="Moxie Marlinspike" xmlUrl="https://moxie.org/feed.xml"/>
 	<outline text="LessWrong" xmlUrl="https://www.lesswrong.com/feed.xml?view=curated-rss"/>
 	<outline text="Gavin Andresen" xmlUrl="http://gavinandresen.ninja/feed"/>
+	<outline text="Freshman — Articles and Tutorials on Software Development" xmlUrl="https://freshman.tech/index.xml"/>
 	<outline text="[[ Unread Headlines" xmlUrl="smartfeed:/newitems"/>
     </body>
 </opml>
