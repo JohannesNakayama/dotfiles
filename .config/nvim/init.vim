@@ -20,14 +20,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'zirrostig/vim-schlepp'                        " move selections / lines
     Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
     Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
-    Plug 'rhysd/vim-gfm-syntax'                         " Github flavoured markdown with embedded language support
     Plug 'tpope/vim-repeat'                             " enable dot-command for Plugins
     Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
     Plug 'junegunn/fzf.vim'
     Plug 'vifm/vifm.vim'                                " vifm file manager integration
     Plug 'vimwiki/vimwiki'                              " personal wiki
-    " Plug 'tools-life/taskwiki'                          " taskwarrior support for vimwiki
     Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
     Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
     Plug 'vim-airline/vim-airline'                      " status / tabline
@@ -66,24 +64,6 @@ set termguicolors                 " true color support
 
 " UPPERCASE current word
 inoremap <c-u> <esc>viwUea
-
-" Closing brackets and quotation marks
-" https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
-
-" " - FIGURE OUT HOW TO STOP DELETING IF IN FIRST/LAST LINE
-" " move current line one line up/down
-" nmap <s-up> Vd<up>P
-" nmap <s-down> Vdp
-
-
-" <space> /
 
 " set color scheme
 colorscheme neodark               " available colorschemes: palenight, neodark
