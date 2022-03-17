@@ -1,5 +1,3 @@
-" TODO: configure <leader>
-
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -7,7 +5,9 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 
-" plugins
+" Plugins -------------------------------------------------
+" ---------------------------------------------------------
+
 call plug#begin('~/.vim/plugged')
 
     Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
@@ -28,13 +28,16 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'                              " personal wiki
     Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
     Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
+    Plug 'rakr/vim-one'                                 " one color scheme
     Plug 'vim-airline/vim-airline'                      " status / tabline
     Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
     Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
     Plug 'junegunn/goyo.vim'                            " writing focus mode
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
-    
+    " Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }   " close all but current buffer
+
     let g:airline#extensions#tabline#enabled = 1
+    let g:airline_theme='one'
     let g:scala_scaladoc_indent = 1
 
 call plug#end()
@@ -58,18 +61,30 @@ set tabstop=4                     " tab size to 4
 set shiftwidth=4                  " if return: indent by 4
 set expandtab                     " always uses spaces instead of tab characters
 set nostartofline                 " keep column position when switching buffers
-set background=dark
 set termguicolors                 " true color support
 
+" set color scheme
+colorscheme one
+set background=dark
+" available colorschemes: palenight, neodark, one
+
+" required for vimwiki
+set nocompatible
+filetype plugin on
+syntax on
+
+" indentation rules for specific file types
+au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+
+
+" MAPPINGS ------------------------------------------------------
+" ---------------------------------------------------------------
+
+" prefix for keybindings
+let mapleader="\<space>"
 
 " UPPERCASE current word
 inoremap <c-u> <esc>viwUea
-
-" set color scheme
-colorscheme neodark               " available colorschemes: palenight, neodark
-
-" set background to match terminal
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
 " vim terminal mode <- fdietze/dotfiles
 if has('nvim')
@@ -86,8 +101,13 @@ vnoremap = =gv
 " shortcut to init.vim from within (n)vim
 nnoremap <Leader>vv :e ~/.config/nvim/init.vim<CR>
 
-" prefix for keybindings
-let mapleader="\<space>"
+" shortcut to source init.vim from within (n)vim
+" -> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
+nnoremap <Leader>sv :source ~/.config/nvim/init.vim<CR>
+
+" toggle Goyo -> figure out how to do properly
+nnoremap <Leader>g :Goyo<CR>
+nnoremap <Leader>G :Goyo!<CR>
 
 " l/L: next/prev buffer
 " L was: place cursor at bottom of screen
@@ -103,17 +123,20 @@ nnoremap ä :q<CR>
 vnoremap ä <esc>:q<CR>
 nnoremap ü :bd<CR>
 vnoremap ü <esc>:bd<CR>
-nnoremap <Leader>ü :BufOnly<CR>
-vnoremap <Leader>ü <esc>:BufOnly<CR>gv
+" TODO: figure out why the following doesn't work:
+" nnoremap <Leader>ü :BufOnly<CR>
+" vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
-nmap <leader>e :ProjectFiles<CR>
+" open file in git project conveniently in new buffer
+nnoremap <leader>e :ProjectFiles<CR>
 
 
 
-" required for vimwiki
-set nocompatible
-filetype plugin on
-syntax on
+
+" set background to match terminal
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
+
 
 " create non-existing parent directories on save
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
@@ -129,6 +152,7 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
 
 " BROKEN (HOW TO FIX?)
 " smart home
@@ -146,8 +170,10 @@ endfunction
 noremap <expr> <silent> <Home> SmartHome()
 imap <silent> <Home> <C-O><Home>
 
+
 " https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
+
 command! ProjectFiles execute 'Files' s:find_git_root()
