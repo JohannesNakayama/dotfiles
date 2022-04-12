@@ -15,6 +15,7 @@ alias l='ls -lh'
 alias ll='ls -alhF'
 alias la='ls -A'
 alias lt='tree -L 2'
+alias cll='clear && ll'
 
 # even shorter git aliases
 alias g='git'
@@ -38,6 +39,7 @@ alias write='cd ~/Projects/.writing && ll'
 alias review='cd ~/Projects/.reviews && ll'
 
 # freqently used commands with long names
+alias sup='sudo apt update && sudo apt upgrade -y'
 alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
