@@ -105,6 +105,8 @@ nnoremap <Leader>vv :e ~/.config/nvim/init.vim<CR>
 " -> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
 nnoremap <Leader>sv :source ~/.config/nvim/init.vim<CR>
 
+" TODO: streamline vv and sv with $MYVIMRC to make more reusable on other machines
+
 " toggle Goyo -> figure out how to do properly
 nnoremap <Leader>g :Goyo<CR>
 nnoremap <Leader>G :Goyo!<CR>
@@ -129,7 +131,6 @@ vnoremap ü <esc>:bd<CR>
 
 " open file in git project conveniently in new buffer
 nnoremap <leader>e :ProjectFiles<CR>
-
 
 
 
