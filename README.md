@@ -1,7 +1,7 @@
 # Setup Machine
 
-
 *Install and configure the basics:*
+
 * change keyboard layout to neo2
 * [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [setup](https://docs.github.com/en/get-started/quickstart/set-up-git) git / github
 * vim (if not installed) -> nvim
@@ -16,8 +16,9 @@
 `chsh -s /bin/zsh`
 
 
-*Fancier terminal:*
-* [terminator](https://wiki.ubuntuusers.de/Terminator/)
+*Terminal Emulator:*
+
+* [alacritty](https://alacritty.org/)
 * [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
 * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
@@ -30,6 +31,7 @@
 
 
 *Setup work environments:*
+
 * [Julia](https://julialang.org/)
 * bundle / jekyll
 * R / RStudio
@@ -37,19 +39,21 @@
 
 
 *Install utilities:*
-* brave browser
-* fzf
-* if not installed: htop
-* taskwarrior
-* tmate
-* tmux
-* tree
-* tig
+
+* [brave browser](https://brave.com/linux/)
+* [fzf](https://github.com/junegunn/fzf)
+* [htop](https://htop.dev/)
+* [taskwarrior](https://taskwarrior.org/)
+* [tmate](https://tmate.io/)
+* [tmux](https://github.com/tmux/tmux/wiki)
+* [tree](https://linux.die.net/man/1/tree)
+* [tig](https://jonas.github.io/tig/)
 * [vimwiki](https://github.com/vimwiki/vimwiki)
 * [snownews](https://github.com/msharov/snownews)
 
 
 *Some notes:*
+
 * if gnome desktop is default, switch to KDE plasma
 * avoid snap
 * use brave profiles for separation of tasks
@@ -60,17 +64,15 @@
 
 * clean up `.config/nvim/init.vim`
 * configure i3 / i3-gaps (rewrite config)
-* learn scala (including ecosystem)
-
 
 *Checkout, maybe install:*
-* asciinema
-* grip
-* hnterm
-* i3 / i3-gaps
-* inkscape
-* qutebrowser
+
+* xmonad / i3 / i3-gaps / herbstluftwm
 * scala / sbt / ammonite
+* grip
+* qutebrowser
+* inkscape
+* hnterm
 * vifm
+* asciinema
 * wikit
-* xmonad
