@@ -13,7 +13,7 @@
 
 *Set login shell to zsh:*
 
-`chsh -s /bin/zsh`
+* `chsh -s /bin/zsh`
 
 
 *Terminal Emulator:*
@@ -23,7 +23,7 @@
 * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
 
-*Install dotfiles*
+*Install dotfiles*:
 
 * `git clone --bare git@github.com:JohannesNakayama/dotfiles.git $HOME/.cfg`
 * `alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'`
