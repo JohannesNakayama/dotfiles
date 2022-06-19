@@ -9,6 +9,8 @@
 * [zgen](https://github.com/tarjoilija/zgen)
 * [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 * [npm](https://linuxconfig.org/install-npm-on-linux)
+* [rg](https://github.com/BurntSushi/ripgrep)
+* [curl](https://curl.se/)
 
 
 *Set login shell to zsh:*
