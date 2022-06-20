@@ -27,6 +27,7 @@ alias gcl='git clone'
 
 # config aliases
 alias cst='config status'
+alias ca='config add'
 alias cy='config commit'
 alias cn='config reset'
 
