@@ -9,6 +9,7 @@ alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.sh_aliases'
+alias vala='nvim ~/.config/alacritty/alacritty.yml'
 
 # ls aliases
 alias l='ls -lh'
@@ -24,6 +25,7 @@ alias ga='git add'
 alias gy='git commit'
 alias gn='git reset'
 alias gcl='git clone'
+alias gco='git checkout'
 
 # config aliases
 alias cst='config status'

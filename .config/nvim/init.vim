@@ -10,6 +10,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+    " utilities
     Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
     Plug 'tpope/vim-sensible'                           " sane defaults
     Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
@@ -18,31 +19,38 @@ call plug#begin('~/.vim/plugged')
     Plug 'PeterRincker/vim-argumentative'               " text object ',' / also provides argument movements with >, ],
     Plug 'tpope/vim-eunuch'                             " unix commands
     Plug 'zirrostig/vim-schlepp'                        " move selections / lines
-    Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
-    Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
     Plug 'tpope/vim-repeat'                             " enable dot-command for Plugins
-    Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
     Plug 'junegunn/fzf.vim'
     Plug 'vifm/vifm.vim'                                " vifm file manager integration
     Plug 'vimwiki/vimwiki'                              " personal wiki
-    Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
-    Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
-    Plug 'rakr/vim-one'                                 " one color scheme
-    Plug 'vim-airline/vim-airline'                      " status / tabline
-    Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
-    Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
     Plug 'junegunn/goyo.vim'                            " writing focus mode
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
     " Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }   " close all but current buffer
 
+    " language support
+    Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
+    Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
+    Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
+
+    " colors
+    Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
+    Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
+    Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
+    Plug 'rakr/vim-one'                                 " one color scheme
+    Plug 'ajmwagar/vim-deus'                            " deus color scheme
+
+    " status line
+    Plug 'vim-airline/vim-airline'                      " status / tabline
+    Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
+
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme='one'
+    let g:airline_theme='deus'
     let g:scala_scaladoc_indent = 1
 
 call plug#end()
 
-
+" basic settings
 set number                        " show line number
 set cursorline                    " highlight current line
 set hidden                        " switch unsaved buffers
@@ -64,9 +72,12 @@ set nostartofline                 " keep column position when switching buffers
 set termguicolors                 " true color support
 
 " set color scheme
-colorscheme one
-set background=dark
-" available colorschemes: palenight, neodark, one
+colorscheme deus       " available colorschemes: palenight, neodark, one, deus
+" set background=dark  " available for the 'one' colorscheme
+
+" other option: set background to match terminal
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
 
 " required for vimwiki
 set nocompatible
@@ -133,9 +144,6 @@ vnoremap ü <esc>:bd<CR>
 nnoremap <leader>e :ProjectFiles<CR>
 
 
-
-" set background to match terminal
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
 
 
