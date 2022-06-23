@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export GOPATH=$HOME/go
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH                    # base PATH
@@ -14,6 +15,7 @@ export PATH="$PATH:/home/johannes/.local/share/coursier/bin"  # ammonite REPL
 export PATH=$HOME/diff-so-fancy:$PATH                         # diff-so-fancy
 export PATH=$HOME/.gem/bin:$PATH                              # Ruby
 export PATH=$PATH:/usr/local/go/bin                           # Go
+export PATH=$PATH:/$GOPATH/bin
 export GEM_HOME=$HOME/.gem                                    # where the Ruby gems live
 
 
