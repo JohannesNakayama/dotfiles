@@ -72,8 +72,8 @@ set nostartofline                 " keep column position when switching buffers
 set termguicolors                 " true color support
 
 " set color scheme
-colorscheme deus       " available colorschemes: palenight, neodark, one, deus
-" set background=dark  " available for the 'one' colorscheme
+colorscheme one       " available colorschemes: palenight, neodark, one, deus
+set background=dark  " available for the 'one' colorscheme
 
 " other option: set background to match terminal
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
