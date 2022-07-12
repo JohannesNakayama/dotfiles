@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# Inspired by: https://github.com/notusknot/dotfiles
+
 # Start sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -9,13 +11,15 @@ picom &
 # Start polybar
 ~/.config/polybar/launch.sh &
 
+# Wallpaper
 feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 
+# Workspace names
 bspc monitor -d I II III IV V
 
+# Window styling
 bspc config border_width         0
-bspc config window_gap          15
-
+bspc config window_gap           15
 bspc config split_ratio          0.60
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
