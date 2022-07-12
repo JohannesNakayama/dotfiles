@@ -73,6 +73,12 @@ colors: *nord
 
 window:
   opacity: 0.8
+  padding:
+    x: 10
+    y: 10
+  startup_mode: Fullscreen
+
 
 font:
-  size: 9.0
+  size: 10.0
+
