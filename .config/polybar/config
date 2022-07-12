@@ -1,3 +1,5 @@
+; inspired in part by https://github.com/notusknot/dotfiles
+
 [colors]
 black = #000
 white = #fff
