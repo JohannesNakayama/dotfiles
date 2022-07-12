@@ -12,10 +12,10 @@ white = #fff
 grey = #aaa
 darkgrey = #555
 
-background = #DD2E3440
+background = #554C566A
 foreground = #DD3B4252
 focused-background = #E5E9F0
-unfocused-background = #3B4252
+unfocused-background = #2E3440
 
 standard = #D8DEE9
 accent-yellow = #EBCB8B

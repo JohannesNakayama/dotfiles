@@ -79,6 +79,8 @@ colorscheme nord       " available colorschemes: palenight, neodark, one, deus, 
 " other option: set background to match terminal
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
+" transparent background
+hi Normal guibg=NONE ctermbg=NONE
 
 " required for vimwiki
 set nocompatible
