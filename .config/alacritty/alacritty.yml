@@ -72,11 +72,12 @@ schemes:
 colors: *nord
 
 window:
-  opacity: 0.8
+  opacity: 0.9
   padding:
     x: 10
     y: 10
   startup_mode: Maximized
+  decorations: Full
 
 
 font:
