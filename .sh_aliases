@@ -48,8 +48,8 @@ alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
 alias scalac3='scala3-compiler'
 alias amm='amm --no-remote-logging'
-alias wiki='live-server $HOME/vimwiki_html -o'
-alias serve='live-server'
+# alias wiki='live-server $HOME/vimwiki_html -o'
+# alias serve='live-server'
 alias pipsh='pipenv shell'
 alias air='~/go/bin/air'
 
