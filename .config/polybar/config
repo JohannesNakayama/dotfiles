@@ -1,5 +1,11 @@
+; ------------------------------------------------------------
+; ---------------------- POLYBAR CONFIG ----------------------
+; ------------------------------------------------------------
 ; inspired in part by https://github.com/notusknot/dotfiles
 
+
+
+; --- COLORS -------------------------------------------------
 [colors]
 black = #000
 white = #fff
@@ -16,17 +22,19 @@ accent-yellow = #EBCB8B
 accent-orange = #D08770
 accent-red = #BF616A
 
-[bar/mybar]
-modules-right = date
+
+
+; --- BAR MAIN -----------------------------------------------
+[bar/main]
+modules-right = battery date
 modules-left = bspwm
+module-margin = 1
 font-0 = Noto Sans Mono:style=Regular
 background = ${colors.background}
 
-[module/date]
-type = internal/date
-interval = 1
-date = %d-%h-%y %H:%M:%S
 
+
+; --- MODULE BSPWM -------------------------------------------
 [module/bspwm]
 type = internal/bspwm
 
@@ -59,3 +67,32 @@ label-empty = %name%
 label-empty-padding = 2
 label-empty-foreground = ${colors.grey}
 label-empty-background = ${colors.unfocused-background}
+
+
+
+; --- MODULE DATE --------------------------------------------
+[module/date]
+type = internal/date
+interval = 1
+date = %d-%h-%y %H:%M:%S
+
+
+
+; --- MODULE BATTERY -----------------------------------------
+; Adapted from: https://github.com/polybar/polybar/issues/1753
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = AC
+
+full-at = 95
+
+label-full = battery: %percentage%%  |
+format-full = <label-full>
+
+label-charging = battery: %percentage%%, full in: %time%  |
+format-charging = <label-charging>
+
+label-discharging = battery: %percentage%%, %time% left  |
+format-discharging = <label-discharging>
