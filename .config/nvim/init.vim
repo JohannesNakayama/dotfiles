@@ -39,13 +39,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
     Plug 'rakr/vim-one'                                 " one color scheme
     Plug 'ajmwagar/vim-deus'                            " deus color scheme
+    Plug 'arcticicestudio/nord-vim'                     " nord color scheme
 
     " status line
     Plug 'vim-airline/vim-airline'                      " status / tabline
     Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme='deus'
+    let g:airline_theme='nord'
     let g:scala_scaladoc_indent = 1
 
 call plug#end()
@@ -72,8 +73,8 @@ set nostartofline                 " keep column position when switching buffers
 set termguicolors                 " true color support
 
 " set color scheme
-colorscheme one       " available colorschemes: palenight, neodark, one, deus
-set background=dark  " available for the 'one' colorscheme
+colorscheme nord       " available colorschemes: palenight, neodark, one, deus, nord
+" set background=dark  " available for the 'one' colorscheme
 
 " other option: set background to match terminal
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
