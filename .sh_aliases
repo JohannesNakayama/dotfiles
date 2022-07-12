@@ -39,7 +39,6 @@ alias blog='cd ~/Projects/.blog && ll'
 alias learn='cd ~/Projects/.learning && ll'
 alias teach='cd ~/Projects/.teaching && ll'
 alias write='cd ~/Projects/.writing && ll'
-alias review='cd ~/Projects/.reviews && ll'
 
 # freqently used commands with long names
 alias sup='sudo apt update && sudo apt upgrade -y'
@@ -49,7 +48,7 @@ alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
 alias scalac3='scala3-compiler'
 alias amm='amm --no-remote-logging'
-alias wiki='http-server $HOME/vimwiki_html -o'
+alias wiki='live-server $HOME/vimwiki_html -o'
 alias serve='live-server'
 alias pipsh='pipenv shell'
 alias air='~/go/bin/air'
