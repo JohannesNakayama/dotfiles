@@ -41,6 +41,7 @@ config checkout master
 
 *Setup work environments:*
 
+* Python / pipenv
 * [Julia](https://julialang.org/)
 * R / RStudio
 * sqlite3
@@ -72,11 +73,9 @@ config checkout master
 # Next Steps
 
 * clean up `.config/nvim/init.vim`
-* configure i3 / i3-gaps (rewrite config)
 
 *Checkout, maybe install:*
 
-* xmonad / i3 / i3-gaps / herbstluftwm
 * scala / sbt / ammonite
 * grip
 * qutebrowser
@@ -84,4 +83,3 @@ config checkout master
 * hnterm
 * vifm
 * asciinema
-* wikit
