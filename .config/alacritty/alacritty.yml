@@ -76,7 +76,7 @@ colors: *nord
 
 # ======= WINDOW STYLE ======================================================
 window:
-  opacity: 0.9
+  opacity: 0.95
   padding:
     x: 10
     y: 10

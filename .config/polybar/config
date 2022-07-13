@@ -12,7 +12,7 @@ white = #fff
 grey = #aaa
 darkgrey = #555
 
-background = #554C566A
+background = #CC4C566A
 foreground = #DD3B4252
 focused-background = #E5E9F0
 unfocused-background = #2E3440
@@ -56,8 +56,8 @@ label-focused-background = ${colors.focused-background}
 
 label-occupied = %name%
 label-occupied-padding = 2
-label-occupied-foreground = ${colors.darkgrey}
-label-occupied-background = ${colors.foreground}
+label-occupied-foreground = ${colors.accent-orange}
+label-occupied-background = ${colors.unfocused-background}
 
 label-urgent = %name%
 label-urgent-padding = 2
@@ -65,9 +65,8 @@ label-urgent-foreground = ${colors.red}
 
 label-empty = %name%
 label-empty-padding = 2
-label-empty-foreground = ${colors.grey}
-label-empty-background = ${colors.unfocused-background}
-
+label-empty-foreground = ${colors.darkgrey}
+label-empty-background = ${colors.foreground}
 
 
 ; --- MODULE DATE --------------------------------------------
