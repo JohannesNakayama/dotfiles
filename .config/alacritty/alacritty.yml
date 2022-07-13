@@ -1,5 +1,7 @@
-# Found here: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
+# ======= COLOR SCHEMES =====================================================
+# from: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
 schemes:
+
   ayu_dark: &dark
     primary:
       background: '0x0A0E14'
@@ -69,8 +71,10 @@ schemes:
       cyan:    '0x8FBCBB'
       white:   '0xECEFF4'
 
+# ======= CHOOSE THEME ======================================================
 colors: *nord
 
+# ======= WINDOW STYLE ======================================================
 window:
   opacity: 0.9
   padding:
@@ -79,7 +83,6 @@ window:
   startup_mode: Maximized
   decorations: Full
 
-
+# ======= FONT ==============================================================
 font:
   size: 7.0
-
