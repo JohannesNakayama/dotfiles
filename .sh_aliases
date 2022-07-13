@@ -10,6 +10,7 @@ alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.sh_aliases'
 alias vala='nvim ~/.config/alacritty/alacritty.yml'
+alias vg='nvim ~/.gitconfig'
 
 # ls aliases
 alias l='ls -lh'
