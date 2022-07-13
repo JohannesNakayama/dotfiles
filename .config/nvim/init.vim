@@ -46,8 +46,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme='nord'
+    let g:airline_theme = 'nord'
     let g:scala_scaladoc_indent = 1
+    let g:goyo_width = '60%'
 
 call plug#end()
 
