@@ -6,7 +6,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+# Gopath
 export GOPATH=$HOME/go
+
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH                    # base PATH
