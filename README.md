@@ -7,10 +7,13 @@
 * vim (if not installed) -> nvim
 * [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
 * [zgen](https://github.com/tarjoilija/zgen)
-* [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-* [npm](https://linuxconfig.org/install-npm-on-linux)
 * [rg](https://github.com/BurntSushi/ripgrep)
 * [curl](https://curl.se/)
+* [bspwm](https://github.com/baskerville/bspwm)
+* [sqhkd](https://github.com/baskerville/sxhkd)
+* [picom](https://github.com/yshui/picom)
+* [polybar](https://github.com/polybar/polybar)
+* [feh](https://feh.finalrewind.org/)
 
 
 *Set login shell to zsh:*
@@ -18,7 +21,7 @@
 * `chsh -s /bin/zsh`
 
 
-*Terminal Emulator:*
+*Terminal:*
 
 * [alacritty](https://alacritty.org/)
 * [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
@@ -39,7 +42,6 @@ config checkout master
 *Setup work environments:*
 
 * [Julia](https://julialang.org/)
-* bundle / jekyll
 * R / RStudio
 * sqlite3
 
@@ -47,15 +49,17 @@ config checkout master
 *Install utilities:*
 
 * [brave browser](https://brave.com/linux/)
+* bundle / jekyll
 * [fzf](https://github.com/junegunn/fzf)
 * [htop](https://htop.dev/)
+* [npm](https://linuxconfig.org/install-npm-on-linux)
 * [taskwarrior](https://taskwarrior.org/)
+* [tig](https://jonas.github.io/tig/)
 * [tmate](https://tmate.io/)
 * [tmux](https://github.com/tmux/tmux/wiki)
 * [tree](https://linux.die.net/man/1/tree)
-* [tig](https://jonas.github.io/tig/)
-* [vimwiki](https://github.com/vimwiki/vimwiki)
 * [snownews](https://github.com/msharov/snownews)
+* [vimwiki](https://github.com/vimwiki/vimwiki)
 
 
 *Some notes:*
@@ -63,7 +67,6 @@ config checkout master
 * if gnome desktop is default, switch to KDE plasma
 * avoid snap
 * use brave profiles for separation of tasks
-
 
 
 # Next Steps
