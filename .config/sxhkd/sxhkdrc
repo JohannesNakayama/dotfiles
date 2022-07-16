@@ -15,7 +15,7 @@ alt + b
 
 # File manager
 alt + f
-    dolphin
+    alacritty -e cfiles
 
 
 # =====================================================
