@@ -11,6 +11,8 @@ alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.sh_aliases'
 alias vala='nvim ~/.config/alacritty/alacritty.yml'
 alias vg='nvim ~/.gitconfig'
+alias vs='nvim ~/.config/sxhkd/sxhkdrc'
+alias vb='nvim ~/.config/bspwm/bspwmrc'
 
 # ls aliases
 alias l='ls -lh'
