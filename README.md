@@ -52,6 +52,7 @@ config checkout master
 
 * [brave browser](https://brave.com/linux/)
 * bundle / jekyll
+* [cfiles](https://github.com/mananapr/cfiles)
 * [fzf](https://github.com/junegunn/fzf)
 * [htop](https://htop.dev/)
 * [npm](https://linuxconfig.org/install-npm-on-linux)
