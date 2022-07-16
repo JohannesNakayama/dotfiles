@@ -20,6 +20,8 @@ export PATH=$HOME/.gem/bin:$PATH                              # Ruby
 export PATH=$PATH:/usr/local/go/bin                           # Go
 export PATH=$PATH:/$GOPATH/bin
 export GEM_HOME=$HOME/.gem                                    # where the Ruby gems live
+export PATH=$PATH:/home/johannes/.local/bin/          # add terminal image displaying
+
 
 
 # Set default editor nvim
@@ -44,6 +46,10 @@ if ! zgen saved; then
 fi
 
 
+# Don't auto cd
+unsetopt autocd
+
+
 # Specify options for saving shell history
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -62,3 +68,5 @@ compinit
 
 # Load shell aliases
 source ~/.sh_aliases
+
+
