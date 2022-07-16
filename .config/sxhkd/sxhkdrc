@@ -1,59 +1,90 @@
-# ===========================================
-# === HOT KEYS FOR FREQUENTLY USED PROGRAMS =
+# =====================================================
+# =========== HOT KEYS FOR FREQUENTLY USED PROGRAMS ===
 
 # Terminal
-super + Return
+alt + Return
     alacritty
 
-# Launch a program
-super + d
+# Dmenu
+alt + d
     dmenu_run
 
 # Browser
-super + b
+alt + b
     brave-browser
 
 # File manager
-super + f
+alt + f
     dolphin
 
+
+# =====================================================
+# =========== SCREEN CONTROL ==========================
+
 # Lock screen
-super + l
+alt + g
     i3lock -i ~/Pictures/lockscreen/lockscreen.png -b -f
 
-# ===========================================
-# === NAVIGATION AND MANIPULATION ===========
+# Bright screen
+XF86MonBrightnessUp
+    xrandr --output eDP --brightness 1.0
+
+# Dimmed screen
+XF86MonBrightnessDown
+    xrandr --output eDP --brightness 0.5
+
+
+# =====================================================
+# =========== IN / OUT ================================
 
 # Quit/restart bspwm
-super + alt + {q,r}
+ctrl + alt + {q,r}
     bspc {quit,wm -r}
 
-# close and kill
-super + {_,shift + }c
+# Close/kill window
+alt + {_,shift + }c
     bspc node -{c,k}
 
-# focus the node in the given direction
-super + {_,shift + }{n,r,g,t}
-    bspc node -{f,s} {west,south,north,east}
-
-# make sxhkd reload its configuration files
-super + Escape
+# Reload sxhkd config
+alt + Escape
     pkill -USR1 -x sxhkd
 
-# toggle tiled/monocle
-super + m
+
+
+# =====================================================
+# =========== BASIC WINDOW MANAGEMENT =================
+
+# Toggle tiled/monocle mode
+alt + m
     bspc desktop -l next
 
-# swap the current node and the biggest window
-super + y
-    bspc node -s biggest.window
-
-# focus the next/previous desktop in the current monitor
-super + ctrl + {n,t}
+# Next/previous desktop
+alt + mod3 + {n,t}
     bspc desktop -f {prev,next}.local
 
+# Focus/shift node in given direction
+alt + {_,shift + }{i,a,l,e}
+    bspc node -{f,s} {west,south,north,east}
 
-# ----- EXAMPLE CONFIG
+# Preselect direction
+alt + mod5 + {i,a,l,e}
+    bspc node -p {west,south,north,east}
+
+# Cancel preselection
+super + alt + space
+    bspc node -p cancel
+
+# Expand window
+alt + ctrl + {i,a,l,e}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract window
+alt + shift + ctrl + {i,a,l,e}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+
+
+
 
 ##
 ## bspwm hotkeys
@@ -83,10 +114,6 @@ super + ctrl + {n,t}
 ## focus/swap
 ##
 
-## focus the node in the given direction
-#super + {_,shift + }{h,j,k,l}
-#	bspc node -{f,s} {west,south,north,east}
-
 ## focus the node for the given path jump
 #super + {p,b,comma,period}
 #	bspc node -f @{parent,brother,first,second}
@@ -94,10 +121,6 @@ super + ctrl + {n,t}
 ## focus the next/previous window in the current desktop
 #super + {_,shift + }c
 #	bspc node -f {next,prev}.local.!hidden.window
-
-## focus the next/previous desktop in the current monitor
-#super + bracket{left,right}
-#	bspc desktop -f {prev,next}.local
 
 ## focus the last node/desktop
 #super + {grave,Tab}
