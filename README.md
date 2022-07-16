@@ -10,7 +10,7 @@
 * [rg](https://github.com/BurntSushi/ripgrep)
 * [curl](https://curl.se/)
 * [bspwm](https://github.com/baskerville/bspwm)
-* [sqhkd](https://github.com/baskerville/sxhkd)
+* [sxhkd](https://github.com/baskerville/sxhkd)
 * [picom](https://github.com/yshui/picom)
 * [polybar](https://github.com/polybar/polybar)
 * [feh](https://feh.finalrewind.org/)
