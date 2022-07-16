@@ -17,6 +17,10 @@ alt + b
 alt + f
     alacritty -e cfiles
 
+# Show clock
+alt + y
+    alacritty -e tty-clock -c -C 1
+
 
 # =====================================================
 # =========== SCREEN CONTROL ==========================
