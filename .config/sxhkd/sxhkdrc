@@ -54,17 +54,15 @@ alt + Escape
     pkill -USR1 -x sxhkd
 
 
-
 # =====================================================
 # =========== BASIC WINDOW MANAGEMENT =================
-
-# Toggle tiled/monocle mode
-alt + m
-    bspc desktop -l next
 
 # Next/previous desktop
 alt + mod3 + {n,t}
     bspc desktop -f {prev,next}.local
+
+super + mod3 + {m,comma,period,n,r,t,h,g,f}
+    bspc desktop -f {1,2,3,4,5,6,7,8,9}
 
 # Focus/shift node in given direction
 alt + {_,shift + }{i,a,l,e}
@@ -86,6 +84,26 @@ alt + ctrl + {i,a,l,e}
 alt + shift + ctrl + {i,a,l,e}
     bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
+# Rotate tree
+# --- from: https://my-take-on.tech/2020/07/03/some-tricks-for-sxhkd-and-bspwm/
+alt + shift + {n,t}
+    bspc node @/ -C {forward,backward}
+
+
+# =====================================================
+# =========== WINDOW STATE ============================
+
+# Toggle tiled/monocle mode
+alt + m
+    bspc desktop -l next
+
+# Set the window state
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 
@@ -144,34 +162,11 @@ alt + shift + ctrl + {i,a,l,e}
 ## preselect
 ##
 
-## preselect the direction
-#super + ctrl + {h,j,k,l}
-#	bspc node -p {west,south,north,east}
-
 ## preselect the ratio
 #super + ctrl + {1-9}
 #	bspc node -o 0.{1-9}
-
-## cancel the preselection for the focused node
-#super + ctrl + space
-#	bspc node -p cancel
 
 ## cancel the preselection for the focused desktop
 #super + ctrl + shift + space
 #	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-##
-## move/resize
-##
-
-## expand a window by moving one of its side outward
-#super + alt + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-## contract a window by moving one of its side inward
-#super + alt + shift + {h,j,k,l}
-#	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-## move a floating window
-#super + {Left,Down,Up,Right}
-#	bspc node -v {-20 0,0 20,0 -20,20 0}
