@@ -254,7 +254,7 @@ vnoremap ü <esc>:bd<CR>
 " vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
 " open new window in terminal mode
-nnoremap <Leader>t :vnew term://zsh<CR>
+nnoremap <Leader>t :OpenVimTerminal<CR>
 
 " mappings for window navigation
 nnoremap <c-i> <c-w>h
@@ -278,6 +278,13 @@ xmap <c-a><space> <Plug>SendDownV
 " ========================================================================================
 " =================================== CUSTOM FUNCTIONS ===================================
 " ========================================================================================
+
+" open a terminal from within vim
+function OpenVimTerminal()
+    :new term://zsh
+    :resize 10
+endfunction
+command! OpenVimTerminal execute OpenVimTerminal()
 
 " create non-existing parent directories on save
 " --> https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
