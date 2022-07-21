@@ -18,7 +18,6 @@ feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 # Workspace names
 bspc monitor -d 1 2 3 4 5 6 7 8 9
 
-
 # Window styling
 bspc config border_width         0
 bspc config window_gap           20

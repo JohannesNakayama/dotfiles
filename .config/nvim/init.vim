@@ -16,6 +16,7 @@ call plug#begin('~/.vim/plugged')
     " utilities
     Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
     Plug 'tpope/vim-sensible'                           " sane defaults
+    Plug 'tpope/vim-fugitive'                           " git in vim
     Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
     Plug 'tpope/vim-commentary'                         " commenting
     Plug 'tpope/vim-surround'                           " surround text with quotes, parantheses, ...
@@ -46,8 +47,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'arcticicestudio/nord-vim'                     " nord color scheme
 
     " status line
-    Plug 'vim-airline/vim-airline'                      " status / tabline
-    Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
+    Plug 'itchyny/lightline.vim'                        " unintrusive status line
+    Plug 'mengelbrecht/lightline-bufferline'            " tabs/buffers
+
+    " vim repl
+    Plug 'karoliskoncevicius/vim-sendtowindow'
+
 
     " open repl in vim window
     " TODO: checkout vim-sendtowindow first
@@ -65,14 +70,69 @@ call plug#begin('~/.vim/plugged')
     "     \ }
     " let g:ripple_always_return = 1
 
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme = 'nord'
     let g:scala_scaladoc_indent = 1
     let g:goyo_width = '60%'
 
 call plug#end()
 
 
+
+
+" =======================================================================================
+" ===================================== STATUS LINE =====================================
+" =======================================================================================
+
+let g:lightline = {
+    \   'colorscheme': 'nord',
+    \   'active': {
+    \     'left': [ [ 'mode', 'paste' ],
+    \               [ 'readonly', 'filename', 'modified' ] ],
+    \     'right': [ [ 'lineinfo' ],
+    \                [ 'percent' ],
+    \                [ 'fileformat', 'fileencoding', 'filetype' ] ],
+    \   },
+    \   'tabline': {
+    \       'left': [ [ 'buffers' ] ],
+    \       'right': [ [ 'gitbranch' ] ],
+    \   },
+    \   'component_function': {
+    \       'filename': 'LightlineFilename',
+    \       'gitbranch': 'FugitiveHead',
+    \   },
+    \   'component_expand' : {
+    \       'buffers': 'lightline#bufferline#buffers',
+    \   },
+    \   'component_type': {
+    \       'buffers': 'tabsel',
+    \   },
+    \ }
+
+" trim (for paths in lightline)
+" --> https://github.com/pirey/dotfiles/blob/b6707cd381c5d51f884ddbcac09a78a23129f6da/home/.config/nvim/plugin-options/lightline.vim#L46
+function! s:trim(maxlen, str) abort
+    let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
+    return trimed
+endfunction
+
+" display filenames in lightline
+" --> https://github.com/pirey/dotfiles/blob/b6707cd381c5d51f884ddbcac09a78a23129f6da/home/.config/nvim/plugin-options/lightline.vim#L79
+function! LightlineFilename() abort
+    let l:prefix = expand('%:p') =~? "fugitive://" ? '(fugitive) ' : ''
+    let l:maxlen = winwidth(0) - winwidth(0) / 2
+    let l:relative = expand('%:.')
+    let l:tail = expand('%:t')
+    let l:noname = 'No Name'
+
+    if winwidth(0) < 50
+        return ''
+    endif
+
+    if winwidth(0) < 86
+        return l:tail ==# '' ? l:noname : l:prefix . s:trim(l:maxlen, l:tail)
+    endif
+
+    return l:relative ==# '' ? l:noname : l:prefix . s:trim(l:maxlen, l:relative)
+endfunction
 
 
 " ========================================================================================
@@ -86,6 +146,11 @@ set clipboard=unnamedplus         " vim clipboard = system clipboard
 set confirm                       " ask for save on close
 set nostartofline                 " keep column position when switching buffers
 set termguicolors                 " true color support
+set noshowmode                    " mode already displayed in status line
+set showtabline=2                 " always show tabline
+set updatetime=100                " decrease lag for gitgutter (in ms)
+set splitbelow splitright         " window splits
+set mouse=a                       " mouse support for simpler window management
 
 set inccommand=nosplit            " live substitution preview
 set gdefault                      " substitute all occurrences in line per default
@@ -113,8 +178,8 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme nord                  " available colorschemes: palenight, neodark, one, deus, nord
-" set background=dark             " available for the 'one' colorscheme
+colorscheme nord                 " available colorschemes: palenight, neodark, one, deus, nord
+set background=dark              " available for the 'one' colorscheme
 
 " transparent background
 hi Normal guibg=NONE ctermbg=NONE
@@ -188,6 +253,25 @@ vnoremap ü <esc>:bd<CR>
 " nnoremap <Leader>ü :BufOnly<CR>
 " vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
+" open new window in terminal mode
+nnoremap <Leader>t :vnew term://zsh<CR>
+
+" mappings for window navigation
+nnoremap <c-i> <c-w>h
+nnoremap <c-l> <c-w>k
+nnoremap <c-a> <c-w>j
+nnoremap <c-e> <c-w>l
+
+" mappings for vim-sendtowindow
+let g:sendtowindow_use_defaults=0
+nmap <c-e><space> <Plug>SendRight
+xmap <c-e><space> <Plug>SendRightV
+nmap <c-i><space> <Plug>SendLeft
+xmap <c-i><space> <Plug>SendLeftV
+nmap <c-l><space> <Plug>SendUp
+xmap <c-l><space> <Plug>SendUpV
+nmap <c-a><space> <Plug>SendDown
+xmap <c-a><space> <Plug>SendDownV
 
 
 
