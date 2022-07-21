@@ -1,13 +1,16 @@
+" =======================================================================================
+" ======================================= PLUGINS =======================================
+" =======================================================================================
+
+" automatic installation vim-plug
+" --> https://github.com/junegunn/vim-plug/wiki/tips
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
-" Plugins -------------------------------------------------
-" ---------------------------------------------------------
-
+" vim-plug
 call plug#begin('~/.vim/plugged')
 
     " utilities
@@ -22,10 +25,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-repeat'                             " enable dot-command for Plugins
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
     Plug 'junegunn/fzf.vim'
-    Plug 'vifm/vifm.vim'                                " vifm file manager integration
     Plug 'vimwiki/vimwiki'                              " personal wiki
     Plug 'junegunn/goyo.vim'                            " writing focus mode
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
+
+    " TODO: figure out this plugin:
     " Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }   " close all but current buffer
 
     " language support
@@ -45,6 +49,22 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'                      " status / tabline
     Plug 'vim-airline/vim-airline-themes'               " themes for the tabline
 
+    " open repl in vim window
+    " TODO: checkout vim-sendtowindow first
+    " " vim send to repl
+    " Plug 'urbainvaes/vim-ripple'
+    " Plug 'machakann/vim-highlightedyank'                " Highlight code chunks sent to REPL
+    " Plug 'urbainvaes/vim-tmux-pilot'                    " Streamline navigation (e.g. autoinsert in terminal)
+    " let g:ripple_repls = {}
+    " let g:ripple_repls["python"] = {
+    "     \ "command": "ipython",
+    "     \ "pre": "\<esc>[200~",
+    "     \ "post": "\<esc>[201~",
+    "     \ "addcr": 1,
+    "     \ "filter": 0,
+    "     \ }
+    " let g:ripple_always_return = 1
+
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_theme = 'nord'
     let g:scala_scaladoc_indent = 1
@@ -52,88 +72,112 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-" basic settings
+
+
+
+" ========================================================================================
+" ==================================== BASIC SETTINGS ====================================
+" ========================================================================================
+
 set number                        " show line number
 set cursorline                    " highlight current line
 set hidden                        " switch unsaved buffers
 set clipboard=unnamedplus         " vim clipboard = system clipboard
 set confirm                       " ask for save on close
-set inccommand=nosplit            " live substitution preview
-set ignorecase                    " smart case sensitive search
-set smartcase                     "              "
-set hls                           " hightlight search results
-set list
-set listchars=tab:⊳\ ,trail:·     " display whitespaces
-set breakindent                   " indent wrapped lines
-set breakindentopt=shift:2
-set gdefault                      " substitute all occurrences in line per default
-set tabstop=4                     " tab size to 4
-set shiftwidth=4                  " if return: indent by 4
-set expandtab                     " always uses spaces instead of tab characters
 set nostartofline                 " keep column position when switching buffers
 set termguicolors                 " true color support
 
-" set color scheme
-colorscheme nord       " available colorschemes: palenight, neodark, one, deus, nord
-" set background=dark  " available for the 'one' colorscheme
+set inccommand=nosplit            " live substitution preview
+set gdefault                      " substitute all occurrences in line per default
 
-" other option: set background to match terminal
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+set ignorecase                    " case of normal letters is ignored
+set smartcase                     " smart case sensitive search
+set hls                           " hightlight search results
+
+set list
+set listchars=tab:⊳\ ,trail:·     " display whitespaces
+
+set breakindent                   " indent wrapped lines
+set breakindentopt=shift:2        " ... by two spaces
+
+set tabstop=4                     " tab size to 4
+set shiftwidth=4                  " if return: indent by 4
+set expandtab                     " always uses spaces instead of tab characters
+
+" -- required for vimwiki
+syntax on                         " syntax highlighting
+set nocompatible                  " no need for vi compatibility
+filetype plugin on                " load plugin files for specific filetypes
+
+
+" --- Appearance ------------
+" ---------------------------
+
+colorscheme nord                  " available colorschemes: palenight, neodark, one, deus, nord
+" set background=dark             " available for the 'one' colorscheme
 
 " transparent background
 hi Normal guibg=NONE ctermbg=NONE
-
-" required for vimwiki
-set nocompatible
-filetype plugin on
-syntax on
 
 " indentation rules for specific file types
 au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 
 
-" MAPPINGS ------------------------------------------------------
-" ---------------------------------------------------------------
 
-" prefix for keybindings
+
+" =======================================================================================
+" ===================================== KEYBINDINGS =====================================
+" =======================================================================================
+
 let mapleader="\<space>"
 
-" UPPERCASE current word
+" uppercase current word
 inoremap <c-u> <esc>viwUea
 
-" vim terminal mode <- fdietze/dotfiles
+" git status using tig with vim terminal mode
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L209
 if has('nvim')
     nmap <leader>gs :nohlsearch<CR>:term tig status<CR>i
 else
     nmap <leader>gs :nohlsearch<CR>:silent !tig status<CR>:GitGutter(All)<CR>:redraw!<CR>
 endif
 
+" clear search highlighting
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L148
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
 " don't lose selection when indenting //<- fdietze/dotfiles
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
-" shortcut to init.vim from within (n)vim
-nnoremap <Leader>vv :e ~/.config/nvim/init.vim<CR>
+" shortcut to edit init.vim from within (n)vim
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
+nnoremap <Leader>vv :e $MYVIMRC<CR>
 
 " shortcut to source init.vim from within (n)vim
-" -> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
-nnoremap <Leader>sv :source ~/.config/nvim/init.vim<CR>
+" --> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
-" TODO: streamline vv and sv with $MYVIMRC to make more reusable on other machines
-
-" toggle Goyo -> figure out how to do properly
+" toggle Goyo
 nnoremap <Leader>g :Goyo<CR>
 nnoremap <Leader>G :Goyo!<CR>
 
+" open file in git project conveniently in new buffer
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L188
+nnoremap <Leader>e :ProjectFiles<CR>
+
 " l/L: next/prev buffer
 " L was: place cursor at bottom of screen
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L34
 nnoremap <silent> l :bnext<CR>
 vnoremap <silent> l :bnext<CR>
 nnoremap <silent> L :bprev<CR>
 vnoremap <silent> L :bprev<CR>
 
 " efficient one-button save/close bindings
+" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L41
 nnoremap ö :update<CR>
 vnoremap ö <esc>:update<CR>gv
 nnoremap ä :q<CR>
@@ -144,15 +188,15 @@ vnoremap ü <esc>:bd<CR>
 " nnoremap <Leader>ü :BufOnly<CR>
 " vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
-" open file in git project conveniently in new buffer
-nnoremap <leader>e :ProjectFiles<CR>
 
 
 
-
+" ========================================================================================
+" =================================== CUSTOM FUNCTIONS ===================================
+" ========================================================================================
 
 " create non-existing parent directories on save
-" https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
+" --> https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 function s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
@@ -166,11 +210,10 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-
-" BROKEN (HOW TO FIX?)
+" broken somehow -> TODO: fix
 " smart home
+" --> https://vim.fandom.com/wiki/Smart_home
 function! SmartHome()
-  " https://vim.fandom.com/wiki/Smart_home
   let first_nonblank = match(getline('.'), '\S') + 1
   if first_nonblank == 0
     return col('.') + 1 >= col('$') ? '0' : '^'
@@ -183,10 +226,10 @@ endfunction
 noremap <expr> <silent> <Home> SmartHome()
 imap <silent> <Home> <C-O><Home>
 
-
-" https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
+" fuzzy search files from git root
+" --> https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
-
 command! ProjectFiles execute 'Files' s:find_git_root()
+
