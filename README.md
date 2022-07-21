@@ -4,7 +4,7 @@
 
 * change keyboard layout to neo2
 * [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [setup](https://docs.github.com/en/get-started/quickstart/set-up-git) git / github
-* vim (if not installed) -> nvim
+* [neovim](https://neovim.io/)
 * [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
 * [zgen](https://github.com/tarjoilija/zgen)
 * [rg](https://github.com/BurntSushi/ripgrep)
@@ -68,21 +68,15 @@ config checkout master
 
 *Some notes:*
 
-* if gnome desktop is default, switch to KDE plasma
 * avoid snap
 * use brave profiles for separation of tasks
 
 
 # Next Steps
 
-* clean up `.config/nvim/init.vim`
-
 *Checkout, maybe install:*
 
-* scala / sbt / ammonite
 * grip
 * qutebrowser
 * inkscape
-* hnterm
-* vifm
 * asciinema
