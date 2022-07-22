@@ -27,6 +27,7 @@ export PATH=$PATH:/home/johannes/.local/bin/                  # add terminal ima
 export EDITOR=nvim
 
 # Avoid multiple zcompdump files
+# --> https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Plugin management
