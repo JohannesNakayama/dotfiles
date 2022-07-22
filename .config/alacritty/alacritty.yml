@@ -2,7 +2,7 @@
 # from: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
 schemes:
 
-  ayu_dark: &dark
+  ayu_dark: &ayu_dark
     primary:
       background: '0x0A0E14'
       foreground: '0xB3B1AD'
@@ -25,7 +25,7 @@ schemes:
       cyan:    '0x95E6CB'
       white:   '0xFFFFFF'
 
-  atom_one_light: &light
+  atom_one_light: &atom_one_light
     primary:
       background: '0xf8f8f8'
       foreground: '0x2a2b33'
@@ -71,12 +71,66 @@ schemes:
       cyan:    '0x8FBCBB'
       white:   '0xECEFF4'
 
+  nova: &nova
+    primary:
+      background: '#3C4C55'
+      foreground: '#C5D4DD'
+    cursor:
+      text: '#212121'
+      cursor: '#C0C5CE'
+    normal:
+      black:   '#3C4C55'
+      red:     '#DF8C8C'
+      green:   '#A8CE93'
+      yellow:  '#DADA93'
+      blue:    '#83AFE5'
+      magenta: '#9A93E1'
+      cyan:    '#7FC1CA'
+      white:   '#C5D4DD'
+    bright:
+      black:   '#899BA6'
+      red:     '#F2C38F'
+      green:   '#A8CE93'
+      yellow:  '#DADA93'
+      blue:    '#83AFE5'
+      magenta: '#D18EC2'
+      cyan:    '#7FC1CA'
+      white:   '#E6EEF3'
+
+  hyper: &hyper
+    primary:
+      background: '0x000000'
+      foreground: '0xffffff'
+    cursor:
+      text: '0xF81CE5'
+      cursor: '0xffffff'
+    normal:
+      black:   '0x000000'
+      red:     '0xfe0100'
+      green:   '0x33ff00'
+      yellow:  '0xfeff00'
+      blue:    '0x0066ff'
+      magenta: '0xcc00ff'
+      cyan:    '0x00ffff'
+      white:   '0xd0d0d0'
+    bright:
+      black:   '0x808080'
+      red:     '0xfe0100'
+      green:   '0x33ff00'
+      yellow:  '0xfeff00'
+      blue:    '0x0066ff'
+      magenta: '0xcc00ff'
+      cyan:    '0x00ffff'
+      white:   '0xFFFFFF'
+
+
+
 # ======= CHOOSE THEME ======================================================
-colors: *nord
+colors: *ayu_dark
 
 # ======= WINDOW STYLE ======================================================
 window:
-  opacity: 0.95
+  opacity: 0.8
   padding:
     x: 10
     y: 10
