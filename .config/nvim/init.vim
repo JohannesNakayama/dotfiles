@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rakr/vim-one'                                 " one color scheme
     Plug 'ajmwagar/vim-deus'                            " deus color scheme
     Plug 'arcticicestudio/nord-vim'                     " nord color scheme
+    Plug 'zanglg/nova.vim'                              " nova color scheme
 
     " status line
     Plug 'itchyny/lightline.vim'                        " unintrusive status line
@@ -52,23 +53,6 @@ call plug#begin('~/.vim/plugged')
 
     " vim repl
     Plug 'karoliskoncevicius/vim-sendtowindow'
-
-
-    " open repl in vim window
-    " TODO: checkout vim-sendtowindow first
-    " " vim send to repl
-    " Plug 'urbainvaes/vim-ripple'
-    " Plug 'machakann/vim-highlightedyank'                " Highlight code chunks sent to REPL
-    " Plug 'urbainvaes/vim-tmux-pilot'                    " Streamline navigation (e.g. autoinsert in terminal)
-    " let g:ripple_repls = {}
-    " let g:ripple_repls["python"] = {
-    "     \ "command": "ipython",
-    "     \ "pre": "\<esc>[200~",
-    "     \ "post": "\<esc>[201~",
-    "     \ "addcr": 1,
-    "     \ "filter": 0,
-    "     \ }
-    " let g:ripple_always_return = 1
 
     let g:scala_scaladoc_indent = 1
     let g:goyo_width = '60%'
@@ -83,7 +67,7 @@ call plug#end()
 " =======================================================================================
 
 let g:lightline = {
-    \   'colorscheme': 'nord',
+    \   'colorscheme': 'ayu_mirage',
     \   'active': {
     \     'left': [ [ 'mode', 'paste' ],
     \               [ 'readonly', 'filename', 'modified' ] ],
@@ -178,7 +162,7 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme nord                 " available colorschemes: palenight, neodark, one, deus, nord
+colorscheme palenight            " available colorschemes: palenight, neodark, one, deus, nord, nova
 set background=dark              " available for the 'one' colorscheme
 
 " transparent background
@@ -280,6 +264,7 @@ xmap <c-a><space> <Plug>SendDownV
 " ========================================================================================
 
 " open a terminal from within vim
+" TODO: add parameter for split direction
 function OpenVimTerminal()
     :new term://zsh
     :resize 10
