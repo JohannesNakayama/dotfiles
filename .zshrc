@@ -26,6 +26,8 @@ export PATH=$PATH:/home/johannes/.local/bin/                  # add terminal ima
 # Set default editor nvim
 export EDITOR=nvim
 
+# Avoid multiple zcompdump files
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Plugin management
 source "${HOME}/.zgen/zgen.zsh"  # load zgen
