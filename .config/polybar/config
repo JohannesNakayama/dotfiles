@@ -12,7 +12,7 @@ white = #fff
 grey = #aaa
 darkgrey = #555
 
-background = #FF0A0E14
+background = #CC0A0E14
 foreground = #FF333333
 focused-background = #DDDDDD
 unfocused-background = #666666
@@ -20,7 +20,7 @@ unfocused-background = #666666
 standard = #DDDDDD
 accent-light = #00008B
 accent-mid = #DDDDDD
-accent-high = #0981D1
+accent-high = #F68F4F
 
 
 
@@ -66,7 +66,7 @@ label-urgent-foreground = ${colors.red}
 label-empty = %name%
 label-empty-padding = 2
 label-empty-foreground = ${colors.darkgrey}
-label-empty-background = ${colors.foreground}
+label-empty-background = ${colors.background}
 
 
 ; --- MODULE DATE --------------------------------------------
