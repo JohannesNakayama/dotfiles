@@ -23,7 +23,7 @@ alias cll='clear && ll'
 
 # even shorter git aliases
 alias g='git'
-alias gst='git st'
+alias gst='git status'
 alias ga='git add'
 alias gy='git commit'
 alias gn='git reset'
@@ -37,7 +37,6 @@ alias cy='config commit'
 alias cn='config reset'
 
 # short cuts to frequently used directories
-alias p='cd ~/Projects && ll'
 alias blog='cd ~/Projects/.blog && ll'
 alias learn='cd ~/Projects/.learning && ll'
 alias teach='cd ~/Projects/.teaching && ll'
@@ -49,16 +48,18 @@ alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
-alias scalac3='scala3-compiler'
-alias amm='amm --no-remote-logging'
+# alias scalac3='scala3-compiler'
+# alias amm='amm --no-remote-logging'
 alias wiki='npx http-server ~/vimwiki_html -p 9009'
 alias serve='npx live-server --port 8008'
 alias pipsh='pipenv shell'
-alias air='~/go/bin/air'
+# alias air='~/go/bin/air'
 
 # python aliases
 alias python='python3'
 alias pip='pip3'
 
-# fuzzy search file opening
-v() { $EDITOR $(rg --files | fzf) }
+# fuzzy search scripts
+v() { $EDITOR $(rg --files | fzf) }  # open file in nvim
+pp() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
+p() { cd ~/Work && cd $(ls -a | fzf) }  # open work project folder
