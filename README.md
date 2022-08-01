@@ -70,6 +70,7 @@ config checkout master
 
 * avoid snap
 * use brave profiles for separation of tasks
+* [use neo2 arrow keys in Intellij idea](https://youtrack.jetbrains.com/issue/IDEA-256569#focus=Comments-27-4579814.0-0)
 
 
 # Next Steps

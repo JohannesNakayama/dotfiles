@@ -11,24 +11,26 @@ fi
 export GOPATH=$HOME/go
 
 
-# Path
-export PATH=$HOME/bin:/usr/local/bin:$PATH                    # base PATH
-export PATH=$HOME/.npm-packages/bin:$PATH                     # npm packages
-export PATH="$PATH:/home/johannes/.local/share/coursier/bin"  # ammonite REPL
-export PATH=$HOME/diff-so-fancy:$PATH                         # diff-so-fancy
-export PATH=$HOME/.gem/bin:$PATH                              # Ruby
-export PATH=$PATH:/usr/local/go/bin                           # Go
-export PATH=$PATH:/$GOPATH/bin
-export GEM_HOME=$HOME/.gem                                    # where the Ruby gems live
-export PATH=$PATH:/home/johannes/.local/bin/                  # add terminal image displaying
+# IDEA JDK
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 
+
+# Path
+export PATH=$HOME/bin:/usr/local/bin:$PATH                                 # base PATH
+# export PATH=$PATH:/home/johannes/.local/bin/                               # add terminal image displaying
+export PATH=$HOME/.npm-packages/bin:$PATH                                  # npm packages
+# export PATH="$PATH:/home/johannes/.local/share/coursier/bin"               # coursier
+export PATH=$HOME/diff-so-fancy:$PATH                                      # diff-so-fancy
+# export PATH=$PATH:/usr/local/go/bin                                        # Go
+# export PATH=$PATH:/$GOPATH/bin
+export PATH=$HOME/.gem/bin:$PATH                                           # Ruby
+export GEM_HOME=$HOME/.gem                                                 # where the Ruby gems live
+export PATH=$PATH:$JAVA_HOME                                               # default java
+export PATH=$PATH:"home/johannes/intellij-idea/idea-IC-222.3345.118/bin/"  # Intellij idea
 
 # Set default editor nvim
 export EDITOR=nvim
 
-# Avoid multiple zcompdump files
-# --> https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Plugin management
 source "${HOME}/.zgen/zgen.zsh"  # load zgen
@@ -61,7 +63,7 @@ SAVEHIST=1000
 # Completion setup (added by compinstall)
 zstyle :compinstall filename '/home/johannes/.zshrc'
 autoload -Uz compinit
-compinit
+compinit -D
 
 
 # Configure powerlevel10k
