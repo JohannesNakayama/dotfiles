@@ -1,36 +1,60 @@
 # Setup Machine
 
-*Install and configure the basics:*
+## Preparation
 
-* change keyboard layout to neo2
-* [install](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [setup](https://docs.github.com/en/get-started/quickstart/set-up-git) git / github
-* [neovim](https://neovim.io/)
-* [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
-* [zgen](https://github.com/tarjoilija/zgen)
-* [rg](https://github.com/BurntSushi/ripgrep)
-* [curl](https://curl.se/)
-* [bspwm](https://github.com/baskerville/bspwm)
-* [sxhkd](https://github.com/baskerville/sxhkd)
-* [picom](https://github.com/yshui/picom)
-* [polybar](https://github.com/polybar/polybar)
-* [feh](https://feh.finalrewind.org/)
-* [i3lock](https://github.com/i3/i3lock)
-* dmenu
+* change keyboard layout to neo2 (probably during installation)
 
+* make directories:
 
-*Set login shell to zsh:*
+```
+mkdir ~/Projects ~/Work ~/utilities
+```
 
-* `chsh -s /bin/zsh`
+* install:
 
+```
+sudo apt install \
+    bspwm \
+    curl \
+    dmenu \
+    feh \
+    fzf \
+    git \
+    htop \
+    i3lock \
+    imagemagick \
+    neovim \
+    picom \
+    polybar \
+    postgresql \
+    postgresql-client \
+    postgresql-contrib \
+    python3-pip \
+    ripgrep \
+    sqlite3 \
+    sxhkd \
+    tig \
+    tmate \
+    tmux \
+    tree \
+    zsh \
+```
 
-*Terminal:*
+* install:
+    * [brave browser](https://brave.com/linux/)
+    * [docker](https://docs.docker.com/engine/install/ubuntu/)
 
-* [alacritty](https://alacritty.org/)
-* [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
-* [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
+* [setup git](https://docs.github.com/en/get-started/quickstart/set-up-git)
+    * [setup authentication](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+    * [add ssh keys to github and gitlab](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
+* set login shell to zsh:
 
-[*Install dotfiles*](https://www.atlassian.com/git/tutorials/dotfiles):
+```
+chsh -s /bin/zsh
+```
+
+* [install dotfiles](https://www.atlassian.com/git/tutorials/dotfiles):
 
 ```
 alias config='/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME'
@@ -41,45 +65,68 @@ config checkout master
 config config --local status.showUntrackedFiles no
 ```
 
+* install into `~/utilities`:
+    * [alacritty](https://alacritty.org/)
+    * [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
+    * [zgen](https://github.com/tarjoilija/zgen)
 
-*Setup work environments:*
+* pip environments:
 
-* Python / pipenv
-* [Julia](https://julialang.org/)
-* R / RStudio
-* sqlite3
+```
+pip3 install pipenv
+```
+
+* install:
+    * [Julia](https://julialang.org/)
+    * R / RStudio
 
 
-*Install utilities:*
+### Optional
 
-* [brave browser](https://brave.com/linux/)
 * bundle / jekyll
 * [cfiles](https://github.com/mananapr/cfiles)
     * set image preview program to w3m (otherwise, you get stuck when navigating to image files)
-* [fzf](https://github.com/junegunn/fzf)
-* [htop](https://htop.dev/)
 * [npm](https://linuxconfig.org/install-npm-on-linux)
 * [taskwarrior](https://taskwarrior.org/)
-* [tig](https://jonas.github.io/tig/)
-* [tmate](https://tmate.io/)
-* [tmux](https://github.com/tmux/tmux/wiki)
-* [tree](https://linux.die.net/man/1/tree)
 * [snownews](https://github.com/msharov/snownews)
-* [vimwiki](https://github.com/vimwiki/vimwiki)
 
 
-*Some notes:*
+### Some notes
 
 * avoid snap
 * use brave profiles for separation of tasks
 * [use neo2 arrow keys in Intellij idea](https://youtrack.jetbrains.com/issue/IDEA-256569#focus=Comments-27-4579814.0-0)
+* postgres [installation](https://adamtheautomator.com/install-postgresql-on-a-ubuntu/) and [setup](https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html)
 
 
-# Next Steps
+## Next Steps
 
 *Checkout, maybe install:*
 
 * grip
 * qutebrowser
-* inkscape
-* asciinema
+
+
+## For Reference
+
+* [bspwm](https://github.com/baskerville/bspwm)
+* [curl](https://curl.se/)
+* dmenu
+* [feh](https://feh.finalrewind.org/)
+* [fzf](https://github.com/junegunn/fzf)
+* [htop](https://htop.dev/)
+* [i3lock](https://github.com/i3/i3lock)
+* [neovim](https://neovim.io/)
+* [picom](https://github.com/yshui/picom)
+* [polybar](https://github.com/polybar/polybar)
+* [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
+* [rg](https://github.com/BurntSushi/ripgrep)
+* sqlite3
+* [sxhkd](https://github.com/baskerville/sxhkd)
+* [tig](https://jonas.github.io/tig/)
+* [tmate](https://tmate.io/)
+* [tmux](https://github.com/tmux/tmux/wiki)
+* [tree](https://linux.die.net/man/1/tree)
+* [vimwiki](https://github.com/vimwiki/vimwiki)
+* [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
+

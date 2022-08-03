@@ -1,14 +1,17 @@
 [includeIf "gitdir:~/Projects/"]
-    path = .gitconfig-personal
+    path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/.cfg/"]
-    path = .gitconfig-personal
+    path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/utilities/"]
+    path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/vimwiki/"]
-    path = .gitconfig-personal
+    path = .~/gitconfig-personal
 
 [includeIf "gitdir:~/Work/"]
-    path = .gitconfig-work
+    path = ~/.gitconfig-work
 
 [core]
     pager = diff-so-fancy | less --tabs=4 -RFX
