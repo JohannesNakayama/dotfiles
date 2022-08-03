@@ -1,7 +1,5 @@
 # Setup Machine
 
-## Preparation
-
 * change keyboard layout to neo2 (probably during installation)
 
 * make directories:
