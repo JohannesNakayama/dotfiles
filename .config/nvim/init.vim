@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
     Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
     Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
+    Plug 'udalov/kotlin-vim'                            " Kotlin programming language
 
     " colors
     Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
