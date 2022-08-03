@@ -15,6 +15,7 @@
 * [polybar](https://github.com/polybar/polybar)
 * [feh](https://feh.finalrewind.org/)
 * [i3lock](https://github.com/i3/i3lock)
+* dmenu
 
 
 *Set login shell to zsh:*
