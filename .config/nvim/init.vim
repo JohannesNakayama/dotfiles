@@ -163,7 +163,7 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme palenight            " available colorschemes: palenight, neodark, one, deus, nord, nova
+colorscheme deus                 " available colorschemes: palenight, neodark, one, deus, nord, nova
 set background=dark              " available for the 'one' colorscheme
 
 " transparent background

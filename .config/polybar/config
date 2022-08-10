@@ -24,14 +24,25 @@ accent-high = #F68F4F
 
 
 
-; --- BAR MAIN -----------------------------------------------
+; --- BARS ---------------------------------------------------
 [bar/main]
+monitor = eDP
 modules-right = battery date
 modules-left = bspwm
 module-margin = 1
 font-0 = Noto Sans Mono:style=Regular
 background = ${colors.background}
 foreground = ${colors.standard}
+
+[bar/main_external]
+monitor = HDMI-A-0
+modules-right = battery date
+modules-left = bspwm
+module-margin = 1
+font-0 = Noto Sans Mono:style=Regular
+background = ${colors.background}
+foreground = ${colors.standard}
+
 
 
 ; --- MODULE BSPWM -------------------------------------------
