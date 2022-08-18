@@ -68,7 +68,7 @@ call plug#end()
 " =======================================================================================
 
 let g:lightline = {
-    \   'colorscheme': 'ayu_mirage',
+    \   'colorscheme': 'nord',
     \   'active': {
     \     'left': [ [ 'mode', 'paste' ],
     \               [ 'readonly', 'filename', 'modified' ] ],
@@ -163,7 +163,7 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme deus                 " available colorschemes: palenight, neodark, one, deus, nord, nova
+colorscheme nord                 " available colorschemes: palenight, neodark, one, deus, nord, nova
 set background=dark              " available for the 'one' colorscheme
 
 " transparent background
