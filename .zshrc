@@ -8,7 +8,7 @@ fi
 
 
 # IDEA JDK
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export JAVA_HOME="/usr/bin/java"
 
 
 # Path
@@ -17,12 +17,11 @@ export PATH=$HOME/.npm-packages/bin:$PATH                                  # npm
 export PATH=$HOME/utilities/diff-so-fancy:$PATH                            # diff-so-fancy
 export PATH=$HOME/.gem/bin:$PATH                                           # Ruby
 export GEM_HOME=$HOME/.gem                                                 # where the Ruby gems live
-export PATH=$PATH:$JAVA_HOME/bin                                               # default java
-# export PATH=$PATH:"home/johannes/intellij-idea/idea-IC-222.3345.118/bin/"  # Intellij idea
-
+export PATH=$PATH:$JAVA_HOME/bin                                           # default java
 
 
 # TODO: decide
+# export PATH=$PATH:"home/johannes/intellij-idea/idea-IC-222.3345.118/bin/"  # Intellij idea
 # export GOPATH=$HOME/go                                                     # Gopath
 # export PATH=$PATH:/home/johannes/.local/bin/                               # add terminal image displaying
 # export PATH="$PATH:/home/johannes/.local/share/coursier/bin"               # coursier
@@ -58,14 +57,14 @@ unsetopt autocd
 
 # Specify options for saving shell history
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 
 
 # Completion setup (added by compinstall)
 zstyle :compinstall filename '/home/johannes/.zshrc'
 autoload -Uz compinit
-compinit -D
+compinit -D  # -D option set so that there aren't excessively many zcompdump files
 
 
 # Configure powerlevel10k
@@ -75,6 +74,7 @@ compinit -D
 # Load shell aliases
 source ~/.sh_aliases
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
