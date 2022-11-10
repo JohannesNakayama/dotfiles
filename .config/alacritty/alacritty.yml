@@ -123,14 +123,41 @@ schemes:
       cyan:    '0x00ffff'
       white:   '0xFFFFFF'
 
+  # Found here: 
+  # -- https://github.com/Gogh-Co/Gogh/blob/941a2076ee45da39c9100097806a6cbd2e42f933/themes/ic-green-ppl.sh
+  ic_green_ppl: &ic_green_ppl
+    primary:
+      background: '#3A3D3F'
+      foreground: '#D9EFD3'
+    cursor:
+      cursor: '#D9EFD3'
+    normal:
+      black:   '#1F1F1F'
+      red:     '#FB002A'
+      green:   '#339C24'
+      yellow:  '#659B25'
+      blue:    '#149B45'
+      magenta: '#53B82C'
+      cyan:    '#2CB868'
+      white:   '#E0FFEF'
+    bright:
+      black:   '#032710'
+      red:     '#A7FF3F'
+      green:   '#9FFF6D'
+      yellow:  '#D2996D'
+      blue:    '#7299B5'
+      magenta: '#50993E'
+      cyan:    '#22FF71'
+      white:   '#DAEFD0'
+
 
 # ======= CHOOSE THEME ======================================================
-colors: *nord
+colors: *nova
 
 
 # ======= WINDOW STYLE ======================================================
 window:
-  opacity: 0.93
+  opacity: 1
   padding:
     x: 10
     y: 10
