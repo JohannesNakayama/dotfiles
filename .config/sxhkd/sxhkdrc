@@ -82,6 +82,11 @@ alt + shift + ctrl + {i,a,l,e}
 alt + shift + {n,t}
     bspc node @/ -C {forward,backward}
 
+# Move focused window to the next workspace and then switch to that workspace
+# --- from: https://www.reddit.com/r/bspwm/comments/6jj6le/move_window_to_workspace_and_then_switch_to_that/
+alt + super + {n,t}
+    id=$(bspc query --nodes --node); bspc node --to-desktop {prev,next}; bspc desktop --focus next; bspc node --focus ${id}
+
 
 # =====================================================
 # =========== WINDOW STATE ============================
