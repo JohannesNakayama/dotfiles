@@ -29,6 +29,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'                              " personal wiki
     Plug 'junegunn/goyo.vim'                            " writing focus mode
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}     " code completion
+    Plug 'preservim/nerdtree'                           " file system explorer
 
     " TODO: figure out this plugin:
     " Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }   " close all but current buffer
@@ -38,6 +40,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
     Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
     Plug 'udalov/kotlin-vim'                            " Kotlin programming language
+    Plug 'dart-lang/dart-vim-plugin'                    " Dart programming language
+    Plug 'tpope/vim-projectionist'
+    Plug 'jiangmiao/auto-pairs'
+
+    " snippets
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'natebosch/dartlang-snippets'
 
     " colors
     Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
@@ -57,18 +67,30 @@ call plug#begin('~/.vim/plugged')
 
     let g:scala_scaladoc_indent = 1
     let g:goyo_width = '60%'
+    let g:dart_format_on_save = 1
+    let g:dartfmt_options = ['--fix', '--line-length 120']
+    let g:coc_global_extensions = [
+        \ 'coc-snippets',
+        \ 'coc-json',
+        \ 'coc-flutter',
+        \ 'coc-emmet',
+        \ 'coc-css',
+        \ 'coc-html',
+        \ 'coc-prettier',
+        \ ]
+    let g:NERDTreeGitStatusWithFlags = 1
+    let dart_html_in_string=v:true
 
 call plug#end()
-
-
 
 
 " =======================================================================================
 " ===================================== STATUS LINE =====================================
 " =======================================================================================
 
+" lightline config
 let g:lightline = {
-    \   'colorscheme': 'nord',
+    \   'colorscheme': 'powerline',
     \   'active': {
     \     'left': [ [ 'mode', 'paste' ],
     \               [ 'readonly', 'filename', 'modified' ] ],
@@ -154,7 +176,12 @@ set tabstop=4                     " tab size to 4
 set shiftwidth=4                  " if return: indent by 4
 set expandtab                     " always uses spaces instead of tab characters
 
-" -- required for vimwiki
+" for coc.nvim (adapted from Github README)
+set nobackup                      " coc vim may have problems with backup files
+set nowritebackup
+set signcolumn=yes
+
+" required for vimwiki
 syntax on                         " syntax highlighting
 set nocompatible                  " no need for vi compatibility
 filetype plugin on                " load plugin files for specific filetypes
@@ -163,14 +190,16 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme nord                 " available colorschemes: palenight, neodark, one, deus, nord, nova
+colorscheme nova                " available colorschemes: palenight, neodark, one, deus, nord, nova
 set background=dark              " available for the 'one' colorscheme
 
 " transparent background
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 
 " indentation rules for specific file types
 au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+au FileType r setlocal shiftwidth=2 softtabstop=2 expandtab
+au FileType dart setlocal shiftwidth=2 softtabstop=2 expandtab
 
 
 
@@ -238,39 +267,46 @@ vnoremap ü <esc>:bd<CR>
 " nnoremap <Leader>ü :BufOnly<CR>
 " vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
-" open new window in terminal mode
-nnoremap <Leader>t :OpenVimTerminal<CR>
+" " open new window in terminal mode
+" nnoremap <Leader>t :OpenVimTerminal<CR>
 
-" mappings for window navigation
-nnoremap <c-i> <c-w>h
-nnoremap <c-l> <c-w>k
-nnoremap <c-a> <c-w>j
-nnoremap <c-e> <c-w>l
+" " mappings for window navigation
+" nnoremap <c-i> <c-w>h
+" nnoremap <c-l> <c-w>k
+" nnoremap <c-a> <c-w>j
+" nnoremap <c-e> <c-w>l
 
-" mappings for vim-sendtowindow
-let g:sendtowindow_use_defaults=0
-nmap <c-e><space> <Plug>SendRight
-xmap <c-e><space> <Plug>SendRightV
-nmap <c-i><space> <Plug>SendLeft
-xmap <c-i><space> <Plug>SendLeftV
-nmap <c-l><space> <Plug>SendUp
-xmap <c-l><space> <Plug>SendUpV
-nmap <c-a><space> <Plug>SendDown
-xmap <c-a><space> <Plug>SendDownV
+" " mappings for vim-sendtowindow
+" let g:sendtowindow_use_defaults=0
+" nmap <c-e><space> <Plug>SendRight
+" xmap <c-e><space> <Plug>SendRightV
+" nmap <c-i><space> <Plug>SendLeft
+" xmap <c-i><space> <Plug>SendLeftV
+" nmap <c-l><space> <Plug>SendUp
+" xmap <c-l><space> <Plug>SendUpV
+" nmap <c-a><space> <Plug>SendDown
+" xmap <c-a><space> <Plug>SendDownV
 
+" mappings for nerdtree
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+" code completion (coc.nvim) key bindings
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+vnoremap <Leader>a <Plug>(coc-codeaction-selected)
+nnoremap <Leader>a <Plug>(coc-codeaction-selected)
 
 
 " ========================================================================================
 " =================================== CUSTOM FUNCTIONS ===================================
 " ========================================================================================
 
-" open a terminal from within vim
-" TODO: add parameter for split direction
-function OpenVimTerminal()
-    :new term://zsh
-    :resize 10
-endfunction
-command! OpenVimTerminal execute OpenVimTerminal()
+" " open a terminal from within vim
+" " TODO: add parameter for split direction
+" function OpenVimTerminal()
+"     :new term://zsh
+"     :resize 10
+" endfunction
+" command! OpenVimTerminal execute OpenVimTerminal()
 
 " create non-existing parent directories on save
 " --> https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
