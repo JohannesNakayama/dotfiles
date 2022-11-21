@@ -26,10 +26,9 @@ accent-high = #F68F4F
 
 ; --- BARS ---------------------------------------------------
 [bar/main]
-monitor = eDP
-modules-left = battery
-modules-right = date
-modules-center = bspwm
+monitor = eDP-1
+modules-right = battery date
+modules-left = bspwm
 module-margin = 1
 font-0 = Noto Sans Mono:style=Regular
 background = ${colors.background}

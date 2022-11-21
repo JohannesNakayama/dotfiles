@@ -29,7 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'                              " personal wiki
     Plug 'junegunn/goyo.vim'                            " writing focus mode
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}     " code completion
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}     " code completion
     Plug 'preservim/nerdtree'                           " file system explorer
 
     " TODO: figure out this plugin:
@@ -70,16 +70,16 @@ let g:scala_scaladoc_indent = 1
 let g:goyo_width = '60%'
 let g:dart_format_on_save = 1
 let g:dartfmt_options = ['--fix', '--line-length 120']
-let g:coc_global_extensions = [
-    \ 'coc-snippets',
-    \ 'coc-json',
-    \ 'coc-flutter',
-    \ 'coc-emmet',
-    \ 'coc-css',
-    \ 'coc-html',
-    \ 'coc-prettier',
-    \ 'coc-sql',
-    \ ]
+" let g:coc_global_extensions = [
+"     \ 'coc-snippets',
+"     \ 'coc-json',
+"     \ 'coc-flutter',
+"     \ 'coc-emmet',
+"     \ 'coc-css',
+"     \ 'coc-html',
+"     \ 'coc-prettier',
+"     \ 'coc-sql',
+"     \ ]
 let g:NERDTreeGitStatusWithFlags = 1
 let dart_html_in_string=v:true
 
@@ -190,7 +190,7 @@ filetype plugin on                " load plugin files for specific filetypes
 " --- Appearance ------------
 " ---------------------------
 
-colorscheme nova                " available colorschemes: palenight, neodark, one, deus, nord, nova
+colorscheme nord                " available colorschemes: palenight, neodark, one, deus, nord, nova
 set background=dark              " available for the 'one' colorscheme
 
 " transparent background
@@ -290,10 +290,10 @@ vnoremap ü <esc>:bd<CR>
 " mappings for nerdtree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
-" code completion (coc.nvim) key bindings
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-vnoremap <Leader>a <Plug>(coc-codeaction-selected)
-nnoremap <Leader>a <Plug>(coc-codeaction-selected)
+" " code completion (coc.nvim) key bindings
+" inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" vnoremap <Leader>a <Plug>(coc-codeaction-selected)
+" nnoremap <Leader>a <Plug>(coc-codeaction-selected)
 
 
 " ========================================================================================

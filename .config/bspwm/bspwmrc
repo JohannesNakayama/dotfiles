@@ -19,7 +19,7 @@ feh --bg-fill --randomize ~/Pictures/wallpapers/* &
 if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ];then
     bspwm_dual_monitor_setup
 fi
-bspc monitor eDP -d 1 2 3 4 5 6 7 8 9
+bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
 bspc monitor 'HDMI-A-0' -d A B C D E
 
 # Start polybar
