@@ -44,7 +44,7 @@ export PSQL_EDITOR=/usr/bin/nvim
 
 
 # Plugin management
-source "${HOME}/utilities/.zgen/zgen.zsh"  # load zgen
+source "${HOME}/.zgen/zgen.zsh"  # load zgen
 if ! zgen saved; then
   echo "(Re-)Generating a zgen init script"
 
