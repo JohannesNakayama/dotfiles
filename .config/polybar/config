@@ -26,7 +26,7 @@ accent-high = #F68F4F
 
 ; --- BARS ---------------------------------------------------
 [bar/main]
-monitor = eDP
+monitor = eDP-1
 modules-right = battery date
 modules-left = bspwm
 module-margin = 1
