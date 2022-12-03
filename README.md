@@ -12,6 +12,7 @@ mkdir ~/Projects ~/Work ~/utilities
 
 ```
 sudo apt install \
+    bat \
     bspwm \
     curl \
     dmenu \
@@ -107,9 +108,10 @@ pip3 install pipenv
 
 ## For Reference
 
+* [bat](https://github.com/sharkdp/bat)
 * [bspwm](https://github.com/baskerville/bspwm)
 * [curl](https://curl.se/)
-* dmenu
+* [dmenu](https://wiki.archlinux.org/title/dmenu)
 * [feh](https://feh.finalrewind.org/)
 * [fzf](https://github.com/junegunn/fzf)
 * [htop](https://htop.dev/)
@@ -119,7 +121,7 @@ pip3 install pipenv
 * [polybar](https://github.com/polybar/polybar)
 * [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
 * [rg](https://github.com/BurntSushi/ripgrep)
-* sqlite3
+* [sqlite3](https://www.sqlite.org/index.html)
 * [sxhkd](https://github.com/baskerville/sxhkd)
 * [tig](https://jonas.github.io/tig/)
 * [tmate](https://tmate.io/)
