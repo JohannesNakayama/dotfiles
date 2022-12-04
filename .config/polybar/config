@@ -27,8 +27,9 @@ accent-high = #F68F4F
 ; --- BARS ---------------------------------------------------
 [bar/main]
 monitor = eDP
-modules-right = battery date
-modules-left = bspwm
+modules-left = battery
+modules-right = date
+modules-center = bspwm
 module-margin = 1
 font-0 = Noto Sans Mono:style=Regular
 background = ${colors.background}
@@ -98,11 +99,11 @@ adapter = AC
 
 full-at = 95
 
-label-full = battery: %percentage%%  |
+label-full = battery: %percentage%%
 format-full = <label-full>
 
-label-charging = battery: %percentage%%, full in: %time%  |
+label-charging = battery: %percentage%% | full in: %time%
 format-charging = <label-charging>
 
-label-discharging = battery: %percentage%%, %time% left  |
+label-discharging = battery: %percentage%% | %time% left
 format-discharging = <label-discharging>
