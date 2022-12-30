@@ -44,9 +44,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-projectionist'
 
     " snippets
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'natebosch/dartlang-snippets'
+    " Plug 'SirVer/ultisnips'
+    " Plug 'honza/vim-snippets'
+    " Plug 'natebosch/dartlang-snippets'
 
     " colors
     Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
@@ -62,7 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mengelbrecht/lightline-bufferline'            " tabs/buffers
 
     " vim repl
-    Plug 'karoliskoncevicius/vim-sendtowindow'
+    " Plug 'karoliskoncevicius/vim-sendtowindow'
 
 call plug#end()
 

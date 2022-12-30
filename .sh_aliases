@@ -59,7 +59,7 @@ alias wiki='npx http-server ~/vimwiki_html -p 9009'
 alias serve='npx live-server --port 8008'
 alias pipsh='pipenv shell'
 alias idea='intellij-idea-community'
-alias bat='batcat'
+# alias bat='batcat'
 
 
 # python aliases
