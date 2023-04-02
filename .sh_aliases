@@ -1,5 +1,5 @@
 # git alias for dotfile manegement
-alias config='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+alias config='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 
 
 # use nvim by default
@@ -50,7 +50,7 @@ alias write='cd ~/Projects/.writing && ll'
 
 
 # freqently used commands with long names
-alias sup='sudo apt update && sudo apt upgrade -y'
+# alias sup='sudo apt update && sudo apt upgrade -y'
 alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
@@ -59,7 +59,7 @@ alias wiki='npx http-server ~/vimwiki_html -p 9009'
 alias serve='npx live-server --port 8008'
 alias pipsh='pipenv shell'
 alias idea='intellij-idea-community'
-# alias bat='batcat'
+alias i3lock='i3lock-color'
 
 
 # python aliases

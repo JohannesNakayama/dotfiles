@@ -11,28 +11,19 @@ fi
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 # Chrome executable for Flutter development
-export CHROME_EXECUTABLE="/usr/bin/brave-browser"
+export CHROME_EXECUTABLE="/run/current-system/sw/bin/brave"
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH                                 # base PATH
 export PATH=$HOME/.npm-packages/bin:$PATH                                  # npm packages
-export PATH=$HOME/utilities/diff-so-fancy:$PATH                            # diff-so-fancy
 export PATH=$HOME/.gem/bin:$PATH                                           # Ruby
 export GEM_HOME=$HOME/.gem                                                 # where the Ruby gems live
 export PATH=$PATH:$JAVA_HOME/bin                                           # default java
 export PATH=$PATH:$HOME/.local/share/coursier/bin
 export PATH=$PATH:$HOME/.local/bin
 
-export PATH=$PATH:~/utilities/node-v16.17.0-linux-x64/bin
-
-export PATH=$PATH:/usr/local/go/bin                                        # Go
-# export GOPATH=$HOME/go                                                     # Gopath
-
-# TODO: decide
-# export PATH=$PATH:"home/johannes/intellij-idea/idea-IC-222.3345.118/bin/"  # Intellij idea
-# export PATH=$PATH:/home/johannes/.local/bin/                               # add terminal image displaying
-# export PATH="$PATH:/home/johannes/.local/share/coursier/bin"               # coursier
-# export PATH=$PATH:/$GOPATH/bin
+# If diff-so-fancy installed as cloned repository
+# export PATH=$HOME/utilities/diff-so-fancy:$PATH                            # diff-so-fancy
 
 
 # Set default editor nvim
@@ -40,7 +31,7 @@ export EDITOR=nvim
 
 
 # Set default editor for psql
-export PSQL_EDITOR=/usr/bin/nvim
+export PSQL_EDITOR=/run/current-system/sw/bin/nvim
 
 
 # Plugin management
@@ -86,5 +77,5 @@ source ~/.sh_aliases
 
 
 # Hook direnv into shell
-# eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 

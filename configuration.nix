@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
 
@@ -123,31 +124,46 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+    # --- terminal
+    alacritty
+    bat
+    diff-so-fancy
+    fzf
     neovim
-    git
-    zsh
-    wget
-    ntfs3g
-    curl
-    htop
+    ripgrep
+    tig
     tree
     xclip
-    tig
-    ripgrep
-    fzf
-    alacritty
-    keepassxc
-    python3
+    zsh
+
+    # --- remote
+    curl
+    git
+    wget
+
+    # --- system
+    htop
+    ntfs3g
+
+    # --- utilities
     brave
+    direnv
+    keepassxc
+
+    # --- scripting
+    python3
+
+    # --- window manager
     bspwm
-    sxhkd
     dmenu
     feh
     i3lock-color
     imagemagick
     picom
     polybarFull
-    diff-so-fancy
+    sxhkd
+
   ];
 
   environment.shells = with pkgs; [ zsh ];
@@ -160,9 +176,10 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.ssh.startAgent = true;
-
   programs = {
+    ssh = {
+      startAgent = true;
+    };
     zsh = {
       enable = true;
     };
