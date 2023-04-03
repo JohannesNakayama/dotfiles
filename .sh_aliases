@@ -1,12 +1,14 @@
-# git alias for dotfile manegement
+# --- Git alias for dotfile manegement
 alias config='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+alias cst='config status'
+alias ca='config add'
+alias cy='config commit'
+alias cn='config reset'
 
-
-# use nvim by default
+# --- Use nvim by default
 alias vim=nvim
 
-
-# vim aliases for frequently modified files
+# --- Vim aliases for frequently modified files
 alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vw='nvim ~/vimwiki/index.wiki'
@@ -16,8 +18,7 @@ alias vg='nvim ~/.gitconfig'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
 
-
-# ls aliases
+# --- Listing aliases
 alias ls='ls --group-directories-first --color=auto'
 alias l='ls -lh'
 alias ll='ls -alhF'
@@ -25,8 +26,7 @@ alias la='ls -A'
 alias lt='tree -L 2'
 alias cll='clear && ll'
 
-
-# even shorter git aliases
+# --- Even shorter git aliases
 alias g='git'
 alias gst='git status'
 alias ga='git add'
@@ -35,22 +35,12 @@ alias gn='git reset'
 alias gcl='git clone'
 alias gco='git checkout'
 
-
-# config aliases
-alias cst='config status'
-alias ca='config add'
-alias cy='config commit'
-alias cn='config reset'
-
-
-# short cuts to frequently used directories
+# --- Short cuts to frequently used directories
 alias blog='cd ~/Projects/.blog && ll'
 alias learn='cd ~/Projects/.learning && ll'
 alias write='cd ~/Projects/.writing && ll'
 
-
-# freqently used commands with long names
-# alias sup='sudo apt update && sudo apt upgrade -y'
+# --- Freqently used commands with long names
 alias rss='snownews'
 alias todo='task list'
 alias rst='rstudio'
@@ -61,13 +51,20 @@ alias pipsh='pipenv shell'
 alias idea='intellij-idea-community'
 alias i3lock='i3lock-color'
 
-
-# python aliases
+# --- Python aliases
 alias python='python3'
 alias pip='pip3'
 
-
-# fuzzy search scripts
+# --- Fuzzy search scripts [1]
 v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
 pp() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
 p() { cd ~/Work && cd $(ls -a | fzf) }       # open work project folder
+
+
+# -----------------------------------------------------------------------------
+# --- REFERENCES --------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+# [1] Open files in (n)vim using fzf:
+# -- https://github.com/fdietze/dotfiles/blob/master/.sh_aliases#L90
+
