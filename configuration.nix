@@ -11,7 +11,7 @@
       /etc/nixos/hardware-configuration.nix
     ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -105,18 +105,21 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.johannes = {
-    isNormalUser = true;
-    description = "johannes";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      kate
-    #  thunderbird
-    ];
-  };
+  users = {
 
-  users.defaultUserShell = pkgs.zsh;
+    # set default shell to zsh
+    defaultUserShell = pkgs.zsh;
+
+    # define user account
+    extraUsers = {
+      johannes = {
+        isNormalUser = true;
+        description = "johannes";
+        extraGroups = [ "networkmanager" "wheel" ];
+      };
+    };
+
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -133,6 +136,8 @@
     neovim
     ripgrep
     tig
+    tmate
+    tmux
     tree
     xclip
     zsh
@@ -151,8 +156,10 @@
     direnv
     keepassxc
 
-    # --- scripting
+    # --- programming/scripting
     python3
+    rustup
+    nodejs
 
     # --- window manager
     bspwm
@@ -163,6 +170,9 @@
     picom
     polybarFull
     sxhkd
+
+    # --- data
+    sqlite
 
   ];
 
