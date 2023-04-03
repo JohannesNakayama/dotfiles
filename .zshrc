@@ -7,25 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-# IDEA JDK
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-
-# Chrome executable for Flutter development
-export CHROME_EXECUTABLE="/run/current-system/sw/bin/brave"
-
-# Path
-export PATH=$HOME/bin:/usr/local/bin:$PATH                                 # base PATH
-export PATH=$HOME/.npm-packages/bin:$PATH                                  # npm packages
-export PATH=$HOME/.gem/bin:$PATH                                           # Ruby
-export GEM_HOME=$HOME/.gem                                                 # where the Ruby gems live
-export PATH=$PATH:$JAVA_HOME/bin                                           # default java
-export PATH=$PATH:$HOME/.local/share/coursier/bin
-export PATH=$PATH:$HOME/.local/bin
-
-# If diff-so-fancy installed as cloned repository
-# export PATH=$HOME/utilities/diff-so-fancy:$PATH                            # diff-so-fancy
-
-
 # Set default editor nvim
 export EDITOR=nvim
 
