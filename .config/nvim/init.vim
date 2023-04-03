@@ -1,151 +1,12 @@
-" =======================================================================================
-" ======================================= PLUGINS =======================================
-" =======================================================================================
-
-" automatic installation vim-plug
-" --> https://github.com/junegunn/vim-plug/wiki/tips
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" vim-plug
-call plug#begin('~/.vim/plugged')
-
-    " utilities
-    Plug 'farmergreg/vim-lastplace'                     " cursor in position of last open
-    Plug 'tpope/vim-sensible'                           " sane defaults
-    Plug 'tpope/vim-fugitive'                           " git in vim
-    Plug 'airblade/vim-gitgutter'                       " VCS change info per line (only git)
-    Plug 'tpope/vim-commentary'                         " commenting
-    Plug 'tpope/vim-surround'                           " surround text with quotes, parantheses, ...
-    Plug 'PeterRincker/vim-argumentative'               " text object ',' / also provides argument movements with >, ],
-    Plug 'tpope/vim-eunuch'                             " unix commands
-    Plug 'zirrostig/vim-schlepp'                        " move selections / lines
-    Plug 'tpope/vim-repeat'                             " enable dot-command for Plugins
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy completion
-    Plug 'junegunn/fzf.vim'
-    Plug 'vimwiki/vimwiki'                              " personal wiki
-    Plug 'junegunn/goyo.vim'                            " writing focus mode
-    Plug 'mg979/vim-visual-multi', {'branch': 'master'} " multiple cursors
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}     " code completion
-    Plug 'preservim/nerdtree'                           " file system explorer
-
-    " TODO: figure out this plugin:
-    " Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }   " close all but current buffer
-
-    " language support
-    Plug 'derekwyatt/vim-scala', {'for': 'scala'}       " Scala programming language
-    Plug 'JuliaEditorSupport/julia-vim'                 " Julia programming language
-    Plug 'mattn/emmet-vim'                              " emmet for vim -> HTML support
-    Plug 'udalov/kotlin-vim'                            " Kotlin programming language
-    Plug 'dart-lang/dart-vim-plugin'                    " Dart programming language
-    Plug 'tpope/vim-projectionist'
-    Plug 'LnL7/vim-nix'                                 " Nix language
-    Plug 'rust-lang/rust.vim'                           " Rust prrogramming language
-
-    " snippets
-    " Plug 'SirVer/ultisnips'
-    " Plug 'honza/vim-snippets'
-    " Plug 'natebosch/dartlang-snippets'
-
-    " colors
-    Plug 'chrisbra/Colorizer'                           " color hex codes and color-names
-    Plug 'drewtempelmeyer/palenight.vim'                " palenight color scheme
-    Plug 'KeitaNakamura/neodark.vim'                    " neodark color scheme
-    Plug 'rakr/vim-one'                                 " one color scheme
-    Plug 'ajmwagar/vim-deus'                            " deus color scheme
-    Plug 'arcticicestudio/nord-vim'                     " nord color scheme
-    Plug 'zanglg/nova.vim'                              " nova color scheme
-
-    " status line
-    Plug 'itchyny/lightline.vim'                        " unintrusive status line
-    Plug 'mengelbrecht/lightline-bufferline'            " tabs/buffers
-
-    " vim repl
-    " Plug 'karoliskoncevicius/vim-sendtowindow'
-
-call plug#end()
-
-let g:scala_scaladoc_indent = 1
-let g:goyo_width = '60%'
-" let g:dart_format_on_save = 1
-" let g:dartfmt_options = ['--fix', '--line-length 120']
-" let g:coc_global_extensions = [
-"     \ 'coc-snippets',
-"     \ 'coc-json',
-"     \ 'coc-flutter',
-"     \ 'coc-emmet',
-"     \ 'coc-css',
-"     \ 'coc-html',
-"     \ 'coc-prettier',
-"     \ 'coc-sql',
-"     \ ]
-let g:NERDTreeGitStatusWithFlags = 1
-" let dart_html_in_string=v:true
+" Inspired in parts by https://github.com/fdietze/dotfiles/ and others. See bottom of the document for references.
 
 
-" =======================================================================================
-" ===================================== STATUS LINE =====================================
-" =======================================================================================
-
-" lightline config
-let g:lightline = {
-    \   'colorscheme': 'powerline',
-    \   'active': {
-    \     'left': [ [ 'mode', 'paste' ],
-    \               [ 'readonly', 'filename', 'modified' ] ],
-    \     'right': [ [ 'lineinfo' ],
-    \                [ 'percent' ],
-    \                [ 'fileformat', 'fileencoding', 'filetype' ] ],
-    \   },
-    \   'tabline': {
-    \       'left': [ [ 'buffers' ] ],
-    \       'right': [ [ 'gitbranch' ] ],
-    \   },
-    \   'component_function': {
-    \       'filename': 'LightlineFilename',
-    \       'gitbranch': 'FugitiveHead',
-    \   },
-    \   'component_expand' : {
-    \       'buffers': 'lightline#bufferline#buffers',
-    \   },
-    \   'component_type': {
-    \       'buffers': 'tabsel',
-    \   },
-    \ }
-
-" trim (for paths in lightline)
-" --> https://github.com/pirey/dotfiles/blob/b6707cd381c5d51f884ddbcac09a78a23129f6da/home/.config/nvim/plugin-options/lightline.vim#L46
-function! s:trim(maxlen, str) abort
-    let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
-    return trimed
-endfunction
-
-" display filenames in lightline
-" --> https://github.com/pirey/dotfiles/blob/b6707cd381c5d51f884ddbcac09a78a23129f6da/home/.config/nvim/plugin-options/lightline.vim#L79
-function! LightlineFilename() abort
-    let l:prefix = expand('%:p') =~? "fugitive://" ? '(fugitive) ' : ''
-    let l:maxlen = winwidth(0) - winwidth(0) / 2
-    let l:relative = expand('%:.')
-    let l:tail = expand('%:t')
-    let l:noname = 'No Name'
-
-    if winwidth(0) < 50
-        return ''
-    endif
-
-    if winwidth(0) < 86
-        return l:tail ==# '' ? l:noname : l:prefix . s:trim(l:maxlen, l:tail)
-    endif
-
-    return l:relative ==# '' ? l:noname : l:prefix . s:trim(l:maxlen, l:relative)
-endfunction
+" --- Source additional scripts
+source $HOME/.config/nvim/plugins.vim
 
 
 " ========================================================================================
-" ==================================== BASIC SETTINGS ====================================
+" === BASIC SETTINGS =====================================================================
 " ========================================================================================
 
 set number                        " show line number
@@ -178,27 +39,36 @@ set tabstop=4                     " tab size to 4
 set shiftwidth=4                  " if return: indent by 4
 set expandtab                     " always uses spaces instead of tab characters
 
-" for coc.nvim (adapted from Github README)
+" --- For coc.nvim (adapted from Github README)
 set nobackup                      " coc vim may have problems with backup files
 set nowritebackup
 set signcolumn=yes
 
-" required for vimwiki
+" --- Required for vimwiki
 syntax on                         " syntax highlighting
 set nocompatible                  " no need for vi compatibility
 filetype plugin on                " load plugin files for specific filetypes
 
 
-" --- Appearance ------------
-" ---------------------------
+" --- APPEARANCE -----------------------------------------------------------------------
+" --------------------------------------------------------------------------------------
 
-colorscheme nord                " available colorschemes: palenight, neodark, one, deus, nord, nova
-set background=dark              " available for the 'one' colorscheme
+" --- Available colorschemes:
+"     - palenight
+"     - neodark
+"     - one
+"     - deus
+"     - nord
+"     - nova
+colorscheme nova
 
-" transparent background
+" --- Dark background available for the 'one' colorscheme
+set background=dark
+
+" --- Transparent background (uncomment to enable)
 " hi Normal guibg=NONE ctermbg=NONE
 
-" indentation rules for specific file types
+" --- Indentation rules for specific file types
 au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 au FileType r setlocal shiftwidth=2 softtabstop=2 expandtab
 au FileType dart setlocal shiftwidth=2 softtabstop=2 expandtab
@@ -206,60 +76,49 @@ au FileType nix setlocal shiftwidth=2 softtabstop=2 expandtab
 
 
 
-
 " =======================================================================================
-" ===================================== KEYBINDINGS =====================================
+" === KEYBINDINGS =======================================================================
 " =======================================================================================
 
 let mapleader="\<space>"
 
-" uppercase current word
-inoremap <c-u> <esc>viwUea
-
-" git status using tig with vim terminal mode
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L209
+" --- Git status using tig with vim terminal mode [1]
 if has('nvim')
     nmap <leader>gs :nohlsearch<CR>:term tig status<CR>i
 else
     nmap <leader>gs :nohlsearch<CR>:silent !tig status<CR>:GitGutter(All)<CR>:redraw!<CR>
 endif
 
-" clear search highlighting
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L148
+" --- Clear search highlighting [2]
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 
-" don't lose selection when indenting //<- fdietze/dotfiles
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
+" --- Don't lose selection when indenting [3]
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
-" shortcut to edit init.vim from within (n)vim
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
+" --- Shortcut to edit init.vim from within (n)vim [4]
 nnoremap <Leader>vv :e $MYVIMRC<CR>
 
-" shortcut to source init.vim from within (n)vim
-" --> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
+" --- Shortcut to source init.vim from within (n)vim [5]
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 
-" toggle Goyo
+" --- Toggle Goyo
 nnoremap <Leader>g :Goyo<CR>
 nnoremap <Leader>G :Goyo!<CR>
 
-" open file in git project conveniently in new buffer
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L188
+" --- Open file in git project conveniently in new buffer [6]
 nnoremap <Leader>e :ProjectFiles<CR>
 
-" l/L: next/prev buffer
-" L was: place cursor at bottom of screen
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L34
+" --- Cycle through buffers [7]
+"     l/L: next/prev buffer
+"     L was: place cursor at bottom of screen
 nnoremap <silent> l :bnext<CR>
 vnoremap <silent> l :bnext<CR>
 nnoremap <silent> L :bprev<CR>
 vnoremap <silent> L :bprev<CR>
 
-" efficient one-button save/close bindings
-" --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L41
+" --- Efficient one-button save/close bindings [8]
 nnoremap ö :update<CR>
 vnoremap ö <esc>:update<CR>gv
 nnoremap ä :q<CR>
@@ -270,40 +129,20 @@ vnoremap ü <esc>:bd<CR>
 " nnoremap <Leader>ü :BufOnly<CR>
 " vnoremap <Leader>ü <esc>:BufOnly<CR>gv
 
-" " open new window in terminal mode
-" nnoremap <Leader>t :OpenVimTerminal<CR>
-
-" " mappings for window navigation
-" nnoremap <c-i> <c-w>h
-" nnoremap <c-l> <c-w>k
-" nnoremap <c-a> <c-w>j
-" nnoremap <c-e> <c-w>l
-
-" " mappings for vim-sendtowindow
-" let g:sendtowindow_use_defaults=0
-" nmap <c-e><space> <Plug>SendRight
-" xmap <c-e><space> <Plug>SendRightV
-" nmap <c-i><space> <Plug>SendLeft
-" xmap <c-i><space> <Plug>SendLeftV
-" nmap <c-l><space> <Plug>SendUp
-" xmap <c-l><space> <Plug>SendUpV
-" nmap <c-a><space> <Plug>SendDown
-" xmap <c-a><space> <Plug>SendDownV
-
-" mappings for nerdtree
+" --- Toggle nerdtree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
-" code completion (coc.nvim) key bindings
+" --- Code completion (coc.nvim) key bindings
 " inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : \"\<CR>"
 " vnoremap <Leader>a <Plug>(coc-codeaction-selected)
 " nnoremap <Leader>a <Plug>(coc-codeaction-selected)
 
 
 " ========================================================================================
-" =================================== CUSTOM FUNCTIONS ===================================
+" === CUSTOM FUNCTIONS ===================================================================
 " ========================================================================================
 
-" " open a terminal from within vim
+" --- Open a terminal from within vim
 " " TODO: add parameter for split direction
 " function OpenVimTerminal()
 "     :new term://zsh
@@ -311,8 +150,7 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 " endfunction
 " command! OpenVimTerminal execute OpenVimTerminal()
 
-" create non-existing parent directories on save
-" --> https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
+" --- Create non-existing parent directories on save [9]
 function s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
@@ -326,26 +164,51 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-" broken somehow -> TODO: fix
-" smart home
-" --> https://vim.fandom.com/wiki/Smart_home
+" --- Smart home [10]
+" TODO: fix (broken somehow)
 function! SmartHome()
-  let first_nonblank = match(getline('.'), '\S') + 1
-  if first_nonblank == 0
-    return col('.') + 1 >= col('$') ? '0' : '^'
-  endif
-  if col('.') == first_nonblank
-    return '0'  " if at first nonblank, go to start line
-  endif
-  return &wrap && wincol() > 1 ? 'g^' : '^'
+    let first_nonblank = match(getline('.'), '\S') + 1
+    if first_nonblank == 0
+        return col('.') + 1 >= col('$') ? '0' : '^'
+    endif
+    if col('.') == first_nonblank
+        return '0'  " if at first nonblank, go to start line
+    endif
+    return &wrap && wincol() > 1 ? 'g^' : '^'
 endfunction
 noremap <expr> <silent> <Home> SmartHome()
 imap <silent> <Home> <C-O><Home>
 
-" fuzzy search files from git root
-" --> https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
+" --- Fuzzy search files from git root [11]
 function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
+
+
+" --- REFERENCES -----------------------------------------------------------------------
+" --------------------------------------------------------------------------------------
+
+" [1] Git status using tig with vim terminal mode:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L209
+" [2] Clear search highlighting:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L148
+" [3] Don't lose selection when indenting:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
+" [4] Shortcut to edit init.vim from within (n)vim:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
+" [5] Shortcut to source init.vim from within (n)vim:
+" -- https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
+" [6] Open file in git project conveniently in new buffer:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L188
+" [7] Cycle through buffers:
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L34
+" [8] Efficient one-button save/close bindings (these are meant for the neo2 layout):
+" -- https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L41
+" [9] Create non-existing parent directories on save:
+" -- https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
+" [10] Smart home:
+" -- https://vim.fandom.com/wiki/Smart_home
+" [11] Fuzzy search files from git root:
+" -- https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
 
