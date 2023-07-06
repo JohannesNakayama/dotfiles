@@ -146,6 +146,7 @@
     curl
     git
     wget
+    magic-wormhole
 
     # --- system
     htop
@@ -155,6 +156,7 @@
     brave
     direnv
     keepassxc
+    signal-desktop
 
     # --- programming/scripting
     python3
@@ -175,6 +177,9 @@
     sqlite
 
   ];
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
 

@@ -57,8 +57,7 @@ alias pip='pip3'
 
 # --- Fuzzy search scripts [1]
 v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
-pp() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
-p() { cd ~/Work && cd $(ls -a | fzf) }       # open work project folder
+p() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
 
 
 # -----------------------------------------------------------------------------

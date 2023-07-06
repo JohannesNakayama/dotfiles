@@ -2,9 +2,9 @@
 
 BACKUP_DATETIME=$(date +"%Y-%m-%d--%H-%M-%S")
 BACKUP_HOSTNAME=$(hostname)
-BACKUP_FILENAME="${BACKUP_DATETIME}-backup-${BACKUP_HOSTNAME}.tar.gz"
+BACKUP_FILENAME="~/${BACKUP_DATETIME}-backup-${BACKUP_HOSTNAME}.tar.gz"
 
-cd
+cd ~
 
 tar -czvf $BACKUP_FILENAME \
     ./Desktop \
