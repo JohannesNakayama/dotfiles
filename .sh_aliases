@@ -55,6 +55,9 @@ alias i3lock='i3lock-color'
 alias python='python3'
 alias pip='pip3'
 
+# --- Nix-shell
+alias ns='nix-shell --run zsh'
+
 # --- Fuzzy search scripts [1]
 v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
 p() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
