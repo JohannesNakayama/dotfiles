@@ -35,6 +35,7 @@ height = 30
 font-0 = Noto Sans Mono:style=Regular
 background = ${colors.background}
 foreground = ${colors.standard}
+tray-position = right
 
 [bar/main_external]
 monitor = HDMI-A-0

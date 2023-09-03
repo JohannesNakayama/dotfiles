@@ -6,6 +6,8 @@ killall -q polybar
 # Wait until killing is done
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+nm-applet &
+
 # Launch main bar
 # -> adapted from https://protesilaos.com/codelog/multihead-bspwm-polybar/
 polybar main &
