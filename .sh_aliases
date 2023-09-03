@@ -59,6 +59,9 @@ alias pip='pip3'
 alias ns='nix-shell --run zsh'
 alias nrs='sudo nixos-rebuild switch'
 
+# --- Show hidden files with rg by default (but don't list .git!)
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+
 # --- Fuzzy search scripts [1]
 v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
 p() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
