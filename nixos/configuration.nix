@@ -2,14 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, flake-inputs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  nix.registry = {
+    unstable.flake = flake-inputs.nixpkgs;
+  };
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -52,29 +50,25 @@
   };
 
 
-  # Setup xserver
-  services.xserver = {
-
-    # enable the X11 windowing system.
-    enable = true;
-
-    # configure keymap in X11
-    layout = "de";
-    xkbVariant = "neo";
-
-    # enable SDDM display manager
-    displayManager.sddm = {
+  services = {
+    xserver = {
+      # enable the X11 windowing system.
       enable = true;
+
+      # configure keymap in X11
+      layout = "de";
+      xkbVariant = "neo";
+
+      # enable SDDM display manager
+      displayManager.sddm = {
+        enable = true;
+      };
+
+      # enable desktop and window manager
+      desktopManager.plasma5.enable = true;
+      windowManager.bspwm.enable = true;
     };
 
-    # enable desktop and window manager
-    desktopManager.plasma5.enable = true;
-    windowManager.bspwm.enable = true;
-
-  };
-
-
-  services = {
     picom.enable = true;
   };
 
@@ -182,6 +176,7 @@
   services.blueman.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
+  environment.variables.EDITOR = "vim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -199,6 +194,12 @@
       enable = true;
     };
   };
+
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-older-than 7d";
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List services that you want to enable:
 

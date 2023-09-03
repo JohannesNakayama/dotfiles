@@ -55,8 +55,9 @@ alias i3lock='i3lock-color'
 alias python='python3'
 alias pip='pip3'
 
-# --- Nix-shell
+# --- Nix
 alias ns='nix-shell --run zsh'
+alias nrs='sudo nixos-rebuild switch'
 
 # --- Fuzzy search scripts [1]
 v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
