@@ -141,6 +141,7 @@
     git
     wget
     magic-wormhole
+    networkmanagerapplet
 
     # --- system
     htop
