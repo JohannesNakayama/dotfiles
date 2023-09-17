@@ -35,7 +35,7 @@ background = ${colors.background}
 foreground = ${colors.standard}
 
 [bar/main_external]
-monitor = HDMI-A-0
+monitor = HDMI-1
 modules-right = battery date
 modules-left = bspwm
 module-margin = 1
