@@ -8,7 +8,10 @@ fi
 
 
 # IDEA JDK
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+# export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_USER_HOME=$HOME/.android
 
 # Chrome executable for Flutter development
 export CHROME_EXECUTABLE="/usr/bin/brave-browser"
@@ -22,17 +25,11 @@ export GEM_HOME=$HOME/.gem                                                 # whe
 export PATH=$PATH:$JAVA_HOME/bin                                           # default java
 export PATH=$PATH:$HOME/.local/share/coursier/bin
 export PATH=$PATH:$HOME/.local/bin
-
+export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:~/utilities/node-v16.17.0-linux-x64/bin
-
-export PATH=$PATH:/usr/local/go/bin                                        # Go
-# export GOPATH=$HOME/go                                                     # Gopath
-
-# TODO: decide
-# export PATH=$PATH:"home/johannes/intellij-idea/idea-IC-222.3345.118/bin/"  # Intellij idea
-# export PATH=$PATH:/home/johannes/.local/bin/                               # add terminal image displaying
-# export PATH="$PATH:/home/johannes/.local/share/coursier/bin"               # coursier
-# export PATH=$PATH:/$GOPATH/bin
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin                           # Brew
+export PATH=$PATH:/home/johannes/.cache/scalacli/local-repo/bin/scala-cli  # Scala CLI
+export PATH=$PATH:$HOME/.cargo/bin
 
 
 # Set default editor nvim
@@ -40,7 +37,7 @@ export EDITOR=nvim
 
 
 # Set default editor for psql
-export PSQL_EDITOR=/usr/bin/nvim
+export PSQL_EDITOR=/usr/local/bin/nvim
 
 
 # Plugin management
@@ -77,6 +74,14 @@ autoload -Uz compinit
 compinit -D  # -D option set so that there aren't excessively many zcompdump files
 
 
+# Default fzf command (hidden files too)
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+
+
+# Hook direnv
+eval "$(direnv hook zsh)"
+
+
 # Configure powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh    # run config wizard or source config
 
@@ -84,7 +89,3 @@ compinit -D  # -D option set so that there aren't excessively many zcompdump fil
 # Load shell aliases
 source ~/.sh_aliases
 
-
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -3,12 +3,12 @@ alias config='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/joha
 
 
 # use nvim by default
-alias vim=nvim
+alias vim=neovide
 
 
 # vim aliases for frequently modified files
 alias vz='nvim ~/.zshrc'
-alias vv='nvim ~/.config/nvim/init.vim'
+alias vv='nvim ~/.config/nvim/init.lua'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.sh_aliases'
 alias vala='nvim ~/.config/alacritty/alacritty.yml'
@@ -34,6 +34,8 @@ alias gy='git commit'
 alias gn='git reset'
 alias gcl='git clone'
 alias gco='git checkout'
+alias gb='git branch'
+alias gri='git rebase -i HEAD~10'
 
 
 # config aliases
@@ -60,6 +62,10 @@ alias wiki='npx http-server ~/vimwiki_html -p 9009'
 alias serve='npx live-server --port 8008'
 alias pipsh='pipenv shell'
 alias idea='intellij-idea-community'
+alias bat='batcat'
+alias dc='docker-compose'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down -v'
 # alias scalac3='scala3-compiler'
 # alias amm='amm --no-remote-logging'
 # alias air='~/go/bin/air'
@@ -70,7 +76,12 @@ alias python='python3'
 alias pip='pip3'
 
 
+# android emulator
+alias emu='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_1 -dns-server 127.0.0.1'
+
+
 # fuzzy search scripts
-v() { $EDITOR $(rg --files | fzf) }          # open file in nvim
+v() { $EDITOR $(fzf) }          # open file in nvim
 pp() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
 p() { cd ~/Work && cd $(ls -a | fzf) }       # open work project folder
+c() { cd $(ls -a | fzf) && ll }
