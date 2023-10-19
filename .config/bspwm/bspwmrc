@@ -12,14 +12,15 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 picom &
 
 # Wallpaper
-feh --bg-fill --randomize ~/Pictures/wallpapers/* &
+# feh --bg-fill --randomize ~/Pictures/wallpapers/* &
+feh --bg-fill https://fdietze.github.io/frottage/wallpapers/wallpaper-desktop-latest.jpg
 
 # Workspace setup
 # --> adapted from https://protesilaos.com/codelog/multihead-bspwm-polybar/
 if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ]; then
 	bspwm_dual_monitor_setup
 fi
-bspc monitor eDP-1 -d o o o o o o o
+bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
 bspc monitor 'HDMI-1' -d A B C D E
 
 # Start polybar
@@ -30,8 +31,8 @@ fi
 # Window styling
 bspc config border_width 3
 bspc config normal_border_color "#444444"
-bspc config focused_border_color "#FFCA58"
-bspc config window_gap 2
+bspc config focused_border_color "#FFA500"
+bspc config window_gap 10
 bspc config split_ratio 0.5
 bspc config borderless_monocle true
 bspc config gapless_monocle true
