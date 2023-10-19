@@ -65,6 +65,8 @@ return {
 
   -- Multiple cursors
   { "mg979/vim-visual-multi" },
+
+  { "junegunn/goyo.vim" },
 }
 
 -- =============================================================
