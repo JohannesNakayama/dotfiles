@@ -16,3 +16,7 @@ vim.keymap.set("n", "ä", ":q<CR>")
 vim.keymap.set("v", "ä", "<esc>:q<CR>")
 vim.keymap.set("n", "ü", ":bd<CR>")
 vim.keymap.set("v", "ü", "<esc>:q<CR>")
+
+-- toggle Goyo
+vim.keymap.set("n", "<Leader>g", ":Goyo<CR>")
+vim.keymap.set("n", "<Leader>G", ":Goyo!<CR>")
