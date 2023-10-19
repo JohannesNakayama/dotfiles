@@ -1,0 +1,74 @@
+" -----------------------------------------------
+" --- Basic settings ----------------------------
+" -----------------------------------------------
+
+set multicursor
+let mapleader = "\<space>"
+
+
+" -----------------------------------------------
+" --- Closing and saving ------------------------
+" -----------------------------------------------
+
+nnoremap ü :q<CR>
+nnoremap ö :action SaveAll<CR>
+nnoremap ä :action Exit<CR>
+
+
+" -----------------------------------------------
+" --- Code actions ------------------------------
+" -----------------------------------------------
+
+nnoremap <leader>cr :action RenameElement<CR>
+vnoremap <leader>cr :action RenameElement<CR>
+
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gcc :action CommentByLineComment<CR>
+
+nnoremap <leader>rf :action ReformatCode<CR>
+vnoremap <leader>rf :action ReformatCode<CR>
+
+
+" -----------------------------------------------
+" --- Tab and window management -----------------
+" -----------------------------------------------
+
+nnoremap l :action NextTab<CR>
+nnoremap L :action PreviousTab<CR>
+vnoremap l :action NextTab<CR>
+vnoremap L :action PreviousTab<CR>
+
+nnoremap <leader>te :action SplitAndMoveRight<CR>
+vnoremap <leader>te :action SplitAndMoveRight<CR>
+nnoremap <leader>ta :action SplitAndMoveDown<CR>
+vnoremap <leader>ta :action SplitAndMoveDown<CR>
+
+nnoremap <leader>us :action Unsplit<CR>
+
+
+" -----------------------------------------------
+" --- Code navigation ---------------------------
+" -----------------------------------------------
+
+nnoremap gd :action GotoDeclaration<CR>
+vnoremap gd :action GotoDeclaration<CR>
+
+nnoremap gi :action GotoImplementation<CR>
+vnoremap gi :action GotoImplementation<CR>
+
+nnoremap gt :action GotoTest<CR>
+vnoremap gt :action GotoTest<CR>
+
+nnoremap ge :action GotoNextError<CR>
+
+
+" -----------------------------------------------
+" --- Find things -------------------------------
+" -----------------------------------------------
+
+nnoremap <leader>ff :action SearchEverywhere<CR>
+vnoremap <leader>ff :action SearchEverywhere<CR>
+
+nnoremap <leader>fu :action FindUsages<CR>
+vnoremap <leader>fu :action FindUsages<CR>
+
