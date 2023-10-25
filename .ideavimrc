@@ -4,6 +4,7 @@
 
 set multicursor
 let mapleader = "\<space>"
+nnoremap <leader>sv :source ~/.ideavimrc
 
 
 " -----------------------------------------------
@@ -58,6 +59,9 @@ vnoremap gi :action GotoImplementation<CR>
 
 nnoremap gt :action GotoTest<CR>
 vnoremap gt :action GotoTest<CR>
+
+nnoremap gs :action GotoSuperMethod<CR>
+vnoremap gs :action GotoSuperMethod<CR>
 
 nnoremap ge :action GotoNextError<CR>
 
