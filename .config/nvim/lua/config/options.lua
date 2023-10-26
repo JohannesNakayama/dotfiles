@@ -11,6 +11,9 @@ vim.opt.guifont = { "RobotoMono Nerd Font", ":h8" }
 
 vim.g.goyo_width = "60%"
 
+vim.opt.relativenumber = false
+vim.opt.number = true
+
 if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.5
   vim.g.neovide_touch_drag_timeout = 0.17
