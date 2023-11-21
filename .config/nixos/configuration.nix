@@ -179,7 +179,7 @@
 
   hardware.bluetooth.enable = true;
 
-  enviromnment = {
+  environment = {
     shells = with pkgs; [ zsh ];
     variables = {
       EDITOR = "vim";
