@@ -7,12 +7,8 @@ BACKUP_FILENAME="${BACKUP_DATETIME}-backup-${BACKUP_HOSTNAME}.tar.gz"
 cd
 
 tar -czvf $BACKUP_FILENAME \
-    ./Desktop \
-    ./Documents \
-    ./Downloads \
-    ./Music \
-    ./Pictures \
-    ./Projects \
-    ./Public \
-    ./Videos
-
+	./Desktop \
+	./Documents \
+	./Downloads \
+	./Pictures \
+	./Projects
