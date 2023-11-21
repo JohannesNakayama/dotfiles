@@ -1,6 +1,6 @@
-# Setup Machine
+# Dotfiles
 
-* change keyboard layout to neo2 (probably during installation)
+* change keyboard layout to neo2
 
 * make directories:
 
