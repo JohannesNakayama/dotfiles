@@ -5,21 +5,24 @@
 { config, pkgs, flake-inputs, ... }:
 
 {
-  nix.registry = {
-    unstable.flake = flake-inputs.nixpkgs;
+  boot = {
+    # bootloader
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+    };
+
+    # setup keyfile
+    initrd.secrets = {
+      "/crypto_keyfile.bin" = null;
+    };
+
+    # support ntfs (for external drives)
+    supportedFilesystems = [ "ntfs" ];
   };
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -35,20 +38,21 @@
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "de_DE.UTF-8";
+      LC_IDENTIFICATION = "de_DE.UTF-8";
+      LC_MEASUREMENT = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
+      LC_NAME = "de_DE.UTF-8";
+      LC_NUMERIC = "de_DE.UTF-8";
+      LC_PAPER = "de_DE.UTF-8";
+      LC_TELEPHONE = "de_DE.UTF-8";
+      LC_TIME = "de_DE.UTF-8";
+    };
   };
-
 
   services = {
     xserver = {
@@ -65,20 +69,23 @@
       };
 
       # enable desktop and window manager
-      desktopManager.plasma5.enable = true;
+      #desktopManager.plasma5.enable = true;
+      desktopManager.gnome.enable = true;
       windowManager.bspwm.enable = true;
     };
 
     picom.enable = true;
+
+    blueman.enable = true;
+
+    # Enable CUPS to print documents
+    printing.enable = true;
   };
 
   # Configure console keymap
   console.keyMap = "de";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
+  # Enable sound with pipewire
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -100,7 +107,6 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-
     # set default shell to zsh
     defaultUserShell = pkgs.zsh;
 
@@ -112,16 +118,15 @@
         extraGroups = [ "networkmanager" "wheel" ];
       };
     };
-
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile
+  # To search, run:
+  #   $ nix search wget
   environment.systemPackages = with pkgs; [
-
     # --- terminal
     alacritty
     bat
@@ -170,14 +175,16 @@
 
     # --- data
     sqlite
-
   ];
 
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
-  environment.shells = with pkgs; [ zsh ];
-  environment.variables.EDITOR = "vim";
+  enviromnment = {
+    shells = with pkgs; [ zsh ];
+    variables = {
+      EDITOR = "vim";
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -188,21 +195,19 @@
   # };
 
   programs = {
-    ssh = {
-      startAgent = true;
-    };
-    zsh = {
-      enable = true;
-    };
+    ssh.startAgent = true;
+    zsh.enable = true;
   };
 
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 7d";
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # List services that you want to enable:
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    registry.unstable.flake = flake-inputs.nixpkgs;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -220,5 +225,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }
