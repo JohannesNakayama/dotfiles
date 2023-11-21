@@ -22,7 +22,7 @@ export PATH=$HOME/.npm-packages/bin:$PATH                                  # npm
 export PATH=$HOME/utilities/diff-so-fancy:$PATH                            # diff-so-fancy
 export PATH=$HOME/.gem/bin:$PATH                                           # Ruby
 export GEM_HOME=$HOME/.gem                                                 # where the Ruby gems live
-export PATH=$PATH:$JAVA_HOME/bin                                           # default java
+export PATH=$PATH:$JAVA_HOME/bin                                           # default Java
 export PATH=$PATH:$HOME/.local/share/coursier/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.pub-cache/bin
@@ -30,7 +30,7 @@ export PATH=$PATH:~/utilities/node-v16.17.0-linux-x64/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin                           # Brew
 export PATH=$PATH:/home/johannes/.cache/scalacli/local-repo/bin/scala-cli  # Scala CLI
 export PATH=$PATH:$HOME/.cargo/bin
-
+export PATH=$PATH:/usr/local/go/bin                                        # Go
 
 # Set default editor nvim
 export EDITOR=nvim
@@ -38,6 +38,12 @@ export EDITOR=nvim
 
 # Set default editor for psql
 export PSQL_EDITOR=/usr/local/bin/nvim
+
+
+# Node version management
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 # Plugin management
@@ -88,4 +94,3 @@ eval "$(direnv hook zsh)"
 
 # Load shell aliases
 source ~/.sh_aliases
-
