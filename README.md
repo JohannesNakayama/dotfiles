@@ -96,6 +96,7 @@ pip3 install pipenv
 * use brave profiles for separation of tasks
 * [use neo2 arrow keys in Intellij idea](https://youtrack.jetbrains.com/issue/IDEA-256569#focus=Comments-27-4579814.0-0)
 * postgres [installation](https://adamtheautomator.com/install-postgresql-on-a-ubuntu/) and [setup](https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html)
+* [enable flakes on nixos](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled)
 
 
 ## Next Steps
