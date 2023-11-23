@@ -1,5 +1,6 @@
 # git alias for dotfile manegement
-alias config='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+alias cfg='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+# alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 
 
 # use nvim by default
@@ -43,10 +44,10 @@ alias gri='git rebase -i HEAD~10'
 
 
 # config aliases
-alias cst='config status'
-alias ca='config add'
-alias cy='config commit'
-alias cn='config reset'
+alias cst='cfg status'
+alias ca='cfg add'
+alias cy='cfg commit'
+alias cn='cfg reset'
 
 
 # short cuts to frequently used directories
