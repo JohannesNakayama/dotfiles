@@ -157,11 +157,12 @@
     direnv
     keepassxc
     signal-desktop
+    taskwarrior
 
     # --- programming/scripting
     python3
     rustup
-    nodejs
+    nodejs_20
 
     # --- window manager
     bspwm
