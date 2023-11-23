@@ -12,9 +12,9 @@ Feel free to take mine as an inspiration as well.
 
 **Install**
 
-A word of caution:
 This is not guaranteed to work for anyone anywhere, nor is it supposed to.
 These are just my instructions for myself.
+Requires root user privileges.
 
 ```
 mkdir ~/projects
@@ -28,11 +28,16 @@ rm .bashrc
 
 git clone --bare https://github.com/JohannesNakayama/dotfiles.git $HOME/.cfg
 
-alias cfg="GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME git -c status.showUntrackedFiles=no"
+alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 cfg checkout master
 
 # Install zgen for zsh plugin management
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+
+# Symlink to nix configuration
+cp /etc/nixos/hardware-configuration.nix $HOME/.config/nixos
+mv /etc/nixos /etc/nixos.bak
+ln -s $HOME/.config/nixos /etc/nixos
 ```
 
 <!-- * install: -->
