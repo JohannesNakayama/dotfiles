@@ -111,6 +111,7 @@ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 * DO NOT CREATE BRANCHES IN DOTFILES REPO! IT GET'S MESSY...
 * change keyboard layout to neo2
+* checkout [home manager](https://nixos.wiki/wiki/Home_Manager)
 * use brave profiles for separation of tasks
 * [use neo2 arrow keys in Intellij idea](https://youtrack.jetbrains.com/issue/IDEA-256569#focus=Comments-27-4579814.0-0)
 * postgres [installation](https://adamtheautomator.com/install-postgresql-on-a-ubuntu/) and [setup](https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html)
