@@ -3,9 +3,9 @@
 This is how I setup my computer.
 I took a lot of inspiration from the following dotfiles repositories:
 
-* (https://github.com/fdietze/dotfiles)
-* (https://github.com/notusknot/dotfiles)
-* (https://gitlab.com/protesilaos/dotfiles)
+* https://github.com/fdietze/dotfiles
+* https://github.com/notusknot/dotfiles
+* https://gitlab.com/protesilaos/dotfiles
 
 Feel free to take mine as an inspiration as well.
 
