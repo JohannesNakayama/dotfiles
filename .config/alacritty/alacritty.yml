@@ -1,31 +1,11 @@
+# ===========================================================================
 # ======= COLOR SCHEMES =====================================================
+# ===========================================================================
 # from: https://github.com/eendroroy/alacritty-theme/blob/master/schemes.yaml
+
 schemes:
 
-  ayu_dark: &ayu_dark
-    primary:
-      background: '0x0A0E14'
-      foreground: '0xB3B1AD'
-    normal:
-      black:   '0x01060E'
-      red:     '0xEA6C73'
-      green:   '0x91B362'
-      yellow:  '0xF9AF4F'
-      blue:    '0x53BDFA'
-      magenta: '0xFAE994'
-      cyan:    '0x90E1C6'
-      white:   '0xC7C7C7'
-    bright:
-      black:   '0x686868'
-      red:     '0xF07178'
-      green:   '0xC2D94C'
-      yellow:  '0xFFB454'
-      blue:    '0x59C2FF'
-      magenta: '0xFFEE99'
-      cyan:    '0x95E6CB'
-      white:   '0xFFFFFF'
-
-  atom_one_light: &light
+  atom_one_light: &atom_one_light
     primary:
       background: '0xf8f8f8'
       foreground: '0x2a2b33'
@@ -97,69 +77,13 @@ schemes:
       cyan:    '#7FC1CA'
       white:   '#E6EEF3'
 
-  hyper: &hyper
-    primary:
-      background: '0x000000'
-      foreground: '0xffffff'
-    cursor:
-      text: '0xF81CE5'
-      cursor: '0xffffff'
-    normal:
-      black:   '0x000000'
-      red:     '0xfe0100'
-      green:   '0x33ff00'
-      yellow:  '0xfeff00'
-      blue:    '0x0066ff'
-      magenta: '0xcc00ff'
-      cyan:    '0x00ffff'
-      white:   '0xd0d0d0'
-    bright:
-      black:   '0x808080'
-      red:     '0xfe0100'
-      green:   '0x33ff00'
-      yellow:  '0xfeff00'
-      blue:    '0x0066ff'
-      magenta: '0xcc00ff'
-      cyan:    '0x00ffff'
-      white:   '0xFFFFFF'
-
-  # Found here: 
-  # -- https://github.com/Gogh-Co/Gogh/blob/941a2076ee45da39c9100097806a6cbd2e42f933/themes/ic-green-ppl.sh
-  ic_green_ppl: &ic_green_ppl
-    primary:
-      background: '#3A3D3F'
-      foreground: '#D9EFD3'
-    cursor:
-      cursor: '#D9EFD3'
-    normal:
-      black:   '#1F1F1F'
-      red:     '#FB002A'
-      green:   '#339C24'
-      yellow:  '#659B25'
-      blue:    '#149B45'
-      magenta: '#53B82C'
-      cyan:    '#2CB868'
-      white:   '#E0FFEF'
-    bright:
-      black:   '#032710'
-      red:     '#A7FF3F'
-      green:   '#9FFF6D'
-      yellow:  '#D2996D'
-      blue:    '#7299B5'
-      magenta: '#50993E'
-      cyan:    '#22FF71'
-      white:   '#DAEFD0'
-
   # Tokyo Night theme, based on both:
   #   https://github.com/ghifarit53/tokyonight-vim
   #   https://github.com/enkia/tokyo-night-vscode-theme
   tokyo-night: &tokyo-night
-    # Default colors
     primary:
       background: '#1a1b26'
       foreground: '#a9b1d6'
-
-    # Normal colors
     normal:
       black:   '#32344a'
       red:     '#f7768e'
@@ -169,8 +93,6 @@ schemes:
       magenta: '#ad8ee6'
       cyan:    '#449dab'
       white:   '#787c99'
-
-    # Bright colors
     bright:
       black:   '#444b6a'
       red:     '#ff7a93'
@@ -182,12 +104,9 @@ schemes:
       white:   '#acb0d0'
 
   tokyo-night-storm: &tokyo-night-storm
-    # Default colors
     primary:
       background: '#24283b'
       foreground: '#a9b1d6'
-
-    # Normal colors
     normal:
       black:   '#32344a'
       red:     '#f7768e'
@@ -197,8 +116,6 @@ schemes:
       magenta: '#ad8ee6'
       cyan:    '#449dab'
       white:   '#9699a8'
-
-    # Bright colors
     bright:
       black:   '#444b6a'
       red:     '#ff7a93'
@@ -209,12 +126,14 @@ schemes:
       cyan:    '#0db9d7'
       white:   '#acb0d0'
 
-
-# ======= CHOOSE THEME ======================================================
+# Choose theme
 colors: *tokyo-night
 
 
+# ===========================================================================
 # ======= WINDOW STYLE ======================================================
+# ===========================================================================
+
 window:
   opacity: 1.0
   padding:
@@ -224,7 +143,10 @@ window:
   decorations: Full
 
 
+# ===========================================================================
 # ======= FONT ==============================================================
+# ===========================================================================
+
 font:
   normal:
     family: RobotoMono Nerd Font
