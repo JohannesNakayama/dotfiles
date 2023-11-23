@@ -134,6 +134,7 @@
     fzf
     neovim
     ripgrep
+    roboto-mono
     tig
     tmate
     tmux
