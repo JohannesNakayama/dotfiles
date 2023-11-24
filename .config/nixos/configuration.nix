@@ -64,8 +64,9 @@
       xkbVariant = "neo";
 
       # enable SDDM display manager
-      displayManager.sddm = {
-        enable = true;
+      displayManager = {
+        # sddm.enable = true;
+        gdm.enable = true;
       };
 
       # enable desktop and window manager
@@ -134,7 +135,6 @@
     fzf
     neovim
     ripgrep
-    roboto-mono
     tig
     tmate
     tmux
@@ -153,11 +153,17 @@
     htop
     ntfs3g
 
+    # --- c
+    cmake
+    cmakeCurses
+    llvmPackages_11.clang
+
     # --- utilities
     brave
     direnv
     keepassxc
-    signal-desktop
+    psmisc
+    # signal-desktop
     taskwarrior
 
     # --- programming/scripting
@@ -177,6 +183,10 @@
 
     # --- data
     sqlite
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "RobotoMono" ]; })
   ];
 
   hardware.bluetooth.enable = true;
