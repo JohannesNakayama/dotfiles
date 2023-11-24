@@ -11,18 +11,7 @@ return {
   },
 
   -- Some LSP configs for nvim
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        ["kotlin-language-server"] = {
-          opts = {
-            autoformat = false,
-          },
-        },
-      },
-    },
-  },
+  { "neovim/nvim-lspconfig" },
 
   {
     "j-hui/fidget.nvim",
@@ -48,7 +37,6 @@ return {
   },
 
   { "simrat39/rust-tools.nvim" },
-  { "udalov/kotlin-vim" },
 
   -- Color schemes
   { "arcticicestudio/nord-vim" },
