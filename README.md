@@ -29,6 +29,7 @@ rm .bashrc
 git clone --bare https://github.com/JohannesNakayama/dotfiles.git $HOME/.cfg
 
 alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+cfg config --local status.showUntrackedFiles no
 cfg checkout master
 
 # Install zgen for zsh plugin management
@@ -128,6 +129,11 @@ ln -s $HOME/.config/nixos /etc/nixos
 * hugo
 * [node version manager](https://github.com/nvm-sh/nvm)
 
+**Useful Browser Extensions**
+
+* [remove all distractions from YouTube](https://unhook.app/)
+* [keyboard-based browsing](https://chromewebstore.google.com/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=de%2F)
+* [narrower text for better readability](https://chromewebstore.google.com/detail/narrower/jfjaedekncgddegockpigkkpgkhaoljg?hl=de%2F)
 
 **For Reference**
 
