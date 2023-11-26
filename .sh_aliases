@@ -1,10 +1,10 @@
 # git alias for dotfile manegement
-alias cfg='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
-# alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+# alias cfg='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
+alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 
 
 # use nvim by default
-alias vim=nvim
+# alias vim=nvim
 
 # TODO: setup neovide properly
 # alias vim=neovide
@@ -19,6 +19,7 @@ alias vala='nvim ~/.config/alacritty/alacritty.yml'
 alias vg='nvim ~/.gitconfig'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
+alias vn='nvim ~/.config/nixos/configuration.nix'
 
 
 # ls aliases
