@@ -11,14 +11,14 @@
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot";
       };
     };
 
     # setup keyfile
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
+    # initrd.secrets = {
+    #   "/crypto_keyfile.bin" = null;
+    # };
 
     # support ntfs (for external drives)
     supportedFilesystems = [ "ntfs" ];
@@ -84,7 +84,7 @@
   };
 
   # Configure console keymap
-  console.keyMap = "de";
+  console.keyMap = "neo";
 
   # Enable sound with pipewire
   sound.enable = true;
