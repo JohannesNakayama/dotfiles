@@ -11,7 +11,12 @@ return {
   },
 
   -- Some LSP configs for nvim
-  { "neovim/nvim-lspconfig" },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      autoformat = false,
+    },
+  },
 
   {
     "j-hui/fidget.nvim",
