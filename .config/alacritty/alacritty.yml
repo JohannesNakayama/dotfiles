@@ -127,7 +127,7 @@ schemes:
       white:   '#acb0d0'
 
 # Choose theme
-colors: *tokyo-night
+colors: *tokyo-night-storm
 
 
 # ===========================================================================
