@@ -23,11 +23,11 @@ alt + g
 
 # Bright screen
 XF86MonBrightnessUp
-    xrandr --output eDP --brightness 1.0
+    xrandr --output eDP-1 --brightness 1.0
 
 # Dimmed screen
 XF86MonBrightnessDown
-    xrandr --output eDP --brightness 0.5
+    xrandr --output eDP-1 --brightness 0.5
 
 
 # =====================================================
