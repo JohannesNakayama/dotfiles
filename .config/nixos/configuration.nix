@@ -148,15 +148,15 @@
     wget
     magic-wormhole
     networkmanagerapplet
+    openssl
 
     # --- system
     htop
     ntfs3g
 
     # --- c
-    cmake
-    cmakeCurses
-    llvmPackages_11.clang
+    gnumake
+    gcc
 
     # --- utilities
     brave
@@ -168,6 +168,9 @@
 
     # --- programming/scripting
     python3
+    ruby_3_2
+    rubyPackages_3_2.openssl
+    libffi
     rustup
     nodejs_20
 
