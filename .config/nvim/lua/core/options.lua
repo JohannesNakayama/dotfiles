@@ -20,7 +20,7 @@ vim.o.showcmd = false
 vim.o.cursorline = true
 vim.o.laststatus = 2
 vim.o.number = true
-vim.o.updatetime = 100
+-- vim.o.updatetime = 100
 vim.o.startofline = false
 vim.o.confirm = true
 

@@ -26,8 +26,8 @@ vim.keymap.set('v', 'ü', '<esc>:q<CR>')
 -- Source/edit nvim config
 -- --> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
 -- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
-vim.keymap.set('n', '<leader>sv', ':luafile %<CR>')
-vim.keymap.set('v', '<leader>sv', ':luafile %<CR>')
+vim.keymap.set('n', '<leader>sv', ':luafile $MYVIMRC<CR>')
+vim.keymap.set('v', '<leader>sv', ':luafile $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>vv', ':e $MYVIMRC<CR>')
 
 -- Don't lose selection when indenting //<- fdietze/dotfiles
