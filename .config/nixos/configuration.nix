@@ -174,7 +174,7 @@
     rubyPackages_3_2.openssl
     libffi
     rustup
-    nodejs_18
+    nodejs_20
     R
     rstudio
 
