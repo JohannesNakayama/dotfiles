@@ -157,10 +157,12 @@
     # --- c
     gnumake
     gcc
+    glibc
 
     # --- utilities
     brave
     direnv
+    just
     keepassxc
     psmisc
     # signal-desktop
@@ -172,7 +174,9 @@
     rubyPackages_3_2.openssl
     libffi
     rustup
-    nodejs_20
+    nodejs_18
+    R
+    rstudio
 
     # --- window manager
     bspwm
