@@ -44,6 +44,7 @@ return require('packer').startup(function(use)
   use 'junegunn/goyo.vim'
   use 'mg979/vim-visual-multi'
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'stevearc/dressing.nvim'
 
   -- Completion/Snippets
   use {
@@ -72,6 +73,9 @@ return require('packer').startup(function(use)
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
   } 
+
+  -- Refactoring
+  use 'smjonas/inc-rename.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

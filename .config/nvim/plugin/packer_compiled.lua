@@ -98,10 +98,20 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/opt/copilot.lua",
     url = "https://github.com/zbirenbaum/copilot.lua"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
   ["goyo.vim"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/goyo.vim",
     url = "https://github.com/junegunn/goyo.vim"
+  },
+  ["inc-rename.nvim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/inc-rename.nvim",
+    url = "https://github.com/smjonas/inc-rename.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
