@@ -20,7 +20,19 @@ bspc config bottom_padding -2
 picom &
 
 # Start sxhkd
-pgrep -x sxhkd -m 1 >/dev/null || sxhkd -m 1 &
+# -- NOTE:
+# -- Apparently, bspwm starts sxhkd even when you don't specify it
+# -- explicitly here in the bspwmrc. With neo2 keyboard layout, this
+# -- leads to two instances of sxhkd running so that key bindings for
+# -- both work at the same time (which is hugely confusing). This is
+# -- because the instance started by bspwm does not include the `-m 1`
+# -- flag which is necessary for the keystrokes to be recognized as
+# -- neo2 input. Therefore, I first kill all sxhkd instances, wait
+# -- until they are all killed, and then start it again with the flag.
+# -- This seem a little hacky, though.
+kill $(ps aux | grep 'sxhkd' | awk '{print $2}')  >/dev/null 2>&1
+while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
+sxhkd -m 1 &
 
 # Wallpaper
 # feh --bg-fill --randomize ~/Pictures/wallpapers/* &
