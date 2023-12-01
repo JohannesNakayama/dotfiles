@@ -1,10 +1,9 @@
 # git alias for dotfile manegement
-# alias cfg='/usr/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
 
 
 # use nvim by default
-# alias vim=nvim
+alias vim=nvim
 
 # TODO: setup neovide properly
 # alias vim=neovide
@@ -29,7 +28,6 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias lt='tree -L 2'
 alias lt3='tree -L 3'
-alias cll='clear && ll'
 
 
 # even shorter git aliases
@@ -51,12 +49,6 @@ alias cy='cfg commit'
 alias cn='cfg reset'
 
 
-# short cuts to frequently used directories
-alias blog='cd ~/Projects/.blog && ll'
-alias learn='cd ~/Projects/.learning && ll'
-alias write='cd ~/Projects/.writing && ll'
-
-
 # freqently used commands with long names
 alias rss='snownews'
 alias todo='task list'
@@ -68,6 +60,7 @@ alias idea='intellij-idea-community'
 alias dc='docker-compose'
 alias dcu='docker-compose up'
 alias dcd='docker-compose down -v'
+alias nrs='sudo nixos-rebuild switch'
 
 
 # python aliases
