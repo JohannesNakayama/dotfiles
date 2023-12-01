@@ -93,4 +93,4 @@ eval "$(direnv hook zsh)"
 
 
 # Load shell aliases
-source ~/.sh_aliases
+source ~/.config/zsh/.sh_aliases
