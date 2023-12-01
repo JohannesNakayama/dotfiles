@@ -79,28 +79,3 @@ ln -s $HOME/.config/nixos /etc/nixos
 * [remove all distractions from YouTube](https://unhook.app/)
 * [keyboard-based browsing](https://chromewebstore.google.com/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=de%2F)
 * [narrower text for better readability](https://chromewebstore.google.com/detail/narrower/jfjaedekncgddegockpigkkpgkhaoljg?hl=de%2F)
-
-**For Reference**
-
-* [bat](https://github.com/sharkdp/bat)
-* [bspwm](https://github.com/baskerville/bspwm)
-* [curl](https://curl.se/)
-* [dmenu](https://wiki.archlinux.org/title/dmenu)
-* [feh](https://feh.finalrewind.org/)
-* [fzf](https://github.com/junegunn/fzf)
-* [htop](https://htop.dev/)
-* [i3lock](https://github.com/i3/i3lock)
-* [neovim](https://neovim.io/)
-* [picom](https://github.com/yshui/picom)
-* [polybar](https://github.com/polybar/polybar)
-* [powerlevel10k](https://github.com/romkatv/powerlevel10k#zgen)
-* [rg](https://github.com/BurntSushi/ripgrep)
-* [sqlite3](https://www.sqlite.org/index.html)
-* [sxhkd](https://github.com/baskerville/sxhkd)
-* [tig](https://jonas.github.io/tig/)
-* [tmate](https://tmate.io/)
-* [tmux](https://github.com/tmux/tmux/wiki)
-* [tree](https://linux.die.net/man/1/tree)
-* [vimwiki](https://github.com/vimwiki/vimwiki)
-* [zsh](https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e)
-
