@@ -4,7 +4,7 @@
 
 -- Leader mappings
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = '_'
 
 -- l/L: next/prev buffer
 -- L was: place cursor at bottom of screen

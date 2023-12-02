@@ -59,22 +59,6 @@ return require('packer').startup(function(use)
 
   -- Github Copilot
   use 'github/copilot.vim'
-  --use {
-  --  'zbirenbaum/copilot.lua',
-  --  cmd = 'Copilot',
-  --  event = 'InsertEnter',
-  --  config = function()
-  --    require('copilot').setup({
-  --      suggestion = {
-  --        enable = true,
-  --        auto_trigger = true,
-  --      },
-  --      filetypes = {
-  --        lua = true,
-  --      },
-  --    })
-  --  end,
-  --}
 
   -- LSP support
   use {
@@ -85,8 +69,6 @@ return require('packer').startup(function(use)
 
   -- Refactoring
   use 'smjonas/inc-rename.nvim'
-
-  
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
