@@ -45,6 +45,8 @@ return require('packer').startup(function(use)
   use 'mg979/vim-visual-multi'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'stevearc/dressing.nvim'
+  use 'tpope/vim-commentary'
+  use 'farmergreg/vim-lastplace'
 
   -- Completion/Snippets
   use {
@@ -63,12 +65,22 @@ return require('packer').startup(function(use)
   -- LSP support
   use {
     'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'williamboman/mason-lspconfig.nvim', -- mason/lspconfig interface
     'neovim/nvim-lspconfig',
   } 
 
+  -- Linting/Formatting
+  use {
+    'mfussenegger/nvim-lint',
+    'mhartington/formatter.nvim',
+    'MunifTanjim/prettier.nvim',
+  }
+
   -- Refactoring
   use 'smjonas/inc-rename.nvim'
+
+  -- Integration with tmux
+  use { 'christoomey/vim-tmux-navigator' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

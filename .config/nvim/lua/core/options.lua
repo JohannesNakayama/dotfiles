@@ -2,6 +2,10 @@
 -- === OPITONS ================================================================
 -- ============================================================================
 
+-- Leader mappings
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '_'
+
 -- Use system clipboard
 vim.o.clipboard = 'unnamedplus'
 
@@ -31,12 +35,14 @@ vim.o.hls = true
 
 -- Wrapping and indenting
 vim.o.wrap = true
+vim.opt.linebreak = true
 vim.o.breakindent = true
 vim.opt.breakindentopt = { shift = 2 }
 
 -- Tabs/Shift
 vim.opt.list = true
-vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
+-- vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
+vim.opt.listchars = { tab = '│·' , trail = '·', }
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
