@@ -4,7 +4,7 @@
 
 set multicursor
 let mapleader = "\<space>"
-nnoremap <leader>sv :source ~/.ideavimrc
+nnoremap <leader>sv :source ~/.config/ideavim/ideavimrc<CR>
 
 
 " -----------------------------------------------
@@ -45,7 +45,6 @@ nnoremap <leader>ta :action SplitAndMoveDown<CR>
 vnoremap <leader>ta :action SplitAndMoveDown<CR>
 
 nnoremap <leader>us :action Unsplit<CR>
-
 
 " -----------------------------------------------
 " --- Code navigation ---------------------------
