@@ -19,6 +19,7 @@ alias vg='nvim ~/.gitconfig'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
 alias vn='nvim ~/.config/nixos/configuration.nix'
+alias plan='nvim ~/Projects/plan.md'
 
 
 # ls aliases
