@@ -154,19 +154,42 @@
     htop
     ntfs3g
 
-    # --- c
+    # --- build
+    # clang
+    # cmake
     gnumake
     gcc
     glibc
+    # gtk3
+    # ninja
+    # pkg-config
 
     # --- utilities
     brave
     direnv
+    fd
+    file
     just
     keepassxc
+    libsForQt5.dolphin
+    libsForQt5.gwenview
+    nix-output-monitor
+    p7zip
     psmisc
     # signal-desktop
     taskwarrior
+    thunderbird
+    unzip
+    zip
+
+    # --- mobile
+   android-studio
+   android-tools
+   # android-udev-rules
+   flutter-unwrapped
+   # jdk17
+   usbutils
+   util-linux
 
     # --- programming/scripting
     python3
@@ -175,8 +198,14 @@
     libffi
     rustup
     nodejs_20
+    prettierd
+
+    # --- R
+    pandoc
     R
     rstudio
+    texlive.combined.scheme-full
+    rPackages.kableExtra
 
     # --- window manager
     bspwm
