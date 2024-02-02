@@ -60,8 +60,10 @@
       enable = true;
 
       # configure keymap in X11
-      layout = "de";
-      xkbVariant = "neo";
+      xkb = {
+        layout = "de";
+        variant = "neo";
+      };
 
       # enable SDDM display manager
       displayManager = {
@@ -116,10 +118,12 @@
       johannes = {
         isNormalUser = true;
         description = "johannes";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" ];
       };
     };
   };
+
+  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -144,7 +148,9 @@
 
     # --- remote
     curl
+    flyctl
     git
+    gh
     wget
     magic-wormhole
     networkmanagerapplet
@@ -176,22 +182,24 @@
     nix-output-monitor
     p7zip
     psmisc
-    # signal-desktop
+    signal-desktop
     taskwarrior
     thunderbird
     unzip
+    vscode
     zip
 
     # --- mobile
-   android-studio
-   android-tools
-   # android-udev-rules
-   flutter-unwrapped
-   # jdk17
-   usbutils
-   util-linux
+    android-studio
+    android-tools
+    # android-udev-rules
+    # flutter-unwrapped
+    # jdk17
+    usbutils
+    util-linux
 
     # --- programming/scripting
+    go
     python3
     ruby_3_2
     rubyPackages_3_2.openssl
@@ -219,7 +227,19 @@
 
     # --- data
     sqlite
+
+    # --- crypto
+    gnupg
+    pinentry-curses
+
+    vbam
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     pinentryFlavor = "curses";
+  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
