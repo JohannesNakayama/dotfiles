@@ -9,12 +9,14 @@ fi
 
 # IDEA JDK
 # export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+# export JAVA_HOME="/run/current-system/sw"
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_USER_HOME=$HOME/.android
+# Android
+# export ANDROID_HOME=$HOME/Android/Sdk
+# export ANDROID_USER_HOME=$HOME/.android
 
 # Chrome executable for Flutter development
-export CHROME_EXECUTABLE="/usr/bin/brave-browser"
+export CHROME_EXECUTABLE="/run/current-system/sw/bin/brave"
 
 # Path
 export PATH=$HOME/bin:/usr/local/bin:$PATH                                 # base PATH
@@ -25,12 +27,13 @@ export GEM_HOME=$HOME/.gem                                                 # whe
 export PATH=$PATH:$JAVA_HOME/bin                                           # default Java
 export PATH=$PATH:$HOME/.local/share/coursier/bin
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:~/utilities/node-v16.17.0-linux-x64/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin                           # Brew
 export PATH=$PATH:/home/johannes/.cache/scalacli/local-repo/bin/scala-cli  # Scala CLI
 export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:/usr/local/go/bin                                        # Go
+export PATH=$PATH:$HOME/go/bin                                             # Go
+
+export PATH=$PATH:/home/johannes/MobileDev/flutter/bin                     # Flutter
 
 # Set default editor nvim
 export EDITOR=nvim
