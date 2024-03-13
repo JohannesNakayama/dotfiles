@@ -1,18 +1,22 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Get help:
+# -- NixOS manual: run 'nixos-help'
+# -- configuration.nix(5) man page
 
 { config, pkgs, flake-inputs, ... }:
 
 {
   boot = {
-    # bootloader
     loader = {
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
+    };
+
+    kernel.sysctl = {
+      "kernel.sysrq" = 1; # enable REISUB
+      "vm.swappiness" = 2; # increment if RAM is often overused
     };
 
     # setup keyfile
@@ -31,13 +35,10 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
 
@@ -56,23 +57,16 @@
 
   services = {
     xserver = {
-      # enable the X11 windowing system.
+      # enable the X11 windowing system
       enable = true;
 
       # configure keymap in X11
       xkb = {
         layout = "de";
-        variant = "neo";
+        variant = "neo"; # neo keyboard layout
       };
 
-      # enable SDDM display manager
-      displayManager = {
-        # sddm.enable = true;
-        gdm.enable = true;
-      };
-
-      # enable desktop and window manager
-      #desktopManager.plasma5.enable = true;
+      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       windowManager.bspwm.enable = true;
     };
@@ -85,7 +79,6 @@
     printing.enable = true;
   };
 
-  # Configure console keymap
   console.keyMap = "neo";
 
   # Enable sound with pipewire
@@ -125,17 +118,12 @@
 
   virtualisation.docker.enable = true;
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile
-  # To search, run:
-  #   $ nix search wget
   environment.systemPackages = with pkgs; [
     # --- terminal
     alacritty
     bat
-    diff-so-fancy
     fzf
     neovim
     ripgrep
@@ -146,11 +134,14 @@
     xclip
     zsh
 
+    # -- git
+    git
+    gh
+    diff-so-fancy
+
     # --- remote
     curl
     flyctl
-    git
-    gh
     wget
     magic-wormhole
     networkmanagerapplet
@@ -159,29 +150,27 @@
     # --- system
     htop
     ntfs3g
+    parted
 
     # --- build
-    # clang
-    # cmake
     gnumake
     gcc
     glibc
-    # gtk3
-    # ninja
-    # pkg-config
 
     # --- utilities
     brave
+    cloc
     direnv
     fd
     file
-    just
+    firefox
     keepassxc
     libsForQt5.dolphin
     libsForQt5.gwenview
     nix-output-monitor
     p7zip
     psmisc
+    shutter
     signal-desktop
     taskwarrior
     thunderbird
@@ -190,8 +179,8 @@
     zip
 
     # --- mobile
-    android-studio
-    android-tools
+    # android-studio
+    # android-tools
     # android-udev-rules
     # flutter-unwrapped
     # jdk17
@@ -199,7 +188,7 @@
     util-linux
 
     # --- programming/scripting
-    go
+    # go
     python3
     ruby_3_2
     rubyPackages_3_2.openssl
@@ -207,13 +196,6 @@
     rustup
     nodejs_20
     prettierd
-
-    # --- R
-    pandoc
-    R
-    rstudio
-    texlive.combined.scheme-full
-    rPackages.kableExtra
 
     # --- window manager
     bspwm
@@ -226,13 +208,12 @@
     sxhkd
 
     # --- data
-    sqlite
+    litecli
+    # sqlite-interactive
 
     # --- crypto
     gnupg
     pinentry-curses
-
-    vbam
   ];
 
   services.pcscd.enable = true;
@@ -254,14 +235,6 @@
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   programs = {
     ssh.startAgent = true;
     zsh.enable = true;
@@ -273,9 +246,31 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
     settings.experimental-features = [ "nix-command" "flakes" ];
+
+    # registry entries
     registry.unstable.flake = flake-inputs.nixpkgs;
+
+    # nix path to correspond to my flakes
+    nixPath = [
+      "unstable=${flake-inputs.nixpkgs}"
+    ];
+
+    # nixdirenv requires this to stop nix from garbage collecting its stuff
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
   };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
