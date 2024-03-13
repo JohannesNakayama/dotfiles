@@ -5,6 +5,7 @@ alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-
 # use nvim by default
 alias vim=nvim
 
+
 # TODO: setup neovide properly
 # alias vim=neovide
 
@@ -14,12 +15,12 @@ alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.lua'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.config/zsh/.sh_aliases'
-alias vala='nvim ~/.config/alacritty/alacritty.yml'
+alias vala='nvim ~/.config/alacritty/alacritty.toml'
 alias vg='nvim ~/.gitconfig'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
 alias vn='nvim ~/.config/nixos/configuration.nix'
-alias plan='nvim ~/Projects/plan.md'
+alias plan='nvim ~/Projects/planning/plan.md'
 
 
 # ls aliases
@@ -41,6 +42,8 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gb='git branch'
 alias gri='git rebase -i HEAD~10'
+alias gps='git push'
+alias gpl='git pull'
 
 
 # config aliases
@@ -51,17 +54,16 @@ alias cn='cfg reset'
 
 
 # freqently used commands with long names
-alias rss='snownews'
-alias todo='task list'
-alias rst='rstudio'
+alias todo='vim ~/Projects/social-protocols/org/todo.md'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
-alias wiki='npx http-server ~/vimwiki_html -p 9009'
-alias pipsh='pipenv shell'
-alias idea='intellij-idea-community'
 alias dc='docker-compose'
 alias dcu='docker-compose up'
 alias dcd='docker-compose down -v'
 alias nrs='sudo nixos-rebuild switch'
+alias bt='bluetoothctl'
+# alias rss='snownews'
+# alias wiki='npx http-server ~/vimwiki_html -p 9009'
+# alias idea='intellij-idea-community'
 
 
 # python aliases
@@ -74,6 +76,6 @@ alias emu='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_1 -dns-server 12
 
 
 # fuzzy search scripts
-v() { $EDITOR $(fzf) }          # open file in nvim
+v() { $EDITOR $(fzf) }  # open file in nvim
 p() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
 c() { cd $(ls -a | fzf) && ll }
