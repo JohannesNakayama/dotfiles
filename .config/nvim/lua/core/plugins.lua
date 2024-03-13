@@ -27,6 +27,7 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'folke/tokyonight.nvim'
+  use 'catppuccin/nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -47,6 +48,7 @@ return require('packer').startup(function(use)
   use 'stevearc/dressing.nvim'
   use 'tpope/vim-commentary'
   use 'farmergreg/vim-lastplace'
+  use 'JuliaEditorSupport/julia-vim'
 
   -- Completion/Snippets
   use {
@@ -78,6 +80,7 @@ return require('packer').startup(function(use)
 
   -- Refactoring
   use 'smjonas/inc-rename.nvim'
+  use 'AndrewRadev/splitjoin.vim'
 
   -- Integration with tmux
   use { 'christoomey/vim-tmux-navigator' }

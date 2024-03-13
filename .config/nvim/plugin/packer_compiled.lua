@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  nvim = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -178,6 +183,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
+  },
+  ["splitjoin.vim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
+    url = "https://github.com/AndrewRadev/splitjoin.vim"
   },
   ["telescope.nvim"] = {
     loaded = true,
