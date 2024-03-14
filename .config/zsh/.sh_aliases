@@ -20,7 +20,6 @@ alias vg='nvim ~/.gitconfig'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
 alias vn='nvim ~/.config/nixos/configuration.nix'
-alias plan='nvim ~/Projects/planning/plan.md'
 
 
 # ls aliases
@@ -77,5 +76,5 @@ alias emu='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_1 -dns-server 12
 
 # fuzzy search scripts
 v() { $EDITOR $(fzf) }  # open file in nvim
-p() { cd ~/Projects && cd $(ls -a | fzf) }  # open private project folder
+p() { cd ~/Projects/social-protocols && cd $(ls -a | fzf) }  # open project folder
 c() { cd $(ls -a | fzf) && ll }
