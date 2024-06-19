@@ -12,10 +12,18 @@
     rebase = true
 
 [push]
-    default = current
+    default = simple
+
+[fetch]
+		prune = true
 
 [rebase]
     autoStash = true
+
+[merge]
+    ; ff = only
+    ignore-space-change = true
+    conflictstyle = diff3 # this allows to show 3 panes in meld, https://stackoverflow.com/questions/27417656/should-diff3-be-default-conflictstyle-on-git/70387424#70387424
 
 [diff]
     algorithm = histogram
@@ -29,6 +37,8 @@
     cl = clone
     yes = commit
     no = reset
+    # from: https://github.com/fdietze/dotfiles/blob/master/.gitconfig
+    prc =  "!f() { ! git diff --staged --quiet && git diff --color-words --staged | cat && git diff --staged --stat | cat && read -p \"Commit Message: \" -r msg && git checkout -b \"${1:-$(echo $msg | sed -E 's/[^a-zA-Z0-9]+/-/g')-jnakayama-$(date -I)}\" && git commit --message \"$msg\" && gh pr create --title \"$msg\" --fill ;}; f"
 
 [init]
     defaultBranch = main
