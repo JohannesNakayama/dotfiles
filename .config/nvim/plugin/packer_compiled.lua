@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["auto_mkdir2.vim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/auto_mkdir2.vim",
+    url = "https://github.com/arp242/auto_mkdir2.vim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -104,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/formatter.nvim",
     url = "https://github.com/mhartington/formatter.nvim"
   },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["goyo.vim"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/goyo.vim",
@@ -118,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["julia-vim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/julia-vim",
+    url = "https://github.com/JuliaEditorSupport/julia-vim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -134,6 +149,12 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["none-ls.nvim"] = {
+    config = { "\27LJ\2\ng\0\0\4\0\6\0\v6\0\0\0'\2\1\0B\0\2\0024\1\3\0009\2\2\0009\2\3\0029\2\4\2>\2\1\0019\2\5\0B\2\1\1K\0\1\0\nsetup\14alejandra\15formatting\rbuiltins\fnull-ls\frequire\0" },
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
+    url = "https://github.com/nvimtools/none-ls.nvim"
+  },
   nvim = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim",
@@ -144,6 +165,12 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-colorizer.lua"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0" },
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
+  },
   ["nvim-lint"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-lint",
@@ -153,6 +180,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -189,6 +221,11 @@ _G.packer_plugins = {
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
     url = "https://github.com/AndrewRadev/splitjoin.vim"
   },
+  ["switch.vim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/switch.vim",
+    url = "https://github.com/AndrewRadev/switch.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -198,6 +235,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-autoswap"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/vim-autoswap",
+    url = "https://github.com/gioele/vim-autoswap"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -218,10 +260,23 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/johannes/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
     url = "https://github.com/mg979/vim-visual-multi"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/johannes/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: none-ls.nvim
+time([[Config for none-ls.nvim]], true)
+try_loadstring("\27LJ\2\ng\0\0\4\0\6\0\v6\0\0\0'\2\1\0B\0\2\0024\1\3\0009\2\2\0009\2\3\0029\2\4\2>\2\1\0019\2\5\0B\2\1\1K\0\1\0\nsetup\14alejandra\15formatting\rbuiltins\fnull-ls\frequire\0", "config", "none-ls.nvim")
+time([[Config for none-ls.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

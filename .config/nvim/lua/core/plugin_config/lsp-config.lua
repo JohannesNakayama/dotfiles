@@ -24,6 +24,23 @@ require("mason-lspconfig").setup_handlers {
   end,
 }
 
+-- format on save
+-- TODO: toggle with keybinding
+-- TODO: add back in once formatting in social-network works properly
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*" },
+--   command = "lua vim.lsp.buf.format()",
+-- })
+
+vim.diagnostic.config({
+  virtual_text = false
+})
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+
 -- -----------------------------------------------------------------------------
 -- --- LSP KEY MAPPINGS --------------------------------------------------------
 -- -----------------------------------------------------------------------------

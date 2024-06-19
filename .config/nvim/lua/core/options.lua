@@ -45,5 +45,12 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '│·' , trail = '·', }
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
-vim.o.expandtab = true
+-- vim.o.expandtab = true
 
+
+-- TODO: describe (automatic g in s/../../g <-)
+vim.opt.gdefault = true
+
+vim.opt.undofile = true
+
+vim.opt.history = 10000
