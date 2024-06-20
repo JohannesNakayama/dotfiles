@@ -2,86 +2,83 @@
 -- === PLUGINS ================================================================
 -- ============================================================================
 
--- Make sure that packer is installed and if not, install it
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system(
-      {
-        'git', 'clone',
-        '--depth', '1',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path
-      }
-    )
-    vim.cmd [[ packadd packer.nvim ]]
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+require("lazy").setup({
+  -- Colorschemes
+  'folke/tokyonight.nvim',
+  'catppuccin/nvim',
 
--- Manage plugins
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  -- File tree
+  'nvim-tree/nvim-tree.lua',
 
-  use 'folke/tokyonight.nvim'
-  use 'catppuccin/nvim'
+  -- Status and buffer lines
+  'nvim-lualine/lualine.nvim',
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons'
+  },
 
-  use 'nvim-tree/nvim-tree.lua'
-  use 'nvim-tree/nvim-web-devicons'
-  use 'nvim-treesitter/nvim-treesitter'
-  use {
+  -- Icons
+  'nvim-tree/nvim-web-devicons',
+
+  -- Show git status information on buffers
+  'lewis6991/gitsigns.nvim',
+
+  -- Fuzzy find files
+  {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
-    requires = 'nvim-lua/plenary.nvim',
+    tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       pickers = {
         find_files = {
-          -- hidden = true, -- will still show the inside of `.git/` as it's not `.gitignore`d.
-          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" }, -- use ripgrep, find hidden files and folders except .git/
+          -- use ripgrep, find hidden files and folders except .git/
+          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
         live_grep = {
-          additional_args = { "--hidden", "--glob", "!**/.git/*" }, -- search in hidden files and folders except .git/
+          -- search in hidden files and folders except .git/
+          additional_args = { "--hidden", "--glob", "!**/.git/*" },
         },
       },
     }
-  }
+  },
 
-  use 'nvim-lualine/lualine.nvim'
-  use {
-    'akinsho/bufferline.nvim',
-    tag = '*',
-    requires = 'nvim-tree/nvim-web-devicons',
-  }
+  -- Toggle narrow buffer for easier reading
+  'junegunn/goyo.vim',
 
-  use 'junegunn/goyo.vim'
-  use 'mg979/vim-visual-multi'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'stevearc/dressing.nvim'
-  use 'tpope/vim-commentary'
-  use 'farmergreg/vim-lastplace'
+  -- Multiple cursors in visual mode
+  'mg979/vim-visual-multi',
 
-  use 'JuliaEditorSupport/julia-vim'
+  -- Commenting
+  'tpope/vim-commentary',
 
-  -- Completion/Snippets
-  use {
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    {
-      'L3MON4D3/LuaSnip',
-      tag = 'v2.*',
-      run = 'make install_jsregexp',
-    },
-  }
+  -- Open file in same place where you left off last time
+  'farmergreg/vim-lastplace',
 
-  use 'folke/which-key.nvim'
+  -- Indentation guides
+  'lukas-reineke/indent-blankline.nvim',
 
-  use 'kylechui/nvim-surround'
+  -- Nice UI
+  'stevearc/dressing.nvim',
 
-  use {
+  -- Auto surround text with brackets, quotes, etc.
+  'kylechui/nvim-surround',
+
+  -- Highlight color codes in files
+  {
     'NvChad/nvim-colorizer.lua',
     -- highlight color codes in files
     -- demo colors: #8BF8E7, salmon
@@ -90,52 +87,70 @@ return require('packer').startup(function(use)
       require("colorizer").setup({
       })
     end
-  }
+  },
+
+  -- Treesitter support for nvim
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
+  },
+
+  -- Julia plugin
+  'JuliaEditorSupport/julia-vim',
 
   -- Github Copilot
-  use {
-    'github/copilot.vim',
-    suggestion = {
-      keymap = {
-        accept_word = "<C-w>",
-      } ,
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-tab>",
+          accept_word = "<C-t>",
+          accept_line = false,
+          next = "<C-n>",
+          dismiss = "<C-,>",
+        },
+      },
+      filetypes = {
+        yaml = true,
+        markdown = false,
+        gitcommit = true,
+        json = true,
+      },
     },
-  }
+  },
+  
 
   -- LSP support
-  use {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim', -- mason/lspconfig interface
-    'neovim/nvim-lspconfig',
-  } 
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim', -- mason/lspconfig interface
+  'neovim/nvim-lspconfig',
 
   -- Linting/Formatting
-  use {
-    'mfussenegger/nvim-lint',
-    'mhartington/formatter.nvim',
-    'MunifTanjim/prettier.nvim',
-  }
+  'mfussenegger/nvim-lint',
+  'mhartington/formatter.nvim',
+  'MunifTanjim/prettier.nvim',
 
   -- Refactoring
-  use 'smjonas/inc-rename.nvim'
-  use 'AndrewRadev/splitjoin.vim'
-
-  -- Integration with tmux
-  use { 'christoomey/vim-tmux-navigator' }
+  'smjonas/inc-rename.nvim',
+  'AndrewRadev/splitjoin.vim',
 
   -- Automatically create directories when opening a non-existent file with vim
-  use { 'arp242/auto_mkdir2.vim' }
+  'arp242/auto_mkdir2.vim',
 
   -- Switch between certain defined patterns (e.g. true <-> false)
-  use { 'AndrewRadev/switch.vim' }
+  'AndrewRadev/switch.vim',
 
+  -- Automatically handle swap file issue when opening the same file in two buffers
+  'gioele/vim-autoswap',
 
-  use { 'gioele/vim-autoswap' }
-  use { 'lewis6991/gitsigns.nvim' }
-
-  use {
+  -- LSP none-ls
+  {
     'nvimtools/none-ls.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       local null_ls = require("null-ls")
       local sources = {
@@ -143,11 +158,33 @@ return require('packer').startup(function(use)
       }
       null_ls.setup()
     end,
-  }
+  },
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  -- {
+  --   "folke/which-key.nvim",
+  --   event = "VeryLazy",
+  --   init = function()
+  --     vim.o.timeout = true
+  --     vim.o.timeoutlen = 300
+  --   end,
+  --   opts = {
+  --     -- TODO:
+  --     -- -- your configuration comes here
+  --     -- -- or leave it empty to use the default settings
+  --     -- -- refer to the configuration section below
+  --   }
+  -- },
+
+  -- --   -- Integration with tmux
+  -- --   use { 'christoomey/vim-tmux-navigator' }
+
+  -- -- Completion/Snippets
+  -- 'hrsh7th/nvim-cmp',
+  -- 'hrsh7th/cmp-nvim-lsp',
+  -- {
+    -- 'L3MON4D3/LuaSnip',
+    -- tag = 'v2.*',
+    -- run = 'make install_jsregexp',
+  -- },
+
+})
