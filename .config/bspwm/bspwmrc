@@ -9,11 +9,11 @@
 bspc config border_width 2
 bspc config normal_border_color "#444444"
 bspc config focused_border_color "#FFA500"
-bspc config window_gap 0
+bspc config window_gap 3
 bspc config split_ratio 0.5
 bspc config borderless_monocle true
 bspc config gapless_monocle false
-bspc config top_padding -5
+bspc config top_padding 0
 bspc config bottom_padding 0
 
 # Start picom

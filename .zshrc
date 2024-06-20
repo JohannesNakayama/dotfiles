@@ -54,6 +54,8 @@ source "${HOME}/.zgen/zgen.zsh"  # load zgen
 if ! zgen saved; then
   echo "(Re-)Generating a zgen init script"
 
+  # TODO: zsh-print-alias (when using an alias, print full command)
+
   # oh-my-zsh
   zgen oh-my-zsh
   zgen plugins/git
