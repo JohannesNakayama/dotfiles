@@ -1,13 +1,5 @@
-# git alias for dotfile manegement
-alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes'
-
-
 # use nvim by default
 alias vim=nvim
-
-
-# TODO: setup neovide properly
-# alias vim=neovide
 
 
 # vim aliases for frequently modified files
@@ -16,7 +8,7 @@ alias vv='nvim ~/.config/nvim/init.lua'
 alias vw='nvim ~/vimwiki/index.wiki'
 alias va='nvim ~/.config/zsh/.sh_aliases'
 alias vala='nvim ~/.config/alacritty/alacritty.toml'
-alias vg='nvim ~/.gitconfig'
+alias vg='nvim ~/.config/git/config'
 alias vs='nvim ~/.config/sxhkd/sxhkdrc'
 alias vb='nvim ~/.config/bspwm/bspwmrc'
 alias vn='nvim ~/.config/nixos/configuration.nix'
@@ -34,7 +26,6 @@ alias lt3='tree -L 3'
 # even shorter git aliases
 alias g='git'
 alias gst='git status'
-alias ga='git add'
 alias gy='git commit'
 alias gn='git reset'
 alias gcl='git clone'
@@ -65,6 +56,9 @@ alias bt='bluetoothctl'
 # alias idea='intellij-idea-community'
 
 
+alias kpb='kill -9 $(pgrep -f "polybar") > /dev/null 2>&1'
+
+
 # python aliases
 alias python='python3'
 alias pip='pip3'
@@ -75,6 +69,5 @@ alias emu='~/Android/Sdk/emulator/emulator -avd Pixel_3a_API_30_1 -dns-server 12
 
 
 # fuzzy search scripts
-v() { $EDITOR $(fzf) }  # open file in nvim
 p() { cd ~/Projects/social-protocols && cd $(ls -a | fzf) }  # open project folder
 c() { cd $(ls -a | fzf) && ll }
