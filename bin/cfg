@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# ------------------------------------------------------------------------------
+# --- Dotfiles git -------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# Using a git bare repository for storing dotfiles:
+# -- https://www.atlassian.com/git/tutorials/dotfiles
+
+git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes $@
