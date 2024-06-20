@@ -88,8 +88,7 @@
         variant = "neo"; # neo keyboard layout
       };
 
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      displayManager.lightdm.enable = true;
       windowManager.bspwm.enable = true;
     };
 
@@ -175,16 +174,15 @@
     xclip
     zsh
 
-		pandoc
-		python311Packages.grip
-		parallel
+    pandoc
+    python311Packages.grip
+    parallel
 
     # -- git
     git
     gh
     diff-so-fancy
-		sublime-merge
-
+    sublime-merge
 
     # --- remote
     curl
@@ -203,6 +201,7 @@
     gnumake
     gcc
     glibc
+    libstdcxx5
 
     # --- utilities
     brave
@@ -261,7 +260,7 @@
     picom
     polybarFull
     sxhkd
-		xdo
+    xdo
 
     # --- data
     litecli
