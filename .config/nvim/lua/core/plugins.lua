@@ -56,9 +56,6 @@ require("lazy").setup({
     }
   },
 
-  -- Toggle narrow buffer for easier reading
-  'junegunn/goyo.vim',
-
   -- Multiple cursors in visual mode
   'mg979/vim-visual-multi',
 
@@ -122,7 +119,6 @@ require("lazy").setup({
       },
     },
   },
-  
 
   -- LSP support
   'williamboman/mason.nvim',
@@ -159,6 +155,9 @@ require("lazy").setup({
       null_ls.setup()
     end,
   },
+
+  -- Zen mode
+  "folke/zen-mode.nvim",
 
   -- {
   --   "folke/which-key.nvim",
