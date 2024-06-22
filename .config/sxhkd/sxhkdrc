@@ -15,7 +15,7 @@ alt + b
 
 # Todo list
 alt + super + {i,a,e}
-    alacritty --working-directory ~/Projects/social-protocols/org -e nvim {todo.md,dotfiles-todo.md,personal-todo.md}
+    alacritty --working-directory ~/sync/todo -e nvim {work.md,dotfiles.md,personal.md}
 
 # Todo list
 # alt + v
