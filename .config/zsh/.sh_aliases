@@ -3,6 +3,7 @@ alias vim=nvim
 
 
 # vim aliases for frequently modified files
+# -- see also: vd in $HOME/bin
 alias vz='nvim ~/.zshrc'
 alias vv='nvim ~/.config/nvim/init.lua'
 alias vw='nvim ~/vimwiki/index.wiki'
@@ -44,7 +45,6 @@ alias cn='cfg reset'
 
 
 # freqently used commands with long names
-alias todo='vim ~/Projects/social-protocols/org/todo.md'
 alias tclip='tmate display -p "#{tmate_ssh}" | xclip -selection clipboard'  # tmate session token to clipboard
 alias dc='docker-compose'
 alias dcu='docker-compose up'
@@ -56,7 +56,11 @@ alias bt='bluetoothctl'
 # alias idea='intellij-idea-community'
 
 
-alias kpb='kill -9 $(pgrep -f "polybar") > /dev/null 2>&1'
+# trash-cli aliases
+alias trp='trash-put'
+alias trl='trash-list'
+alias trr='trash-restore'
+alias rm='echo "REMEMBER DECEMBER 2023 YOU IDIOT!"; false'
 
 
 # python aliases
