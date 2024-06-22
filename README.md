@@ -30,6 +30,10 @@ alias cfg='/run/current-system/sw/bin/git --git-dir=/home/johannes/.cfg/ --work-
 cfg config --local status.showUntrackedFiles no
 cfg checkout master
 
+# Download alacritty themes
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+
 # Install zgen for zsh plugin management
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
