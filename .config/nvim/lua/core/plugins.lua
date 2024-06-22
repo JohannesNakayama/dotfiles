@@ -86,11 +86,42 @@ require("lazy").setup({
     end
   },
 
-  -- Treesitter support for nvim
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ":TSUpdate",
-  },
+  -- -- Treesitter support for nvim
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   build = ":TSUpdate",
+  --   configs = {
+  --     ensure_installed = {
+  --       'c',
+  --       'css',
+  --       'gitignore',
+  --       'go',
+  --       'html',
+  --       'javascript',
+  --       'json',
+  --       'julia',
+  --       'lua',
+  --       'luadoc',
+  --       'markdown',
+  --       'nix',
+  --       'python',
+  --       'query',
+  --       'rust',
+  --       'tsx',
+  --       'typescript',
+  --       'vim',
+  --       'vimdoc',
+  --       'yaml',
+  --     },
+
+  --     -- Install parsers synchronously (only applied to `ensure_installed`)
+  --     sync_install = false,
+  --     auto_install = true,
+  --     highlight = {
+  --       enable = true,
+  --     },
+  --   },
+  -- },
 
   -- Julia plugin
   'JuliaEditorSupport/julia-vim',
