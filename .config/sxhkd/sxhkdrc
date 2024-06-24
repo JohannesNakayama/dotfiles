@@ -23,7 +23,7 @@ alt + d
 
 # Lock screen
 alt + g
-    i3lock -i ~/Pictures/lockscreen/lockscreen.png -b -f
+    i3lock -i ~/Pictures/wallpaper.jpg -b -f
 
 # Bright screen
 XF86MonBrightnessUp
