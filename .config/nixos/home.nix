@@ -75,6 +75,7 @@
     thunderbird
     signal-desktop
     vscode
+    libsForQt5.gwenview
 
     # --- terminal utils
     cloc
