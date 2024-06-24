@@ -34,6 +34,7 @@
     parallel
 
     # -- git
+    git
     gh
     diff-so-fancy
     sublime-merge
@@ -274,12 +275,14 @@
     ];
   };
 
-  programs.git = {
-    enable = true;
-    difftastic = {
-      enable = true;
-    };
-  };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Johannes Nakayama";
+  #   userEmail = "johannes.nakayama@rwth-aachen.de";
+  #   difftastic = {
+  #     enable = true;
+  #   };
+  # };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
