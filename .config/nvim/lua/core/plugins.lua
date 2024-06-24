@@ -17,7 +17,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Colorschemes
-  'folke/tokyonight.nvim',
+  {
+    'folke/tokyonight.nvim',
+    opts = {
+      transparent = true,
+      styles = {
+         sidebars = "transparent",
+         floats = "transparent",
+      },
+    },
+  },
   'catppuccin/nvim',
 
   -- File tree
