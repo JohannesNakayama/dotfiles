@@ -44,6 +44,9 @@
 
   networking.networkmanager.enable = true;
 
+  # TODO: add back when enabling home-manager for good
+  home-manager.backupFileExtension = "backup";
+
   services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/Berlin";
 
@@ -161,114 +164,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    # --- terminal
-    alacritty
-    bat
-    fzf
-    neovim
-    ripgrep
-    tig
-    tmate
-    tmux
-    tree
-    xclip
-    zsh
-
-    pandoc
-    python311Packages.grip
-    parallel
-
-    # -- git
+    # neovim
     git
-    gh
-    diff-so-fancy
-    sublime-merge
-
-    # --- remote
-    curl
-    flyctl
-    wget
-    magic-wormhole
-    networkmanagerapplet
-    openssl
-
-    # --- system
-    htop
-    ntfs3g
-    parted
-
-    # --- build
-    gnumake
-    gcc
-    glibc
-    libstdcxx5
-
-    # --- utilities
-    brave
-    cloc
-    direnv
-    fd
-    file
-    firefox
-    jq
-    keepassxc
-    libsForQt5.dolphin
-    libsForQt5.gwenview
-    nix-output-monitor
-    p7zip
-    psmisc
-    shutter
-    signal-desktop
-    taskwarrior
-    thunderbird
-    unzip
-    vscode
-    zip
-    xcwd
-    alejandra
-    comma
-    libreoffice-still
-    xournal
-    openshot-qt
-
-    # --- mobile
-    # android-studio
-    # android-tools
-    # android-udev-rules
-    # flutter-unwrapped
-    # jdk17
-    usbutils
-    util-linux
-
-    # --- programming/scripting
-    # go
-    python3
-    ruby_3_2
-    rubyPackages_3_2.openssl
-    libffi
-    rustup
-    nodejs_20
-    prettierd
-    julia-bin
-
-    # --- window manager
-    bspwm
-    dmenu
-    feh
-    i3lock-color
-    imagemagick
-    picom
-    polybarFull
-    sxhkd
-    xdo
-
-    # --- data
-    litecli
-    # sqlite-interactive
-
-    # --- crypto
-    gnupg
-    pinentry-curses
   ];
 
   services.pcscd.enable = true;
@@ -325,6 +222,8 @@
   programs.command-not-found.enable = false;
 
   nix = {
+    package = pkgs.nixFlakes;
+
     gc = {
       automatic = true;
       dates = "weekly";
