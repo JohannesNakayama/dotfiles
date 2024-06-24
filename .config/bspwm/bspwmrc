@@ -47,6 +47,6 @@ bspc monitor eDP-1 -d 1 2 3 4 5 6
 bspc monitor 'HDMI-1' -d A B C D E
 
 # Start polybar
-if [ -x /run/current-system/sw/bin/polybar ]; then
+if [ -x /etc/profiles/per-user/johannes/bin/polybar ]; then
 	bash $HOME/.config/polybar/launch.sh
 fi
