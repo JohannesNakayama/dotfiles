@@ -6,8 +6,8 @@ require('mason-lspconfig').setup {
   ensure_installed = { 'tsserver', 'jsonls' },
 }
 
--- Load capabilities of nvim-cmp to replace default nvim lsp capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- -- Load capabilities of nvim-cmp to replace default nvim lsp capabilities
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Specify handlers for mason-lspconfig
 require("mason-lspconfig").setup_handlers {
