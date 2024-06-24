@@ -5,10 +5,6 @@
 alt + Return
     alacritty --working-directory $(xcwd)
 
-# Dmenu
-alt + d
-    dmenu_run
-
 # Browser
 alt + b
     brave
@@ -17,9 +13,10 @@ alt + b
 alt + super + {i,a,e}
     alacritty --working-directory ~/sync/todo -e nvim {work.md,dotfiles.md,personal.md}
 
-# Todo list
-# alt + v
-#     alacritty --working-directory ~/Projects/social-protocols/org -e nvim dotfiles-todo.md
+# Launcher
+alt + d
+    rofi -show drun
+
 
 # =====================================================
 # =========== SCREEN CONTROL ==========================
@@ -106,7 +103,7 @@ alt + m
 super + {t,shift + t,s,f}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# move a floating window
+# Move a floating window
 super + {Left,Down,Up,Right}
     bspc node -v {-20 0,0 20,0 -20,20 0}
 
