@@ -39,6 +39,9 @@ curl --output ~/Pictures/wallpaper.jpg https://fdietze.github.io/frottage/wallpa
 # Wallpaper
 feh --bg-fill ~/Pictures/wallpaper.jpg
 
+# Start syncthing
+syncthing --no-browser &
+
 # Workspace setup
 # --> adapted from https://protesilaos.com/codelog/multihead-bspwm-polybar/
 if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ]; then
