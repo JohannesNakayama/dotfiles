@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 # ------------------------------------------------------------------------------
-# --- Create a new note --------------------------------------------------------
+# --- Take a note --------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-echo "Enter a title for your note:"
-read -p "(title) " title
-current_time=$(date '+%FT%T')
-current_date=$(date '+%F')
-filename=~/Sync/notes/notes/$current_date-$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
+syncdir=~/Sync/notes
+filename=$syncdir/notes.md
+
 if [[ ! -f "$filename" ]]; then
+  currenttime=$(date '+%FT%T')
   touch "$filename"
-  tmpl="---\ncreated: \"$current_time\"\nmodified: \"$current_time\"\ntitle: \"$title\"\ntags: \n  - \"note\"\n---\n\n"
+  tmpl="---\ncreated: \"$currenttime\"\nmodified: \"$currenttime\"\ntitle: \"$title\"\ntags: \n  - \"note\"\n---\n"
   echo -en "$tmpl" > $filename
 fi
-$EDITOR "$filename"
+
+currentdate=$(date '+%F (%T)')
+echo -e "\n## $currentdate\n\n" >> $filename
+$EDITOR +$ "$filename"
