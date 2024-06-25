@@ -10,8 +10,8 @@ current_time=$(date '+%FT%T')
 current_date=$(date '+%F')
 filename=~/Sync/notes/notes/$current_date-$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
 if [[ ! -f "$filename" ]]; then
-  touch $filename
-  tmpl="---\ncreated: \"$(echo $current_time)\"\nmodified: \"$(echo $current_time)\"\ntitle: \"$(echo $title)\"\n---\n\n"
-  echo -en $tmpl > $filename
+  touch "$filename"
+  tmpl="---\ncreated: \"$current_time\"\nmodified: \"$current_time\"\ntitle: \"$title\"\ntags: \n  - \"note\"\n---\n\n"
+  echo -en "$tmpl" > $filename
 fi
-$EDITOR $filename
+$EDITOR "$filename"
