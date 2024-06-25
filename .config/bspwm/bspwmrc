@@ -37,8 +37,6 @@ sxhkd -m 1 &
 curl --output ~/Pictures/wallpaper.jpg https://fdietze.github.io/frottage/wallpapers/wallpaper-desktop-latest.jpg
 
 # Wallpaper
-# feh --bg-fill --randomize ~/Pictures/wallpapers/* &
-# feh --bg-fill https://fdietze.github.io/frottage/wallpapers/wallpaper-desktop-latest.jpg &
 feh --bg-fill ~/Pictures/wallpaper.jpg
 
 # Workspace setup
