@@ -183,10 +183,12 @@
     dcu = "docker-compose up";
     dcd = "docker-compose down -v";
     bt = "bluetoothctl";
+    syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
 
     # nix
     nrs = "sudo nixos-rebuild switch";
     nfu = "nix flake update";
+    nur = "nix flake update $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos";
 
     # navigation
     p = "cd $HOME/Projects/social-protocols && cd $(ls -a | fzf)";
