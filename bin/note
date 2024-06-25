@@ -4,8 +4,7 @@
 # --- Take a note --------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-syncdir=~/Sync/notes
-filename=$syncdir/notes.md
+filename=~/Sync/notes/notes.md
 
 if [[ ! -f "$filename" ]]; then
   currenttime=$(date '+%FT%T')
@@ -14,6 +13,6 @@ if [[ ! -f "$filename" ]]; then
   echo -en "$tmpl" > $filename
 fi
 
-currentdate=$(date '+%F (%T)')
+currentdate=$(date '+%F')
 echo -e "\n## $currentdate\n\n" >> $filename
 $EDITOR +$ "$filename"
