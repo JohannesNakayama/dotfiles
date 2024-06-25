@@ -4,6 +4,8 @@
 # --- Quick access to todo lists -----------------------------------------------
 # ------------------------------------------------------------------------------
 
-cd $HOME/Sync/notes/todo
-file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
-[[ -n $file ]] && $EDITOR "$file"
+todo_dir="$HOME/Sync/notes/todo"
+file=$(ls "$todo_dir" | rofi -dmenu -i -p "Select a file")
+if [ -n "$file" ]; then
+  $EDITOR "$todo_dir/$file"
+fi

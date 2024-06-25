@@ -10,8 +10,8 @@ alt + b
     brave
 
 # Todo list
-alt + super + {i,a,e}
-    alacritty --working-directory ~/Sync/notes/todo -e nvim {work.md,dotfiles.md,personal.md}
+alt + t
+    alacritty -e todo
 
 # Launcher
 alt + d
