@@ -10,7 +10,7 @@ filename=$syncdir/notes.md
 if [[ ! -f "$filename" ]]; then
   currenttime=$(date '+%FT%T')
   touch "$filename"
-  tmpl="---\ncreated: \"$currenttime\"\nmodified: \"$currenttime\"\ntitle: \"$title\"\ntags: \n  - \"note\"\n---\n"
+  tmpl="---\ncreated: \"$currenttime\"\nmodified: \"$currenttime\"\ntitle: \"Notes\"\ntags: \n  - \"note\"\n---\n"
   echo -en "$tmpl" > $filename
 fi
 
