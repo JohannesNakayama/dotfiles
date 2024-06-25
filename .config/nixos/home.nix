@@ -46,6 +46,7 @@
     magic-wormhole
     networkmanagerapplet
     openssl
+    syncthing
 
     # --- system
     htop
@@ -181,8 +182,11 @@
     dc = "docker-compose";
     dcu = "docker-compose up";
     dcd = "docker-compose down -v";
-    nrs = "sudo nixos-rebuild switch";
     bt = "bluetoothctl";
+
+    # nix
+    nrs = "sudo nixos-rebuild switch";
+    nfu = "nix flake update";
 
     # navigation
     p = "cd $HOME/Projects/social-protocols && cd $(ls -a | fzf)";
