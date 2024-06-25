@@ -11,7 +11,7 @@ alt + b
 
 # Todo list
 alt + super + {i,a,e}
-    alacritty --working-directory ~/sync/todo -e nvim {work.md,dotfiles.md,personal.md}
+    alacritty --working-directory ~/Sync/notes/todo -e nvim {work.md,dotfiles.md,personal.md}
 
 # Launcher
 alt + d
