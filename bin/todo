@@ -4,6 +4,6 @@
 # --- Quick access to todo lists -----------------------------------------------
 # ------------------------------------------------------------------------------
 
-cd $HOME/sync/todo
+cd $HOME/Sync/notes/todo
 file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
 [[ -n $file ]] && $EDITOR "$file"
