@@ -26,6 +26,9 @@ vim.keymap.set('n', '<leader>sv', ':luafile $MYVIMRC<CR>')
 vim.keymap.set('v', '<leader>sv', ':luafile $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>vv', ':e $MYVIMRC<CR>')
 
+-- Open dotfiles todo file
+vim.keymap.set('n', '<leader>vt', ':e $HOME/Sync/notes/todo/dotfiles.md<CR>')
+
 -- Don't lose selection when indenting //<- fdietze/dotfiles
 -- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
 vim.keymap.set('v', '>', '>gv')
