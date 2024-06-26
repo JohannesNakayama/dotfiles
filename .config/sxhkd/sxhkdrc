@@ -109,6 +109,17 @@ super + {Left,Down,Up,Right}
 
 
 # =====================================================
+# =========== COMPUTER STATE ==========================
+
+ctrl + shift + super + alt + p
+  poweroff
+
+ctrl + shift + super + alt + r
+  reboot
+
+
+
+# =====================================================
 # =========== AUDIO CONTROL ===========================
 
 alt + XF86AudioLowerVolume
