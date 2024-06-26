@@ -15,4 +15,4 @@ fi
 
 currentdate=$(date '+%F')
 echo -e "\n## $currentdate\n\n" >> $filename
-$EDITOR +$ "$filename"
+nvim +$ "$filename"

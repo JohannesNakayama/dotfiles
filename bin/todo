@@ -4,8 +4,13 @@
 # --- Quick access to todo lists -----------------------------------------------
 # ------------------------------------------------------------------------------
 
-todo_dir="$HOME/Sync/notes/todo"
-file=$(ls "$todo_dir" | rofi -dmenu -i -p "Select a file")
+tododir="$HOME/Sync/notes/todo"
+file=$(ls "$tododir" | rofi -dmenu -i -p "Select a file")
+echo $file
 if [ -n "$file" ]; then
-  $EDITOR "$todo_dir/$file"
+  if [ -e "$tododir/$file" ]; then
+    nvim "$tododir/$file"
+  else
+    echo "This todo list doesn't exist."
+  fi
 fi
