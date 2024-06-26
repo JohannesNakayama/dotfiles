@@ -7,4 +7,9 @@
 # Using a git bare repository for storing dotfiles:
 # -- https://www.atlassian.com/git/tutorials/dotfiles
 
-git --git-dir=/home/johannes/.cfg/ --work-tree=/home/johannes $@
+git \
+  -c user.email="johannes.nakayama@rwth-aachen.de" \
+  -c user.name="Johannes Nakayama" \
+  --git-dir=/home/johannes/.cfg/ \
+  --work-tree=/home/johannes $@ \
+
