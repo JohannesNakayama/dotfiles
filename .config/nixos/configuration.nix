@@ -21,11 +21,6 @@
       "vm.swappiness" = 2; # increment if RAM is often overused
     };
 
-    # setup keyfile
-    # initrd.secrets = {
-    #   "/crypto_keyfile.bin" = null;
-    # };
-
     tmp = {
       useTmpfs = false;
       cleanOnBoot = true;
@@ -44,7 +39,6 @@
 
   networking.networkmanager.enable = true;
 
-  # TODO: add back when enabling home-manager for good
   home-manager.backupFileExtension = "backup";
 
   services.automatic-timezoned.enable = true;
@@ -114,7 +108,7 @@
   security.rtkit.enable = true; # allows certain user-level processes to run with real-time priorities, good for media editing and playing
   services.pipewire = {
     # alternative to pulseaudio with better bluetooth support
-    # https://nixos.wiki/wiki/PipeWire
+    # -- https://nixos.wiki/wiki/PipeWire
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
@@ -133,16 +127,10 @@
     #   )
     # ];
 
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
@@ -164,7 +152,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    # neovim
+    neovim
     git
   ];
 
@@ -174,11 +162,6 @@
     pinentryPackage = pkgs.pinentry-curses;
   };
 
-  # fonts.packages = with pkgs; [
-  #   (nerdfonts.override {fonts = ["RobotoMono"];})
-  # ];
-
-  # TODO: does it work?
   fonts = {
     enableDefaultPackages = true;
     enableGhostscriptFonts = true;
@@ -237,7 +220,6 @@
 
     # nix path to correspond to my flakes
     nixPath = [
-      # "unstable=${flake-inputs.nixpkgs}"
       "nixpkgs=${flake-inputs.nixpkgs}"
     ];
 
