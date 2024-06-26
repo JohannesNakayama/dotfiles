@@ -186,6 +186,7 @@
     dcd = "docker-compose down -v";
     bt = "bluetoothctl";
     syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
+    done = "cd ~/Sync/notes && nvim done.md";
 
     # nix
     nrs = "sudo nixos-rebuild switch";
