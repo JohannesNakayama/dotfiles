@@ -124,7 +124,7 @@
     imagemagick
     picom
     polybarFull
-    rofi
+    # rofi
     sxhkd
     xdo
 
@@ -280,6 +280,18 @@
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars
     ];
+  };
+
+  programs.rofi = {
+    # application launcher, window switcher, ssh launcher
+    enable = true;
+    theme = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/catppuccin/rofi/5350da41a11814f950c3354f090b90d4674a95ce/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
+      sha256 = "0n9cixyv4ladvcfbybq5dsfyzklfh732cd8nmvjckd09pjkb62f1";
+    };
+    font = "Commit Mono 18";
+
+    plugins = with pkgs; [rofi-vpn rofi-calc rofi-emoji rofi-systemd rofi-bluetooth rofi-pulse-select rofi-file-browser];
   };
 
   # programs.git = {
