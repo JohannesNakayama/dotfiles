@@ -272,6 +272,7 @@
     enableZshIntegration = true;
     settings = {
       git_status.stashed = ""; # disable stash indicator
+      add_newline = false;
     };
   };
 
