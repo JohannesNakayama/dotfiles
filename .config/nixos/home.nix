@@ -34,7 +34,7 @@
     parallel
 
     # -- git
-    git
+    # git
     gh
     diff-so-fancy
     sublime-merge
@@ -294,14 +294,59 @@
     plugins = with pkgs; [rofi-vpn rofi-calc rofi-emoji rofi-systemd rofi-bluetooth rofi-pulse-select rofi-file-browser];
   };
 
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Johannes Nakayama";
-  #   userEmail = "johannes.nakayama@rwth-aachen.de";
-  #   difftastic = {
-  #     enable = true;
-  #   };
-  # };
+  programs.git = {
+    enable = true;
+    userName = "Johannes Nakayama";
+    userEmail = "johannes.nakayama@rwth-aachen.de";
+    difftastic = {
+      enable = true;
+    };
+    extraConfig = {
+      core = {
+        pager = "diff-so-fancy | less --tabs=4 -RFX";
+      };
+      interactive = {
+        diffFilter = "diff-so-fancy --patch";
+      };
+      pull = {
+        rebase = "true";
+      };
+      push = {
+        default = "simple";
+      };
+      fetch = {
+        prune = "true";
+      };
+      rebase = {
+        autoStash = "true";
+        autoSquash = "true";
+      };
+      merge = {
+        ff = "only";
+        ignore-space-change = "true";
+        conflictStyle = "diff3"; # this allows to show 3 panes in meld [1]
+      };
+      diff = {
+        algorithm = "histogram";
+      };
+      commit = {
+        verbose = "true";
+      };
+      alias = {
+        st = "status";
+        co = "checkout";
+        cl = "clone";
+        yes = "commit";
+        no = "reset";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      credential = {
+        helper = "cache";
+      };
+    };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -313,3 +358,9 @@
   # changes in each release.
   home.stateVersion = "24.05";
 }
+
+# ------------------------------------------------------------------------------
+# --- REFERENCES ---------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# [1] https://stackoverflow.com/questions/27417656/should-diff3-be-default-conflictstyle-on-git/70387424#70387424
