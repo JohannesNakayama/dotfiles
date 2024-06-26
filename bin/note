@@ -14,5 +14,5 @@ if [ ! -f "$filename" ]; then
 fi
 
 currentdate=$(date '+%F')
-echo -e "\n## $currentdate\n\n" >> $filename
+echo -e "\n---\n\n## $currentdate\n\n" >> $filename
 nvim +$ "$filename"
