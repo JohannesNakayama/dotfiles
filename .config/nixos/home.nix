@@ -176,6 +176,8 @@
     ca = "cfg add";
     cy = "cfg commit";
     cn = "cfg reset";
+    cps = "cfg push";
+    cpl = "cfg pull";
 
     # freqently used commands with long names
     tclip = "tmate display -p \"#{tmate_ssh}\" | xclip -selection clipboard";  # tmate session token to clipboard
