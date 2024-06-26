@@ -9,7 +9,7 @@ read -p "(title) " title
 current_time=$(date '+%FT%T')
 current_date=$(date '+%F')
 filename=~/Sync/notes/posts/$current_date-$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
-if [[ ! -f "$filename" ]]; then
+if [ ! -f "$filename" ]; then
   touch "$filename"
   tmpl="---\ncreated: \"$current_time\"\nmodified: \"$current_time\"\ntitle: \"$title\"\ntags:\n  - \"post\"\n---\n\n"
   echo -en "$tmpl" > $filename

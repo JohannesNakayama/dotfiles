@@ -6,7 +6,7 @@
 
 filename=~/Sync/notes/notes.md
 
-if [[ ! -f "$filename" ]]; then
+if [ ! -f "$filename" ]; then
   currenttime=$(date '+%FT%T')
   touch "$filename"
   tmpl="---\ncreated: \"$currenttime\"\nmodified: \"$currenttime\"\ntitle: \"Notes\"\ntags: \n  - \"note\"\n---\n"

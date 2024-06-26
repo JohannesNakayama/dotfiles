@@ -9,7 +9,7 @@
 find-git-root() (
   cd "$1"
   GITROOT=$(git rev-parse --show-toplevel 2> /dev/null)
-  if [[ $? == 0 ]]; then
+  if [ $? == 0 ]; then
     echo "$GITROOT"
   else
     echo "$1"
@@ -19,5 +19,5 @@ find-git-root() (
 (
     cd "$(find-git-root "$PWD")"
     file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
-    [[ -n $file ]] && $EDITOR "$file"
+    [ -n $file ] && $EDITOR "$file"
 )

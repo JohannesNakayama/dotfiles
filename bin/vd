@@ -8,4 +8,4 @@
 
 cd $HOME
 file="$(cfg ls-files | fzf)"
-[[ -n $file ]] && $EDITOR +cd\ %:p:h "$HOME/$file"
+[ -n $file ] && $EDITOR +cd\ %:p:h "$HOME/$file"

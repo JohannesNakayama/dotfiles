@@ -6,5 +6,4 @@
 
 cd $HOME/Sync/notes/posts
 file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
-[[ -n $file ]] && $EDITOR "$file"
-
+[ -n $file ] && $EDITOR "$file"
