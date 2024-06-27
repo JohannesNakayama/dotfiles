@@ -11,7 +11,7 @@ alt + b
 
 # Todo list
 alt + t
-    alacritty -e todo
+    todo_hotkey
 
 # Launcher
 alt + d
