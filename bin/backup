@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
+
+# ------------------------------------------------------------------------------
+# --- Create backup archive ----------------------------------------------------
+# ------------------------------------------------------------------------------
+
+BACKUP_DATETIME=$(date +"%Y-%m-%d--%H-%M-%S")
+BACKUP_HOSTNAME=$(hostname)
+BACKUP_FILENAME="$HOME/${BACKUP_DATETIME}-backup-${BACKUP_HOSTNAME}.tar.gz"
+
+tar -czvf $BACKUP_FILENAME \
+  $HOME/Documents \
+  $HOME/Downloads \
+  $HOME/Other \
+  $HOME/Pictures \
+  $HOME/Projects \
+  $HOME/Sync
