@@ -161,6 +161,7 @@
 
     # even shorter git aliases
     g = "git";
+    ga = "git add";
     gst = "git status";
     gy = "git commit";
     gn = "git reset";
@@ -186,7 +187,11 @@
     dcd = "docker-compose down -v";
     bt = "bluetoothctl";
     syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
-    done = "cd ~/Sync/notes && nvim done.md";
+    done = "cd ~/Documents/local-notes && nvim done.md";
+    cat = "bat --paging=never";
+
+    # fzf
+    fzfp = "fzf --preview 'bat --color=always {}' --preview-window '~3'";
 
     # nix
     nrs = "sudo nixos-rebuild switch";
