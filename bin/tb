@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
 
 # ------------------------------------------------------------------------------
 # --- Commit staged changes to a new branch ------------------------------------
