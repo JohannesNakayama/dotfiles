@@ -5,15 +5,37 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # --- Take a note --------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-filename=~/Sync/notes/notes.md
+FILENAME=$HOME/Sync/notes/notes.md
 
-if [ ! -f "$filename" ]; then
-  currenttime=$(date '+%FT%T')
-  touch "$filename"
-  tmpl="---\ncreated: \"$currenttime\"\nmodified: \"$currenttime\"\ntitle: \"Notes\"\ntags: \n  - \"note\"\n---\n"
-  echo -en "$tmpl" > $filename
+if [ ! -f "$FILENAME" ]; then
+  CURRENT_TIME=$(date '+%FT%T')
+  touch "$FILENAME"
+  TMPL="---\ncreated: \"$CURRENT_TIME\"\nmodified: \"$CURRENT_TIME\"\ntitle: \"Notes\"\ntags: \n  - \"note\"\n---\n"
+  echo -en "$TMPL" > $FILENAME
 fi
 
-currentdate=$(date '+%F')
-echo -e "\n---\n\n## $currentdate\n\n" >> $filename
-nvim +$ "$filename"
+CURRENT_DATE=$(date '+%F')
+
+default() {
+  nvim +$ "$FILENAME"
+}
+
+new() {
+  echo -e "\n---\n\n## $CURRENT_DATE\n\n" >> $FILENAME
+  default
+}
+
+if [ $# -eq 0 ]; then
+  default
+else
+  case "$1" in
+    new)
+      new
+      ;;
+    *)
+      echo "Usage:\n  note new  create a new note with current date as title\n  note      just append to the notes document"
+      exit 1
+      ;;
+  esac
+fi
+

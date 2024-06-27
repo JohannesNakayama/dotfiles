@@ -7,12 +7,11 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 
 echo "Enter a title for your recipe:"
 read -p "(title) " title
-current_time=$(date '+%FT%T')
-current_date=$(date '+%F')
-filename=$HOME/Documents/local-notes/recipes/$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
-if [ ! -f "$filename" ]; then
-  touch "$filename"
-  tmpl="---\ncreated: \"$current_time\"\nmodified: \"$current_time\"\ntitle: \"$title\"\ntags:\n  - \"recipe\"\n---\n\n\`\`\`{ingredients}\n\`\`\`\n"
-  echo -en "$tmpl" > $filename
+CURRENT_TIME=$(date '+%FT%T')
+FILENAME=$HOME/Documents/local-notes/recipes/$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
+if [ ! -f "$FILENAME" ]; then
+  touch "$FILENAME"
+  TMPL="---\ncreated: \"$CURRENT_TIME\"\nmodified: \"$CURRENT_TIME\"\ntitle: \"$title\"\ntags:\n  - \"recipe\"\n---\n\n\`\`\`{ingredients}\n\`\`\`\n"
+  echo -en "$TMPL" > $FILENAME
 fi
-nvim "$filename"
+nvim "$FILENAME"

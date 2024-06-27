@@ -7,8 +7,12 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 
 # See: https://github.com/fdietze/dotfiles/blob/860eef3b499f736e54365991ad119f1a44d1e925/bin/v
 
+default() {
+  FILENAME="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
+  [ -n $FILENAME ] && $EDITOR "$FILENAME"
+}
+
 find-git-root() (
-  cd "$1"
   GITROOT=$(git rev-parse --show-toplevel 2> /dev/null)
   if [ $? == 0 ]; then
     echo "$GITROOT"
@@ -17,8 +21,30 @@ find-git-root() (
   fi
 )
 
-(
+project() {
   cd "$(find-git-root "$PWD")"
-  file="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
-  [ -n $file ] && $EDITOR "$file"
-)
+  default
+}
+
+dot() {
+  cd $HOME
+  FILENAME="$(cfg ls-files | fzf --preview 'bat --color=always {}' --preview-window '~3')"
+  [ -n $FILENAME ] && $EDITOR +cd\ %:p:h "$HOME/$FILENAME"
+}
+
+if [ $# -eq 0 ]; then
+  default
+else
+  case "$1" in
+    project)
+      project
+      ;;
+    dot)
+      dot
+      ;;
+    *)
+      echo "Usage: v project or v dot or just v"
+      exit 1
+      ;;
+  esac
+fi

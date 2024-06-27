@@ -5,6 +5,38 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # --- Edit an existing post ----------------------------------------------------
 # ------------------------------------------------------------------------------
 
-cd $HOME/Sync/notes/posts
-file="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
-[ -n $file ] && $EDITOR "$file"
+POSTSDIR=$HOME/Sync/notes/posts
+
+new() {
+  echo "Enter a title for your post:"
+  read -p "(title) " title
+  CURRENT_TIME=$(date '+%FT%T')
+  CURRENT_DATE=$(date '+%F')
+  FILENAME=$POSTSDIR/$CURRENT_DATE-$(echo $title | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed 's/[A-Z]/\L&/g').md
+  if [ ! -f "$FILENAME" ]; then
+    touch "$FILENAME"
+    tmpl="---\ncreated: \"$CURRENT_TIME\"\nmodified: \"$CURRENT_TIME\"\ntitle: \"$title\"\ntags:\n  - \"post\"\n---\n\n"
+    echo -en "$tmpl" > $FILENAME
+  fi
+  $EDITOR "$FILENAME"
+}
+
+default() {
+  cd $HOME/Sync/notes/posts
+  FILENAME="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
+  [ -n $FILENAME ] && $EDITOR "$FILENAME"
+}
+
+if [ $# -eq 0 ]; then
+    default
+else
+    case "$1" in
+        new)
+            new
+            ;;
+        *)
+            echo "Usage: $0 new or $0"
+            exit 1
+            ;;
+    esac
+fi

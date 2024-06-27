@@ -6,11 +6,38 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # ------------------------------------------------------------------------------
 
 tododir="$HOME/Sync/notes/todo"
-file=$(select_todo_list)
-if [ -n "$file" ]; then
-  if [ -e "$tododir/$file" ]; then
-    nvim "$tododir/$file"
-  else
-    echo "This todo list doesn't exist."
+file=$(ls "$tododir" | rofi -dmenu -i -p 'Select a file')
+
+spawn() {
+  if [ -n "$file" ]; then
+    if [ -e "$tododir/$file" ]; then
+      alacritty -e nvim "$tododir/$file"
+    else
+      echo "This todo list doesn't exist."
+    fi
   fi
+}
+
+no-spawn() {
+  if [ -n "$file" ]; then
+    if [ -e "$tododir/$file" ]; then
+      nvim "$tododir/$file"
+    else
+      echo "This todo list doesn't exist."
+    fi
+  fi
+}
+
+if [ $# -eq 0 ]; then
+    no-spawn
+else
+    case "$1" in
+        spawn)
+            spawn
+            ;;
+        *)
+            echo "Usage: $0 spawn or $0"
+            exit 1
+            ;;
+    esac
 fi
