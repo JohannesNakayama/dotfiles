@@ -34,7 +34,6 @@
     parallel
 
     # -- git
-    # git
     gh
     diff-so-fancy
     sublime-merge
@@ -91,6 +90,7 @@
     fd
     file
     jq
+    pv
 
     # nix utils
     nix-output-monitor
@@ -142,14 +142,16 @@
     # use nvim by default
     vim = "nvim";
 
-    # vim aliases for frequently modified files
-    # -- see also: vd in $HOME/bin
-    vv = "nvim ~/.config/nvim/init.lua";
-    vala = "nvim ~/.config/alacritty/alacritty.toml";
-    vg = "nvim ~/.config/git/config";
-    vs = "nvim ~/.config/sxhkd/sxhkdrc";
-    vb = "nvim ~/.config/bspwm/bspwmrc";
-    vn = "nvim ~/.config/nixos/configuration.nix";
+    # v aliases for frequently modified files
+    # -- see also: v in $HOME/bin
+    vv = "cd $HOME/.config/nvim && v";
+    vn = "cd $HOME/.config/nixos && v";
+    vd = "v dot";
+    vp = "v project";
+
+    # note
+    n = "note";
+    nn = "note new";
 
     # ls aliases
     ls = "ls --group-directories-first --color=auto";
