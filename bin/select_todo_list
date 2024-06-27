@@ -2,9 +2,11 @@
 set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
 
 # ------------------------------------------------------------------------------
-# --- Edit an existing post ----------------------------------------------------
+# --- Rofi in todo list folder and output to stdout ----------------------------
 # ------------------------------------------------------------------------------
 
-cd $HOME/Sync/notes/posts
-file="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
-[ -n $file ] && $EDITOR "$file"
+
+tododir="$HOME/Sync/notes/todo"
+ls "$tododir" |
+  rofi -dmenu -i -p 'Select a file'
+
