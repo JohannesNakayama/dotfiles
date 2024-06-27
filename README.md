@@ -16,7 +16,13 @@ These are just my instructions for myself.
 Requires root user privileges.
 
 ```
-mkdir ~/Projects
+mkdir -p \
+  ~/Documents \
+  ~/Downloads \
+  ~/Other \
+  ~/Pictures \
+  ~/Projects \
+  ~/Sync
 
 # Add config repo to gitignore important to avoid recursion troubles
 echo .cfg >> .gitignore
