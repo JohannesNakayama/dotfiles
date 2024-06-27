@@ -51,12 +51,9 @@ ln -s $HOME/.config/nixos /etc/nixos
 
 **Notes**
 
-* DO NOT CREATE BRANCHES IN DOTFILES REPO! IT GET'S MESSY...
-* change keyboard layout to neo2
-* checkout [home manager](https://nixos.wiki/wiki/Home_Manager)
-* use brave profiles for separation of tasks
-* maybe learn qutebrowser or vimb
-* [snownews](https://github.com/msharov/snownews)
+* [neo2](https://neo-layout.org/) keyboard layout
+* maybe learn [qutebrowser](https://qutebrowser.org/) or [vimb](https://fanglingsu.github.io/vimb/)
+* rss reader: [snownews](https://github.com/msharov/snownews)
 
 **Useful Resources**
 
