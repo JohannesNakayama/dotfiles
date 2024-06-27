@@ -17,7 +17,7 @@ find-git-root() (
 )
 
 (
-    cd "$(find-git-root "$PWD")"
-    file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
-    [ -n $file ] && $EDITOR "$file"
+  cd "$(find-git-root "$PWD")"
+  file="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
+  [ -n $file ] && $EDITOR "$file"
 )

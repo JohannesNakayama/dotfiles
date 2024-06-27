@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------
 
 syncdir="$HOME/Sync/notes"
-recipedir="$syncdir/recipes"
-grocerytodopath="$HOME/Sync/notes/todo/groceries.md"
+recipedir="$HOME/Documents/local-notes/recipes"
+grocerytodopath="$syncdir/todo/groceries.md"
 file=$(ls "$recipedir" | rofi -dmenu -i -p "What would you like to add to the grocery list?")
 sed -n '/```{ingredients}/, /```/p' $recipedir/$file | sed '1d;$d' >> $syncdir/todo/groceries.md

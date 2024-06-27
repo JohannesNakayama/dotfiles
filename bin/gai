@@ -9,7 +9,7 @@
 # Permalink to script:
 # -- https://github.com/Phantas0s/the_valuable_dev_companion/blob/a34a0a304b98dab937d1fe687f074a5898226a3b/guide-fzf-git/fzf_git_files.sh
 
-function ga() {
+function gai() {
 	local -r prompt_add="Add > "
 	local -r prompt_reset="Reset > "
 
@@ -74,4 +74,4 @@ function ga() {
 	--bind='ctrl-d:preview-half-page-down'
 }
 
-ga
+gai

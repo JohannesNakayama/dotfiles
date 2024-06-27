@@ -5,5 +5,5 @@
 # ------------------------------------------------------------------------------
 
 cd $HOME/Sync/notes/posts
-file="$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"
+file="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
 [ -n $file ] && $EDITOR "$file"
