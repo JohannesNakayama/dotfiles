@@ -154,7 +154,7 @@
     # ls aliases
     ls = "ls --group-directories-first --color=auto";
     l = "ls -lh";
-    ll = "ls -alhF";
+    ll = "ls -AlhF";
     la = "ls -A";
     lt = "tree -L 2";
     lt3 = "tree -L 3";
