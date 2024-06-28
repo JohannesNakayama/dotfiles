@@ -201,8 +201,8 @@
     nur = "nix flake update $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos";
 
     # navigation
-    p = "cd $HOME/Projects/social-protocols && cd $(ls -a | fzf)";
-    c = "cd $(ls -a | fzf) && ll";
+    p = "cd $HOME/Projects/social-protocols && cd $(ls -a | fzf --border-label=\"Projects\")";
+    c = "cd $(ls -a | fzf --border-label=\"Change Directory\") && ll";
 
     # trash-cli aliases
     trp = "trash-put";
@@ -243,6 +243,14 @@
 
       # Default fzf command (hidden files too)
       export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+      export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+        --color=fg:#787c99,fg+:#acb0d0,bg:-1,bg+:#32344a
+        --color=hl:#0db9d7,hl+:#5fd7ff,info:#afaf87,marker:#9ece6a
+        --color=prompt:#ff7a93,spinner:#ad8ee6,pointer:#bb9af7,header:#87afaf
+        --color=border:#444b6a,separator:#acb0d0,label:#aeaeae,query:#d9d9d9
+        --border="bold" --border-label-pos="0" --preview-window="border-rounded"
+        --padding="2" --margin="1" --prompt="> " --marker=">" --pointer="◆"
+        --separator="─" --scrollbar="┃" --info="right"'
     '';
 
     plugins = [

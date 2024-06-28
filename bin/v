@@ -28,7 +28,7 @@ project() {
 
 dot() {
   cd $HOME
-  FILENAME="$(cfg ls-files | fzf --preview 'bat --color=always {}' --preview-window '~3')"
+  FILENAME="$(cfg ls-files | fzf --preview 'bat --color=always {}' --preview-window '~3' --border-label 'Dotfiles')"
   [ -n $FILENAME ] && $EDITOR +cd\ %:p:h "$HOME/$FILENAME"
 }
 

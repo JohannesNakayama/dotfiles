@@ -23,7 +23,7 @@ new() {
 
 default() {
   cd $HOME/Sync/notes/posts
-  FILENAME="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )")"
+  FILENAME="$(fzf --preview 'bat --color=always {}' --preview-window '~3' --query="$(echo $@ | tr ' ' '\ ' )" --border-label='Posts')"
   [ -n $FILENAME ] && $EDITOR "$FILENAME"
 }
 
