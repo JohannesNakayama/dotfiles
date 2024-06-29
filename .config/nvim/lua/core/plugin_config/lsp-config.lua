@@ -2,12 +2,12 @@
 -- It is important that mason and mason-lspconfig are setup before setting up
 -- LSP servers with lspconfig.
 require('mason').setup()
-require('mason-lspconfig').setup {
+require('mason-lspconfig').setup({
 	ensure_installed = { 'tsserver', 'jsonls' },
-}
+})
 
--- -- Load capabilities of nvim-cmp to replace default nvim lsp capabilities
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Load capabilities of nvim-cmp to replace default nvim lsp capabilities
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Specify handlers for mason-lspconfig
 require("mason-lspconfig").setup_handlers {
@@ -89,8 +89,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- vim.keymap.set('n', '<leader>lf', function()
 		--   vim.lsp.buf.format { async = true }
 		-- end, opts)
-		vim.keymap.set('n', '<leader>lf', ':Format<cr>')
-
+		-- vim.keymap.set('n', '<leader>lf', ':Format<cr>')
 
 		-- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
 		-- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)

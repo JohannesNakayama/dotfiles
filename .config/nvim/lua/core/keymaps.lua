@@ -80,5 +80,3 @@ end
 
 vim.keymap.set('n', '<leader>,', function() toggle_char_at_eol(',') end, { desc = 'toggle , at end of line' })
 vim.keymap.set('n', '<leader>;', function() toggle_char_at_eol(';') end, { desc = 'toggle ; at end of line' })
-
-vim.keymap.set('n', '<leader>F', ':FormatWrite<cr>')

@@ -25,7 +25,13 @@ require("lazy").setup({
   'catppuccin/nvim',
 
   -- File tree
-  'nvim-tree/nvim-tree.lua',
+  {
+    'nvim-tree/nvim-tree.lua',
+    keys = {
+      { '<leader>e', ':NvimTreeFindFileToggle<cr>', desc = 'Toggle nvim-tree' },
+      { '<leader>tf', ':NvimTreeFocus<cr>', desc = 'Focus nvim-tree' },
+    }
+  },
 
   -- Status and buffer lines
   'nvim-lualine/lualine.nvim',
@@ -91,6 +97,9 @@ require("lazy").setup({
     event = "InsertEnter",
   },
 
+  -- Copilot integration with cmp
+  'zbirenbaum/copilot-cmp',
+
   -- Linting/Formatting
   'mfussenegger/nvim-lint',
   'mhartington/formatter.nvim',
@@ -118,8 +127,8 @@ require("lazy").setup({
         '<leader>cr',
         function() return ':IncRename ' .. vim.fn.expand('<cword>') end,
         desc = 'LSP rename action',
-      }
-    }
+      },
+    },
   },
 
   'AndrewRadev/splitjoin.vim',
@@ -128,7 +137,38 @@ require("lazy").setup({
   'arp242/auto_mkdir2.vim',
 
   -- Switch between certain defined patterns (e.g. true <-> false)
-  'AndrewRadev/switch.vim',
+  {
+    'AndrewRadev/switch.vim',
+    keys = {
+      { 'gs', desc = 'Switch true/false etc.' }
+    },
+    config = function()
+      vim.g.switch_custom_definitions = {
+        { "on",         "off" },
+        { "==",         "!=" },
+        { " < ",        " > " },
+        { "<=",         ">=" },
+        { " + ",        " - " },
+        { "-=",         "+=" },
+        { "and",        "or" },
+        { "YES",        "NO" },
+        { "yes",        "no" },
+        { "first",      "last" },
+        { "max",        "min" },
+        { "left",       "right" },
+        { "top",        "bottom" },
+        { "margin",     "padding" },
+        { "height",     "width" },
+        { "absolute",   "relative" },
+        { "show",       "hide" },
+        { "visible",    "hidden" },
+        { "add",        "remove" },
+        { "up",         "down" },
+        { "before",     "after" },
+        { "inside",     "outside" },
+      }
+    end,
+  },
 
   -- Handle swap file issues when opening the same file in two buffers
   'gioele/vim-autoswap',
