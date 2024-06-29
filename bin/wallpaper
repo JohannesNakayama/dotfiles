@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
+
+# ------------------------------------------------------------------------------
+# --- Download newest wallpaper ------------------------------------------------
+# ------------------------------------------------------------------------------
+
+DIRNAME="$HOME/Pictures/wallpapers/"
+
+download() {
+  BASEURL="https://fdietze.github.io/frottage/wallpapers/"
+  URL_DARK="${BASEURL}wallpaper-desktop-latest.jpg"
+  URL_LIGHT="${BASEURL}wallpaper-desktop-light-latest.jpg"
+  FILENAME_DARK="$(date +%Y-%m-%d)-$(basename $URL_DARK)"
+  FILENAME_LIGHT="$(date +%Y-%m-%d)-$(basename $URL_LIGHT)"
+  curl -o "$DIRNAME$FILENAME_LIGHT" "$URL_DARK"
+  curl -o "$DIRNAME$FILENAME_DARK" "$URL_LIGHT"
+}
+
+setnewest() {
+  # TODO: dark/light flag and default
+  feh --bg-fill $(ls $DIRNAME | tail -1)
+}
+
+set() {
+  # TODO: preview
+  feh --bg-fill $(find $DIRNAME -type f | fzf)
+}
+
+if [ $# -eq 0 ]; then
+  download
+  setnewest
+else
+  case "$1" in
+    download)
+      download
+      ;;
+    setnewest)
+      setnewest
+      ;;
+    set)
+      set
+      ;;
+    *)
+      echo "Usage:\n  wallpaper download  download newest wallpapers\n  wallpaper setnewest      set wallpaper to newest one\n"
+      exit 1
+      ;;
+  esac
+fi
