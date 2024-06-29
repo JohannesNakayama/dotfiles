@@ -1,3 +1,16 @@
+require('telescope').setup({
+  pickers = {
+    find_files = {
+      -- use ripgrep, find hidden files and folders except .git/
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    },
+    live_grep = {
+      -- search in hidden files and folders except .git/
+      additional_args = { "--hidden", "--glob", "!**/.git/*" },
+    },
+  },
+})
+
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

@@ -42,10 +42,10 @@ vim.keymap.set('n', 'Y', 'y$', { desc = 'yank till end of line. (Y behaves like 
 vim.keymap.set('n', "<leader>p", "v$<Left>pgvy", { desc = 'paste over rest of line' })
 
 
-vim.keymap.set({'n', 'v', 'i'}, '<c-m-i>', '<cmd> TmuxNavigateLeft<cr>')
-vim.keymap.set({'n', 'v', 'i'}, '<c-m-e>', '<cmd> TmuxNavigateRight<cr>')
-vim.keymap.set({'n', 'v', 'i'}, '<c-m-l>', '<cmd> TmuxNavigateUp<cr>')
-vim.keymap.set({'n', 'v', 'i'}, '<c-m-a>', '<cmd> TmuxNavigateDown<cr>')
+vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-i>', '<cmd> TmuxNavigateLeft<cr>')
+vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-e>', '<cmd> TmuxNavigateRight<cr>')
+vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-l>', '<cmd> TmuxNavigateUp<cr>')
+vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-a>', '<cmd> TmuxNavigateDown<cr>')
 
 vim.keymap.set('n', "<leader>n",
   function()
@@ -81,3 +81,4 @@ end
 vim.keymap.set('n', '<leader>,', function() toggle_char_at_eol(',') end, { desc = 'toggle , at end of line' })
 vim.keymap.set('n', '<leader>;', function() toggle_char_at_eol(';') end, { desc = 'toggle ; at end of line' })
 
+vim.keymap.set('n', '<leader>F', ':FormatWrite<cr>')

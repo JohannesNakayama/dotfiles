@@ -42,7 +42,7 @@ vim.opt.breakindentopt = { shift = 2 }
 -- Tabs/Shift
 vim.opt.list = true
 -- vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
-vim.opt.listchars = { tab = '│·' , trail = '·', }
+vim.opt.listchars = { tab = '│·', trail = '·', }
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true

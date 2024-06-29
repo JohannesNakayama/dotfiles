@@ -2,6 +2,8 @@
 -- === PLUGINS ================================================================
 -- ============================================================================
 
+-- --- Install Lazy -----------------------------------------------------------
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -15,18 +17,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- --- Define Plugins ---------------------------------------------------------
+
 require("lazy").setup({
   -- Colorschemes
-  {
-    'folke/tokyonight.nvim',
-    opts = {
-      transparent = true,
-      styles = {
-         sidebars = "transparent",
-         floats = "transparent",
-      },
-    },
-  },
+  'folke/tokyonight.nvim',
   'catppuccin/nvim',
 
   -- File tree
@@ -46,45 +41,6 @@ require("lazy").setup({
   -- Show git status information on buffers
   'lewis6991/gitsigns.nvim',
 
-  -- Fuzzy find files
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.6',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {
-      pickers = {
-        find_files = {
-          -- use ripgrep, find hidden files and folders except .git/
-          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-        live_grep = {
-          -- search in hidden files and folders except .git/
-          additional_args = { "--hidden", "--glob", "!**/.git/*" },
-        },
-      },
-    }
-  },
-
-  {
-    'axkirillov/easypick.nvim',
-    dependencies = 'nvim-telescope/telescope.nvim',
-    keys = {
-      { "<leader>vd", ":Easypick dotfiles<cr>", desc = "Dotfiles" },
-    },
-    config = function()
-      local easypick = require("easypick")
-      require("easypick").setup({
-        pickers = {
-          {
-            name = "dotfiles",
-            command = "cfg ls-tree --full-tree --name-only -r HEAD | sed \"s|^|~/|\"",
-            previewer = easypick.previewers.default()
-          },
-        }
-      })
-    end
-  },
-
   -- Multiple cursors in visual mode
   'mg979/vim-visual-multi',
 
@@ -103,58 +59,69 @@ require("lazy").setup({
   -- Auto surround text with brackets, quotes, etc.
   'kylechui/nvim-surround',
 
-  -- Highlight color codes in files
+  -- Fuzzy find files
   {
-    'NvChad/nvim-colorizer.lua',
-    -- highlight color codes in files
-    -- demo colors: #8BF8E7, salmon
-    lazy = false,
-    config = function()
-      require("colorizer").setup({
-      })
-    end
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
   -- Julia plugin
   'JuliaEditorSupport/julia-vim',
+
+  -- Zen mode
+  "folke/zen-mode.nvim",
+
+  -- Highlight color codes in files
+  -- demo colors: #8BF8E7, salmon
+  'NvChad/nvim-colorizer.lua',
+
+  {
+    'axkirillov/easypick.nvim',
+    dependencies = 'nvim-telescope/telescope.nvim',
+    keys = {
+      { "<leader>vd", ":Easypick dotfiles<cr>", desc = "Dotfiles" },
+    },
+  },
 
   -- Github Copilot
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    opts = {
-      suggestion = {
-        auto_trigger = true,
-        keymap = {
-          accept = "<C-tab>",
-          accept_word = "<C-t>",
-          accept_line = false,
-          next = "<C-n>",
-          dismiss = "<C-,>",
-        },
-      },
-      filetypes = {
-        yaml = true,
-        markdown = false,
-        gitcommit = true,
-        json = true,
-      },
-    },
   },
-
-  -- LSP support
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim', -- mason/lspconfig interface
-  'neovim/nvim-lspconfig',
 
   -- Linting/Formatting
   'mfussenegger/nvim-lint',
   'mhartington/formatter.nvim',
   'MunifTanjim/prettier.nvim',
 
+  -- LSP support
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim', -- mason/lspconfig interface
+  'neovim/nvim-lspconfig',
+
+  -- Completion/Snippets
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  {
+    'L3MON4D3/LuaSnip',
+    version = 'v2.*',
+    build = 'make install_jsregexp',
+  },
+
   -- Refactoring
-  'smjonas/inc-rename.nvim',
+  {
+    'smjonas/inc-rename.nvim',
+    keys = {
+      {
+        '<leader>cr',
+        function() return ':IncRename ' .. vim.fn.expand('<cword>') end,
+        desc = 'LSP rename action',
+      }
+    }
+  },
+
   'AndrewRadev/splitjoin.vim',
 
   -- Automatically create directories when opening a non-existent file with vim
@@ -163,50 +130,159 @@ require("lazy").setup({
   -- Switch between certain defined patterns (e.g. true <-> false)
   'AndrewRadev/switch.vim',
 
-  -- Automatically handle swap file issue when opening the same file in two buffers
+  -- Handle swap file issues when opening the same file in two buffers
   'gioele/vim-autoswap',
-
-  -- LSP none-ls
-  {
-    'nvimtools/none-ls.nvim',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      local null_ls = require("null-ls")
-      local sources = {
-        null_ls.builtins.formatting.alejandra, -- nix formatter
-      }
-      null_ls.setup()
-    end,
-  },
-
-  -- Zen mode
-  "folke/zen-mode.nvim",
-
-  -- {
-  --   "folke/which-key.nvim",
-  --   event = "VeryLazy",
-  --   init = function()
-  --     vim.o.timeout = true
-  --     vim.o.timeoutlen = 300
-  --   end,
-  --   opts = {
-  --     -- TODO:
-  --     -- -- your configuration comes here
-  --     -- -- or leave it empty to use the default settings
-  --     -- -- refer to the configuration section below
-  --   }
-  -- },
-
-  -- --   -- Integration with tmux
-  -- --   use { 'christoomey/vim-tmux-navigator' }
-
-  -- -- Completion/Snippets
-  -- 'hrsh7th/nvim-cmp',
-  -- 'hrsh7th/cmp-nvim-lsp',
-  -- {
-    -- 'L3MON4D3/LuaSnip',
-    -- tag = 'v2.*',
-    -- run = 'make install_jsregexp',
-  -- },
-
 })
+
+
+
+
+
+-- --- TODO --------------------------------------------------------------------
+
+-- TODO:
+-- -- FIGURE OUT THE FOLLOWING CONFIGURATIONS
+
+-- -- LSP none-ls
+-- {
+--   'nvimtools/none-ls.nvim',
+--   dependencies = 'nvim-lua/plenary.nvim',
+--   config = function()
+--     local null_ls = require("null-ls")
+
+--     local sources = {
+--       null_ls.builtins.formatting.alejandra, -- nix formatter
+--     }
+--     null_ls.setup()
+--   end,
+-- },
+
+-- {
+--   "dundalek/lazy-lsp.nvim",
+--   dependencies = {
+--     "neovim/nvim-lspconfig",
+--     { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
+--     "hrsh7th/cmp-nvim-lsp",
+--     "hrsh7th/nvim-cmp",
+--   },
+--   config = function()
+--     local lsp_zero = require("lsp-zero")
+
+--     lsp_zero.on_attach(function(client, bufnr)
+--       -- see :help lsp-zero-keybindings to learn the available actions
+--       lsp_zero.default_keymaps({
+--         buffer = bufnr,
+--         preserve_mappings = false
+--       })
+--     end)
+
+--     -- completion menu
+--     local cmp = require('cmp')
+--     local cmp_mapping = require('cmp.config.mapping')
+--     cmp.setup {
+--       mapping = cmp_mapping.preset.insert {
+--         ['<C-Space>'] = cmp.mapping.complete(),
+--         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+--         ['<tab>'] = cmp.mapping.confirm({ select = true }),
+--       },
+--     }
+
+
+--     -- format on save
+--     -- TODO: toggle with keybinding
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       pattern = { "*" },
+--       callback = function()
+--         if vim.bo.filetype ~= "json" then
+--           vim.lsp.buf.format({
+--             async = false,
+--             filter = function(client) return client.name ~= "tsserver" end
+--           })
+--         end
+--       end,
+--     })
+
+--     require("lazy-lsp").setup {
+--       excluded_servers = {
+--         "denols", "quick_lint_js", "pylyzer", "marksman", "ltex"
+--       },
+--       -- Override config for specific servers that will passed down to lspconfig setup.
+--       -- Note that the default_config will be merged with this specific configuration so you don't need to specify everything twice.
+--       configs = {
+--         eslint = {
+--           on_attach = function(client, bufnr)
+--             vim.api.nvim_create_autocmd("BufWritePre", {
+--               buffer = bufnr,
+--               command = "EslintFixAll",
+--             })
+--           end,
+--         },
+--         lua_ls = {
+--           settings = {
+--             Lua = {
+--               diagnostics = {
+--                 -- Get the language server to recognize the `vim` global
+--                 globals = { "vim" },
+--               },
+--             },
+--           },
+--         },
+--         rust_analyzer = {
+--           settings = {
+--             ["rust-analyzer"] = {
+--               procMacro = {
+--                 enable = true,
+--               },
+--               check = {
+--                 command = "clippy",
+--               },
+--               cargo = {
+--                 -- To prevent rustanalyzer from locking the target dir (blocking cargo build/run)
+--                 -- https://github.com/rust-lang/rust-analyzer/issues/6007#issuecomment-1523204067
+--                 extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = 'dev', },
+--                 extraArgs = { "--profile", "rust-analyzer", },
+--                 allFeatures = true,          -- enable all features, so that all optional dependencies are loaded
+--                 loadOutDirsFromCheck = true, -- everybody seems to enable this
+--               },
+--               diagnostics = {
+--                 -- show code, even if disabled via feature flags
+--                 disabled = { "inactive-code" },
+--               },
+--             },
+--           },
+--         },
+--       },
+--     }
+--   end,
+-- },
+
+-- {
+--   "folke/which-key.nvim",
+--   event = "VeryLazy",
+--   init = function()
+--     vim.o.timeout = true
+--     vim.o.timeoutlen = 300
+--   end,
+--   opts = {
+--     -- TODO:
+--     -- -- your configuration comes here
+--     -- -- or leave it empty to use the default settings
+--     -- -- refer to the configuration section below
+--   }
+-- },
+
+-- --   -- Integration with tmux
+-- --   'christoomey/vim-tmux-navigator'
+
+
+
+-- TODO:
+-- -- none-ls setup (following snippet is previous config)
+
+-- local null_ls = require("null-ls")
+
+-- null_ls.setup {
+--   sources = {
+--     null_ls.builtins.formatting.alejandra, -- nix formatter
+--   }
+-- }
