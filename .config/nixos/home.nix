@@ -15,6 +15,7 @@
   home.sessionVariables = {
     CHROME_EXECUTABLE = "/run/current-system/sw/bin/brave";
     EDITOR = "nvim";
+    THEME = "dark";
   };
 
   home.packages = with pkgs; [
@@ -124,7 +125,6 @@
     imagemagick
     picom
     polybarFull
-    # rofi
     sxhkd
     xdo
 
@@ -191,6 +191,8 @@
     syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
     done = "cd ~/Documents/local-notes && nvim done.md";
     cat = "bat --paging=never";
+    # TODO: find out why sqlite doesn't find this file by default
+    sqlite3 = "sqlite3 --init ~/.config/sqlite3/sqliterc"; # little hack
 
     # fzf
     fzfp = "fzf --preview 'bat --color=always {}' --preview-window '~3'";
@@ -201,13 +203,19 @@
     nur = "nix flake update $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos";
 
     # navigation
-    p = "cd $HOME/Projects/social-protocols && cd $(ls -a | fzf --border-label=\"Projects\")";
+    p = "cd $HOME/Projects && cd $(ls -a | fzf --border-label=\"Projects\")";
     c = "cd $(ls -a | fzf --border-label=\"Change Directory\") && ll";
 
     # trash-cli aliases
     trp = "trash-put";
     trl = "trash-list";
     trr = "trash-restore";
+    byebye = ''
+      trash-list |
+        fzf --border-label='Remove Forever' |
+        sed 's/^[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\} //' |
+        xargs -I {} trash-rm {}
+    ''; # extra long and stupid name so I don't do this accidentally
     rm = "echo \"REMEMBER DECEMBER 2023 YOU IDIOT!\"; false";
 
     # python aliases
@@ -275,6 +283,38 @@
         file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
       }
     ];
+  };
+
+  programs.readline = {
+    enable = true;
+    includeSystemConfig = true;
+    bindings = {
+      # Map up and down arrows to history forward/backward search [2]
+      # -- press up-arrow for previous matching command
+      "^[[A" = "history-search-backward";
+      # -- press down-arrow for next matching command
+      "^[[B" = "history-search-forward";
+    };
+    variables = {
+      editing-mode = "vi";
+      show-mode-in-prompt = true;
+    };
+    extraConfig = ''
+      # set the cursor style to reflect the mode
+      # The Virtual Console uses different escape codes, so you should check
+      # first which term is being used:
+      $if term=linux
+        set vi-ins-mode-string \1\e[?0c\2
+        set vi-cmd-mode-string \1\e[?8c\2
+      $else
+        set vi-ins-mode-string \1\e[6 q\2
+        set vi-cmd-mode-string \1\e[2 q\2
+      $endif
+
+      # switch to block cursor before executing a command
+      set keymap vi-insert
+      RETURN: "\e\n"
+    '';
   };
 
   programs.direnv = {
@@ -383,3 +423,4 @@
 # ------------------------------------------------------------------------------
 
 # [1] https://stackoverflow.com/questions/27417656/should-diff3-be-default-conflictstyle-on-git/70387424#70387424
+# [2] https://unix.stackexchange.com/questions/96510/search-for-a-previous-command-with-the-same-prefix-when-i-press-up-at-a-shell-pr
