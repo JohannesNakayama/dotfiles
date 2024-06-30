@@ -19,7 +19,7 @@ download-newest-wallpaper() {
 
 set-newest-wallpaper() {
   # TODO: use theme
-  feh --bg-fill $(ls $DIRNAME | tail -1)
+  feh --bg-fill $DIRNAME$(ls $DIRNAME | tail -1)
 }
 
 set-wallpaper() {
