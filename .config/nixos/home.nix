@@ -16,19 +16,22 @@
     CHROME_EXECUTABLE = "/run/current-system/sw/bin/brave";
     EDITOR = "nvim";
     THEME = "dark";
+    PISTOL_CHROMA_STYLE = "tokyonight-night";
   };
 
   home.packages = with pkgs; [
     # --- terminal
     alacritty
     bat
-    fzf
     ripgrep
     tig
     tmate
     tmux
     tree
     xclip
+    pistol
+    tiv
+    chafa
 
     pandoc
     python311Packages.grip
@@ -191,11 +194,13 @@
     syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
     done = "cd ~/Documents/local-notes && nvim done.md";
     cat = "bat --paging=never";
+    ws = "wallpaper set";
+
     # TODO: find out why sqlite doesn't find this file by default
     sqlite3 = "sqlite3 --init ~/.config/sqlite3/sqliterc"; # little hack
 
     # fzf
-    fzfp = "fzf --preview 'bat --color=always {}' --preview-window '~3'";
+    fzfp = "fzf --preview 'pistol {}' --preview-window '~3'";
 
     # nix
     nrs = "sudo nixos-rebuild switch";
@@ -248,17 +253,6 @@
       autoload -U history-search-end # have the cursor placed at the end of the line once you have selected your desired command
       bindkey '^[[A' history-beginning-search-backward
       bindkey '^[[B' history-beginning-search-forward
-
-      # Default fzf command (hidden files too)
-      export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-      export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-        --color=fg:#787c99,fg+:#acb0d0,bg:-1,bg+:#32344a
-        --color=hl:#0db9d7,hl+:#5fd7ff,info:#afaf87,marker:#9ece6a
-        --color=prompt:#ff7a93,spinner:#ad8ee6,pointer:#bb9af7,header:#87afaf
-        --color=border:#444b6a,separator:#acb0d0,label:#aeaeae,query:#d9d9d9
-        --border="bold" --border-label-pos="0" --preview-window="border-rounded"
-        --padding="2" --margin="1" --prompt="> " --marker=">" --pointer="◆"
-        --separator="─" --scrollbar="┃" --info="right"'
     '';
 
     plugins = [
@@ -404,6 +398,43 @@
       credential = {
         helper = "cache";
       };
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "rg --files --hidden --glob '!.git'";
+    defaultOptions = [
+      "--border='bold'"
+      "--border-label-pos='0'"
+      "--preview-window='border-rounded'"
+      "--padding='2'"
+      "--margin='1'"
+      "--prompt='> '"
+      "--marker='>'"
+      "--pointer='◆'"
+      "--separator='─'"
+      "--scrollbar='┃'"
+      "--info='right'"
+    ];
+    colors = {
+      fg = "#787c99";
+      "fg+" = "#acb0d0";
+      bg = "-1";
+      "bg+" = "#32344a";
+      hl = "#0db9d7";
+      "hl+" = "#5fd7ff";
+      info = "#afaf87";
+      marker = "#9ece6a";
+      prompt = "#ff7a93";
+      spinner = "#ad8ee6";
+      pointer = "#bb9af7";
+      header = "#87afaf";
+      border = "#444b6a";
+      separator = "#acb0d0";
+      label = "#aeaeae";
+      query = "#d9d9d9";
     };
   };
 
