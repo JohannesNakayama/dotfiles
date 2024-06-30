@@ -34,10 +34,9 @@ kill $(ps aux | grep 'sxhkd' | awk '{print $2}')  >/dev/null 2>&1
 while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
 sxhkd -m 1 &
 
-curl --output ~/Pictures/wallpaper.jpg https://fdietze.github.io/frottage/wallpapers/wallpaper-desktop-light-latest.jpg
-
-# Wallpaper
-feh --bg-fill ~/Pictures/wallpaper.jpg
+# See: $HOME/bin/wallpaper
+wallpaper download &
+wallpaper setnewest
 
 # Start syncthing
 syncthing --no-browser &
