@@ -6,44 +6,51 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # ------------------------------------------------------------------------------
 
 DIRNAME="$HOME/Pictures/wallpapers/"
+BASEURL="https://fdietze.github.io/frottage/wallpapers/"
+URL_DARK="${BASEURL}wallpaper-desktop-latest.jpg"
+URL_LIGHT="${BASEURL}wallpaper-desktop-light-latest.jpg"
+FILENAME_DARK="$(date +%Y-%m-%d)-wallpaper-dark.jpg"
+FILENAME_LIGHT="$(date +%Y-%m-%d)-wallpaper-light.jpg"
 
-download() {
-  BASEURL="https://fdietze.github.io/frottage/wallpapers/"
-  URL_DARK="${BASEURL}wallpaper-desktop-latest.jpg"
-  URL_LIGHT="${BASEURL}wallpaper-desktop-light-latest.jpg"
-  FILENAME_DARK="$(date +%Y-%m-%d)-$(basename $URL_DARK)"
-  FILENAME_LIGHT="$(date +%Y-%m-%d)-$(basename $URL_LIGHT)"
+download-newest-wallpaper() {
   curl -o "$DIRNAME$FILENAME_LIGHT" "$URL_DARK"
   curl -o "$DIRNAME$FILENAME_DARK" "$URL_LIGHT"
 }
 
-setnewest() {
-  # TODO: dark/light flag and default
+set-newest-wallpaper() {
+  # TODO: use theme
   feh --bg-fill $(ls $DIRNAME | tail -1)
 }
 
-set() {
-  # TODO: preview
-  feh --bg-fill $(find $DIRNAME -type f | fzf)
+set-wallpaper() {
+  feh --bg-fill $(find $DIRNAME -type f | fzf --preview 'pistol {}' --preview-window '~3')
+}
+
+default() {
+    echo '
+      Usage:
+        wallpaper download       download newest wallpapers
+        wallpaper setnewest      set wallpaper to newest one
+        wallpaper set            open fzf to select wallpaper
+    '
+    exit 1
 }
 
 if [ $# -eq 0 ]; then
-  download
-  setnewest
+  default
 else
   case "$1" in
     download)
-      download
+      download-newest-wallpaper
       ;;
     setnewest)
-      setnewest
+      set-newest-wallpaper
       ;;
     set)
-      set
+      set-wallpaper
       ;;
     *)
-      echo "Usage:\n  wallpaper download  download newest wallpapers\n  wallpaper setnewest      set wallpaper to newest one\n"
-      exit 1
+      default
       ;;
   esac
 fi
