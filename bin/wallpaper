@@ -23,17 +23,23 @@ set-newest-wallpaper() {
 }
 
 set-wallpaper() {
-  feh --bg-fill $(find $DIRNAME -type f | fzf --preview 'pistol {}' --preview-window '~3')
+  WALLPAPER=$(
+    find $DIRNAME -type f |
+      fzf \
+        --preview 'chafa --fit-width --view-size=140x220 {}' \
+        --preview-window 'right:70%'
+  )
+  feh --bg-fill $WALLPAPER
 }
 
 default() {
-    echo '
-      Usage:
-        wallpaper download       download newest wallpapers
-        wallpaper setnewest      set wallpaper to newest one
-        wallpaper set            open fzf to select wallpaper
-    '
-    exit 1
+  echo '
+    Usage:
+      wallpaper download       download newest wallpapers
+      wallpaper setnewest      set wallpaper to newest one
+      wallpaper set            open fzf to select wallpaper
+  '
+  exit 1
 }
 
 if [ $# -eq 0 ]; then
