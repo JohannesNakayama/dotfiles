@@ -153,6 +153,7 @@
     # note
     n = "note";
     nn = "note new";
+    ns = "note search";
 
     # ls aliases
     ls = "ls --group-directories-first --color=auto";
