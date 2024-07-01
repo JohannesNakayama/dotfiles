@@ -25,12 +25,24 @@ new() {
   default
 }
 
+search() {
+  bat $HOME/Sync/notes/notes.md |
+    fzf --layout='reverse' |
+    sed 's/^[ \t]*//' |
+    grep -o '^[0-9]\+' |
+    xargs -I {} nvim +{} $HOME/Sync/notes/notes.md
+
+}
+
 if [ $# -eq 0 ]; then
   default
 else
   case "$1" in
     new)
       new
+      ;;
+    search)
+      search
       ;;
     *)
       echo "Usage:\n  note new  create a new note with current date as title\n  note      just append to the notes document"
