@@ -44,8 +44,8 @@
   services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/Berlin";
 
-  # location.provider = "geoclue3";
-  # services.geoclue2.enable = true;
+  location.provider = "geoclue2";
+  services.geoclue2.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -75,16 +75,17 @@
       };
     };
 
-    xserver = {
-      # enable the X11 windowing system
+    displayManager.autoLogin = {
       enable = true;
+      user = "johannes";
+    };
 
-      # configure keymap in X11
+    xserver = {
+      enable = true;
       xkb = {
         layout = "de";
         variant = "neo"; # neo keyboard layout
       };
-
       displayManager.lightdm.enable = true;
       windowManager.bspwm.enable = true;
     };
@@ -157,6 +158,7 @@
   ];
 
   services.pcscd.enable = true;
+
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
@@ -197,10 +199,9 @@
   # TODO: keybinding
   programs.light.enable = true; # adjust screen brightness
 
-  programs = {
-    ssh.startAgent = true;
-    zsh.enable = true;
-  };
+  programs.ssh.startAgent = true;
+
+  programs.zsh.enable = true;
 
   programs.command-not-found.enable = false;
 
@@ -232,14 +233,6 @@
     daemonIOSchedPriority = 7;
     daemonCPUSchedPolicy = "idle";
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

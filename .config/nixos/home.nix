@@ -29,8 +29,6 @@
     tmux
     tree
     xclip
-    pistol
-    tiv
     chafa
 
     pandoc
@@ -208,20 +206,23 @@
     nur = "nix flake update $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos";
 
     # navigation
-    p = "cd $HOME/Projects && cd $(ls -a | fzf --border-label=\"Projects\")";
-    c = "cd $(ls -a | fzf --border-label=\"Change Directory\") && ll";
+    p = ''
+      cd $HOME/Projects && \
+        cd $(
+          find -mindepth 1 -maxdepth 1 -type d |
+            fzf \
+              --border-label="Projects" \
+              --preview "ls -lha {-1}" \
+              --preview-window 'right:70%'
+        )
+    '';
+    c = "cd $(ls -a | fzf --border-label='Change Directory') && ll";
 
-    # trash-cli aliases
-    trp = "trash-put";
-    trl = "trash-list";
-    trr = "trash-restore";
-    byebye = ''
-      trash-list |
-        fzf --border-label='Remove Forever' |
-        sed 's/^[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\} //' |
-        xargs -I {} trash-rm {}
-    ''; # extra long and stupid name so I don't do this accidentally
-    rm = "echo \"REMEMBER DECEMBER 2023 YOU IDIOT!\"; false";
+    # trash-cli aliases (see: $HOME/bin/byebye)
+    brm = "byebye remove";
+    bls = "byebye list";
+    bfe = "byebye forever";
+    rm = "echo \"REMEMBER DECEMBER 2023, MORON?\"; false";
 
     # python aliases
     python = "python3";
@@ -437,6 +438,21 @@
       query = "#d9d9d9";
     };
   };
+
+  programs.pistol = {
+    enable = true;
+    associations = [
+      {
+        mime = "image/*";
+        command = "chafa --fit-width --view-size=80x120 %pistol-filename%";
+      }
+    ];
+  };
+
+  programs.ranger = {
+    enable = true;
+  };
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
