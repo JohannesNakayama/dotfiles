@@ -17,6 +17,10 @@ alt + t
 alt + d
     rofi -show drun
 
+# File manager
+alt + f
+    alacritty -e ranger
+
 
 # =====================================================
 # =========== SCREEN CONTROL ==========================
