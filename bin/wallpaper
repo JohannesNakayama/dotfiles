@@ -9,20 +9,19 @@ DIRNAME="$HOME/Pictures/wallpapers/"
 BASEURL="https://fdietze.github.io/frottage/wallpapers/"
 URL_DARK="${BASEURL}wallpaper-desktop-latest.jpg"
 URL_LIGHT="${BASEURL}wallpaper-desktop-light-latest.jpg"
-DARK_PROMPT_URL="https://fdietze.github.io/frottage/wallpapers/desktop.json"
-DARK_PROMPT_URL="https://fdietze.github.io/frottage/wallpapers/desktop-light.json"
 
 download-newest-wallpaper() {
   PROMPT_DARK=$(get-prompt-dark)
-  PROMPT_LIGHT=$(get-prompt-light)
   FILENAME_DARK="$(date +%Y-%m-%d)-$PROMPT_DARK.jpg"
+  curl -o "${DIRNAME}dark/${FILENAME_DARK}" "$URL_DARK"
+
+  PROMPT_LIGHT=$(get-prompt-light)
   FILENAME_LIGHT="$(date +%Y-%m-%d)-$PROMPT_LIGHT.jpg"
-  curl -o "${DIRNAME}light/${FILENAME_LIGHT}" "$URL_DARK"
-  curl -o "${DIRNAME}dark/${FILENAME_DARK}" "$URL_LIGHT"
+  curl -o "${DIRNAME}light/${FILENAME_LIGHT}" "$URL_LIGHT"
 }
 
 set-newest-wallpaper() {
-  # TODO: use theme
+  # TODO: use theme (ad fix, for that matter...)
   feh --bg-fill $(find $DIRNAME -type f | tail -1)
 }
 
@@ -37,6 +36,7 @@ set-wallpaper() {
 }
 
 get-prompt-dark() {
+  DARK_PROMPT_URL="https://fdietze.github.io/frottage/wallpapers/desktop.json"
   PROMPT_JSON=$(
     curl $DARK_PROMPT_URL |
       jq -r '.template.prompt' |
@@ -47,8 +47,9 @@ get-prompt-dark() {
 }
 
 get-prompt-light() {
+  LIGHT_PROMPT_URL="https://fdietze.github.io/frottage/wallpapers/desktop-light.json"
   PROMPT_JSON=$(
-    curl $DARK_PROMPT_URL |
+    curl $LIGHT_PROMPT_URL |
       jq -r '.template.prompt' |
       sed -E 's/[^a-zA-Z0-9]+/-/g' |
       sed 's/[A-Z]/\L&/g'
