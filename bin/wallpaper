@@ -21,7 +21,7 @@ download-newest-wallpaper() {
 }
 
 set-newest-wallpaper() {
-  # TODO: use theme (ad fix, for that matter...)
+  # TODO: use theme (and fix, for that matter...)
   feh --bg-fill $(find $DIRNAME -type f | tail -1)
 }
 
@@ -32,6 +32,7 @@ set-wallpaper() {
         --preview 'chafa --fit-width --view-size=140x220 {}' \
         --preview-window 'right:70%'
   )
+  cp $WALLPAPER $HOME/Pictures/wallpaper.jpg
   feh --bg-fill $WALLPAPER
 }
 

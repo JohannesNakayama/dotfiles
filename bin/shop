@@ -5,8 +5,35 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # --- Add incredients of a recipe to grocery list ------------------------------
 # ------------------------------------------------------------------------------
 
-syncdir="$HOME/Sync/notes"
-recipedir="$HOME/Documents/local-notes/recipes"
-grocerytodopath="$syncdir/todo/groceries.md"
-file=$(ls "$recipedir" | rofi -dmenu -i -p "What would you like to add to the grocery list?")
-sed -n '/```{ingredients}/, /```/p' $recipedir/$file | sed '1d;$d' >> $syncdir/todo/groceries.md
+SYNCDIR="$HOME/Sync/notes"
+RECIPEDIR="$HOME/Documents/local-notes/recipes"
+
+recipe() {
+    file=$(ls "$RECIPEDIR" | rofi -dmenu -i -p "What would you like to add to the grocery list?")
+    sed -n '/```{ingredients}/, /```/p' $RECIPEDIR/$file | sed '1d;$d' >> $SYNCDIR/todo/groceries.md
+}
+
+item() {
+    echo "- [ ] $1" >> $SYNCDIR/todo/groceries.md
+}
+
+default() {
+    echo "There are two options: recipe or item"
+}
+
+if [ $# -eq 0 ]; then
+    default
+else
+    case "$1" in
+        recipe)
+            recipe
+            ;;
+        item)
+            item $2
+            ;;
+        *)
+            echo "Usage: $0 spawn or $0"
+            exit 1
+            ;;
+    esac
+fi

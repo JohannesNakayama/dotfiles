@@ -6,9 +6,11 @@ set -Eeuo pipefail # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_
 # ------------------------------------------------------------------------------
 
 tododir="$HOME/Sync/notes/todo"
-file=$(ls "$tododir" | rofi -dmenu -i -p 'Select a file')
+
+# TODO: rename spawn to select -> then option spawn or no-spawn
 
 spawn() {
+  file=$(ls "$tododir" | rofi -dmenu -i -p 'Select a file')
   if [ -n "$file" ]; then
     if [ -e "$tododir/$file" ]; then
       alacritty -e nvim "$tododir/$file"
@@ -19,6 +21,7 @@ spawn() {
 }
 
 no-spawn() {
+  file=$(ls "$tododir" | rofi -dmenu -i -p 'Select a file')
   if [ -n "$file" ]; then
     if [ -e "$tododir/$file" ]; then
       nvim "$tododir/$file"
@@ -28,12 +31,24 @@ no-spawn() {
   fi
 }
 
+plan() {
+  nvim \
+    $tododir/* \
+    $HOME/Documents/local-notes/done.md
+}
+
 if [ $# -eq 0 ]; then
-    no-spawn
+    nvim $tododir/ram.md
 else
     case "$1" in
         spawn)
             spawn
+            ;;
+        no-spawn)
+            no-spawn
+            ;;
+        plan)
+            plan
             ;;
         *)
             echo "Usage: $0 spawn or $0"
