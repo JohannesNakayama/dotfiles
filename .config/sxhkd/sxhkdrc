@@ -31,7 +31,7 @@ alt + d
 
 # File manager
 alt + f
-    alacritty -e ranger
+    alacritty -e yazi
 
 
 # =====================================================
