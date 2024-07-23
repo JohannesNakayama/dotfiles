@@ -11,7 +11,19 @@ alt + b
 
 # Todo list
 alt + t
+    alacritty -e todo
+
+# Todo list selection
+alt + ctrl + t
     todo spawn
+
+# Open notes
+alt + n
+    alacritty -e note
+
+# Open notes
+alt + ctrl + n
+    alacritty -e note new
 
 # Launcher
 alt + d
@@ -27,7 +39,7 @@ alt + f
 
 # Lock screen
 alt + g
-    i3lock -i ~/Pictures/wallpaper.jpg -b -f
+    i3lock -i ~/Pictures/wallpaper.jpg -b -f -C
 
 # Bright screen
 XF86MonBrightnessUp
