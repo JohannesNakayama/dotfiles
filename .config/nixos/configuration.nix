@@ -104,7 +104,7 @@
   console.keyMap = "neo";
 
   # Enable sound with pipewire
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true; # allows certain user-level processes to run with real-time priorities, good for media editing and playing
   services.pipewire = {
