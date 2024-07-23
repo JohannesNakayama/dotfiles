@@ -22,7 +22,6 @@
   home.packages = with pkgs; [
     # --- terminal
     alacritty
-    bat
     ripgrep
     tig
     tmate
@@ -93,6 +92,8 @@
     file
     jq
     pv
+    chatgpt-cli
+    devbox
 
     # nix utils
     nix-output-monitor
@@ -119,6 +120,11 @@
     prettierd
     julia-bin
 
+    # --- scala
+    coursier
+    visualvm
+    scalafmt
+
     # --- window manager
     bspwm
     feh
@@ -131,12 +137,13 @@
 
     # --- data
     litecli
-    # sqlite-interactive
+    sqlite-interactive
 
     # --- crypto
     keepassxc
     gnupg
     pinentry-curses
+    libsecret.out
   ];
 
   home.shellAliases = {
@@ -150,10 +157,18 @@
     vd = "v dot";
     vp = "v project";
 
+    # todo tool
+    tp = "todo plan";
+    ts = "todo no-spawn"; # "todo select"
+
     # note
     n = "note";
     nn = "note new";
     ns = "note search";
+
+    # shop
+    sr = "shop recipe";
+    si = "shop item";
 
     # ls aliases
     ls = "ls --group-directories-first --color=auto";
@@ -450,10 +465,18 @@
     ];
   };
 
-  programs.ranger = {
+  programs.yazi = {
     enable = true;
   };
 
+  programs.bat = {
+    enable = true;
+  };
+
+  services.unclutter = {
+    # hide mouse after some secondes of no movement
+    enable = true;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
