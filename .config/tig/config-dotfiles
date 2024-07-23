@@ -1,0 +1,4 @@
+source ~/.config/tig/config
+
+set status-show-untracked-dirs = no
+set status-show-untracked-files = no

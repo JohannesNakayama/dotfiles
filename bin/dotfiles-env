@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export GIT_DIR="$HOME/.cfg"
+export GIT_WORK_TREE="$HOME"
+export TIGRC_USER="$HOME/.config/tig/config-dotfiles"

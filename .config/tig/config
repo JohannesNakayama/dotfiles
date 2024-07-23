@@ -1,0 +1,12 @@
+set vertical-split = true
+set tab-size = 4
+set ignore-space = all
+set editor-line-number = true
+set mouse-scroll = true
+set show-changes = true
+set line-graphics = utf-8
+set refresh-mode = auto
+set diff-highlight = true
+
+bind generic ä Quit
+bind generic ü view-close
