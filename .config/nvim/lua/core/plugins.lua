@@ -169,6 +169,7 @@ require("lazy").setup({
       }
     end,
   },
+
   {
     "scalameta/nvim-metals",
     dependencies = {
@@ -198,6 +199,26 @@ require("lazy").setup({
 
   -- Handle swap file issues when opening the same file in two buffers
   'gioele/vim-autoswap',
+
+  -- LSP none-ls
+  {
+    'nvimtools/none-ls.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      local null_ls = require("null-ls")
+
+      local sources = {
+        null_ls.builtins.formatting.alejandra, -- nix formatter
+      }
+      null_ls.setup()
+    end,
+  },
+
+  -- Syntax highlighting for EARTHFILEs
+  { 'earthly/earthly.vim' },
+
+  -- Syntax highlighting for justfiles
+  { 'NoahTheDuke/vim-just' },
 })
 
 
@@ -209,19 +230,6 @@ require("lazy").setup({
 -- TODO:
 -- -- FIGURE OUT THE FOLLOWING CONFIGURATIONS
 
--- -- LSP none-ls
--- {
---   'nvimtools/none-ls.nvim',
---   dependencies = 'nvim-lua/plenary.nvim',
---   config = function()
---     local null_ls = require("null-ls")
-
---     local sources = {
---       null_ls.builtins.formatting.alejandra, -- nix formatter
---     }
---     null_ls.setup()
---   end,
--- },
 
 -- {
 --   "dundalek/lazy-lsp.nvim",
