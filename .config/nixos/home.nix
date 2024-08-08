@@ -93,7 +93,10 @@
     jq
     pv
     chatgpt-cli
+    # gcalcli # TODO
     devbox
+    tiny
+    weechat
 
     # nix utils
     nix-output-monitor
