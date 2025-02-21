@@ -1,6 +1,6 @@
 set vertical-split = true
 set tab-size = 4
-set ignore-space = all
+# set ignore-space = all
 set editor-line-number = true
 set mouse-scroll = true
 set show-changes = true
@@ -10,3 +10,8 @@ set diff-highlight = true
 
 bind generic ä Quit
 bind generic ü view-close
+
+bind status w !git df
+bind status W !git dfs
+bind stage w !git df %(file)
+bind stage W !git dfs %(file)

@@ -16,7 +16,7 @@ vim.g.minipairs_disable = true
 vim.opt.guifont = { 'RobotoMono Nerd Font', ':h8' }
 
 -- No autoformating on save by default
-vim.g.autoformat = false
+vim.g.autoformat = true
 
 -- Sane defaults
 vim.o.termguicolors = true

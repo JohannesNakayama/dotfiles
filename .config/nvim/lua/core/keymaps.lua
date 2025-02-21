@@ -80,3 +80,6 @@ end
 
 vim.keymap.set('n', '<leader>,', function() toggle_char_at_eol(',') end, { desc = 'toggle , at end of line' })
 vim.keymap.set('n', '<leader>;', function() toggle_char_at_eol(';') end, { desc = 'toggle ; at end of line' })
+
+vim.keymap.set('n', "<leader>p", "v$<Left>pgvy", { desc = 'paste over rest of line' })
+vim.keymap.set('v', 'p', 'pgvy', { desc = "keep clipboard when pasting over selection" })

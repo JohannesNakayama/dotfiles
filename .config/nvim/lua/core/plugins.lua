@@ -120,16 +120,7 @@ require("lazy").setup({
   },
 
   -- Refactoring
-  {
-    'smjonas/inc-rename.nvim',
-    keys = {
-      {
-        '<leader>cr',
-        function() return ':IncRename ' .. vim.fn.expand('<cword>') end,
-        desc = 'LSP rename action',
-      },
-    },
-  },
+  'smjonas/inc-rename.nvim',
 
   'AndrewRadev/splitjoin.vim',
 
@@ -212,6 +203,13 @@ require("lazy").setup({
       }
       null_ls.setup()
     end,
+  },
+
+  -- TypeScript tools, incl. LSP
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 
   -- Syntax highlighting for EARTHFILEs

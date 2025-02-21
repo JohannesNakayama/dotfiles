@@ -30,18 +30,27 @@
     supportedFilesystems = ["ntfs"];
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking = {
+    hostName = "nixos";
+    enableIPv6 = true;
+    networkmanager.enable = true;
+
+    # defaultGateway6 = {
+    #   address = "fe80::1"; 
+    #   interface = "wlp1s0";
+    # };
+  };
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  networking.networkmanager.enable = true;
 
   home-manager.backupFileExtension = "backup";
 
-  services.automatic-timezoned.enable = true;
+  # services.automatic-timezoned.enable = true;
   time.timeZone = "Europe/Berlin";
 
   location.provider = "geoclue2";
@@ -115,18 +124,18 @@
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    # wireplumber.configPackages = [
-    #   (
-    #     pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-    #       bluez_monitor.properties = {
-    #       	["bluez5.enable-sbc-xq"] = true,
-    #       	["bluez5.enable-msbc"] = true,
-    #       	["bluez5.enable-hw-volume"] = true,
-    #       	["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-    #       }
-    #     ''
-    #   )
-    # ];
+    wireplumber.configPackages = [
+      (
+        pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+          bluez_monitor.properties = {
+          	["bluez5.enable-sbc-xq"] = true,
+          	["bluez5.enable-msbc"] = true,
+          	["bluez5.enable-hw-volume"] = true,
+          	["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+          }
+        ''
+      )
+    ];
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -148,7 +157,42 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true; # enable registry
+
+    daemon.settings = {
+      data-root = "/var/lib/docker";
+    };
+  };
+
+
+  # Optional: Setup local private registry
+  virtualisation.docker.extraOptions = ''
+    --insecure-registry localhost:5000
+  '';
+
+  # If you want to run a local registry container
+  systemd.services.docker-registry = {
+    description = "Local Docker Registry";
+    after = [ "docker.service" ];
+    requires = [ "docker.service" ];
+    serviceConfig = {
+      ExecStart = ''${pkgs.docker}/bin/docker run \
+        -p 5000:5000 \
+        --restart=always \
+        --name registry \
+        -v /path/to/registry/storage:/var/lib/registry \
+        registry:2'';
+      ExecStop = "${pkgs.docker}/bin/docker stop registry";
+      ExecStopPost = "${pkgs.docker}/bin/docker rm registry";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+
+
+
 
   nixpkgs.config.allowUnfree = true;
 
@@ -169,10 +213,12 @@
     enableGhostscriptFonts = true;
     packages = with pkgs; [
       corefonts # Arial, Verdana, ...
-      vistafonts # Consolas, ...
+      # vistafonts # Consolas, ...
       google-fonts # Droid Sans, Roboto, ...
-      ubuntu_font_family
-      nerdfonts # common fonts with icons and glyphs: https://www.nerdfonts.com/
+      # ubuntu_font_family
+      # nerdfonts: common fonts with icons and glyphs: https://www.nerdfonts.com/
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
       commit-mono # https://commitmono.com/
     ];
     fontconfig = {
@@ -185,7 +231,7 @@
   hardware.bluetooth = {
     # https://nixos.wiki/wiki/Bluetooth
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
     settings.General.Experimental = true; # bluetooth battery percentage
   };
 
@@ -206,7 +252,7 @@
   programs.command-not-found.enable = false;
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
 
     gc = {
       automatic = true;
@@ -215,6 +261,7 @@
     };
 
     settings.experimental-features = ["nix-command" "flakes"];
+    settings.auto-optimise-store = true;
 
     # registry entries
     registry.unstable.flake = flake-inputs.nixpkgs;

@@ -7,7 +7,7 @@
 
 # Window styling
 bspc config border_width 2
-bspc config normal_border_color "#24283b"
+bspc config normal_border_color "#282433"
 bspc config focused_border_color "#a9b1d6"
 bspc config window_gap 0
 bspc config split_ratio 0.5
@@ -36,7 +36,7 @@ sxhkd -m 1 &
 
 # See: $HOME/bin/wallpaper
 wallpaper download &
-wallpaper setnewest
+# wallpaper setnewest
 
 # Start syncthing
 syncthing --no-browser &
@@ -46,7 +46,7 @@ syncthing --no-browser &
 if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ]; then
 	bspwm_dual_monitor_setup
 fi
-bspc monitor eDP-1 -d 1 2 3 4 5 6
+bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
 bspc monitor 'HDMI-1' -d A B C D E
 
 # Start polybar

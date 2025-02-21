@@ -12,11 +12,11 @@ URL_LIGHT="${BASEURL}wallpaper-desktop-light-latest.jpg"
 
 download-newest-wallpaper() {
   PROMPT_DARK=$(get-prompt-dark)
-  FILENAME_DARK="$(date +%Y-%m-%d)-$PROMPT_DARK.jpg"
+  FILENAME_DARK="$(date +%Y-%m-%d)-${PROMPT_DARK:0:20}.jpg"
   curl -o "${DIRNAME}dark/${FILENAME_DARK}" "$URL_DARK"
 
   PROMPT_LIGHT=$(get-prompt-light)
-  FILENAME_LIGHT="$(date +%Y-%m-%d)-$PROMPT_LIGHT.jpg"
+  FILENAME_LIGHT="$(date +%Y-%m-%d)-${PROMPT_LIGHT:0:20}.jpg"
   curl -o "${DIRNAME}light/${FILENAME_LIGHT}" "$URL_LIGHT"
 }
 
@@ -27,7 +27,7 @@ set-newest-wallpaper() {
 
 set-wallpaper() {
   WALLPAPER=$(
-    find $DIRNAME -type f |
+    find $DIRNAME -type f | sort -r |
       fzf \
         --preview 'chafa --fit-width --view-size=140x220 {}' \
         --preview-window 'right:70%'

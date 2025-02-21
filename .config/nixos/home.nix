@@ -6,6 +6,8 @@
   home.username = "johannes";
   home.homeDirectory = "/home/johannes";
 
+  nix.gc.automatic = true;
+
   home.sessionPath = [
     "$HOME/bin"
     "/usr/local/bin"
@@ -29,6 +31,7 @@
     tree
     xclip
     chafa
+    xorg.xkbutils
 
     pandoc
     python311Packages.grip
@@ -50,12 +53,13 @@
 
     # --- system
     htop
+    btop
     ntfs3g
     parted
 
     # --- build
     gnumake
-    libstdcxx5
+    # libstdcxx5
     cmake
     gcc
     glibc
@@ -70,18 +74,18 @@
     libsForQt5.dolphin
     libsForQt5.gwenview
     shutter
-    libreoffice-still
-    xournal
-    openshot-qt
+    # libreoffice-still
+    xournalpp
+    # openshot-qt
     thunderbird
     signal-desktop
     vscode
-    libsForQt5.gwenview
+    vlc
 
     # --- terminal utils
     cloc
     p7zip
-    taskwarrior
+    # taskwarrior
     trash-cli
     tree-sitter
     unzip
@@ -93,9 +97,11 @@
     jq
     pv
     chatgpt-cli
-    # gcalcli # TODO
     devbox
-    tiny
+    openpomodoro-cli
+    neomutt
+
+    # -- IRC
     weechat
 
     # nix utils
@@ -113,20 +119,18 @@
     util-linux
 
     # --- programming/scripting
-    # go
     python3
-    ruby_3_2
-    rubyPackages_3_2.openssl
+    # ruby_3_2
+    # rubyPackages_3_2.openssl
     libffi
-    rustup
     nodejs_20
-    prettierd
-    julia-bin
+    # prettierd
+    # julia-bin
 
     # --- scala
-    coursier
-    visualvm
-    scalafmt
+    # coursier
+    # visualvm
+    # scalafmt
 
     # --- window manager
     bspwm
@@ -193,6 +197,7 @@
     gri = "git rebase -i HEAD~10";
     gps = "git push";
     gpl = "git pull";
+    tig = "tig status";
 
     # config aliases
     cst = "cfg status";
@@ -210,11 +215,10 @@
     bt = "bluetoothctl";
     syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
     done = "cd ~/Documents/local-notes && nvim done.md";
-    cat = "bat --paging=never";
     ws = "wallpaper set";
 
     # TODO: find out why sqlite doesn't find this file by default
-    sqlite3 = "sqlite3 --init ~/.config/sqlite3/sqliterc"; # little hack
+    sq = "sqlite3 --init ~/.config/sqlite3/sqliterc"; # little hack
 
     # fzf
     fzfp = "fzf --preview 'pistol {}' --preview-window '~3'";
@@ -235,6 +239,17 @@
               --preview-window 'right:70%'
         )
     '';
+    # navigation
+    s = ''
+      cd $HOME/Projects/social-protocols && \
+        cd $(
+          find -mindepth 1 -maxdepth 1 -type d |
+            fzf \
+              --border-label="Projects" \
+              --preview "ls -lha {-1}" \
+              --preview-window 'right:70%'
+        )
+    '';
     c = "cd $(ls -a | fzf --border-label='Change Directory') && ll";
 
     # trash-cli aliases (see: $HOME/bin/byebye)
@@ -242,10 +257,6 @@
     bls = "byebye list";
     bfe = "byebye forever";
     rm = "echo \"REMEMBER DECEMBER 2023, MORON?\"; false";
-
-    # python aliases
-    python = "python3";
-    pip = "pip3";
   };
 
   programs.bash.enable = true;
@@ -411,6 +422,8 @@
         cl = "clone";
         yes = "commit";
         no = "reset";
+        df = "diff --color-words='[A-Z][a-z]*|[a-z]+|[^[:space:]]' --irreversible-delete --find-copies-harder --find-copies --ignore-space-at-eol --ignore-space-change --ignore-all-space  --ignore-blank-lines --inter-hunk-context=2";
+        dfs = "df --staged";
       };
       init = {
         defaultBranch = "main";
@@ -419,6 +432,11 @@
         helper = "cache";
       };
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.fzf = {
@@ -477,7 +495,7 @@
   };
 
   services.unclutter = {
-    # hide mouse after some secondes of no movement
+    # hide mouse after some seconds of no movement
     enable = true;
   };
 
