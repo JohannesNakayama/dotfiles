@@ -24,7 +24,6 @@
   home.packages = with pkgs; [
     # --- terminal
     alacritty
-    ripgrep
     tig
     tmate
     tmux
@@ -32,6 +31,7 @@
     xclip
     chafa
     xorg.xkbutils
+    ueberzugpp
 
     pandoc
     python311Packages.grip
@@ -52,8 +52,6 @@
     syncthing
 
     # --- system
-    htop
-    btop
     ntfs3g
     parted
 
@@ -75,12 +73,14 @@
     libsForQt5.gwenview
     shutter
     # libreoffice-still
-    xournalpp
+    # xournalpp
     # openshot-qt
     thunderbird
     signal-desktop
     vscode
-    vlc
+    # vlc
+    code-cursor
+    windsurf
 
     # --- terminal utils
     cloc
@@ -92,13 +92,9 @@
     zip
     xcwd
     psmisc
-    fd
     file
-    jq
     pv
-    chatgpt-cli
     devbox
-    openpomodoro-cli
     neomutt
 
     # -- IRC
@@ -120,12 +116,8 @@
 
     # --- programming/scripting
     python3
-    # ruby_3_2
-    # rubyPackages_3_2.openssl
     libffi
     nodejs_20
-    # prettierd
-    # julia-bin
 
     # --- scala
     # coursier
@@ -134,7 +126,6 @@
 
     # --- window manager
     bspwm
-    feh
     i3lock-color
     imagemagick
     picom
@@ -220,37 +211,10 @@
     # TODO: find out why sqlite doesn't find this file by default
     sq = "sqlite3 --init ~/.config/sqlite3/sqliterc"; # little hack
 
-    # fzf
-    fzfp = "fzf --preview 'pistol {}' --preview-window '~3'";
-
     # nix
     nrs = "sudo nixos-rebuild switch";
     nfu = "nix flake update";
     nur = "nix flake update $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos";
-
-    # navigation
-    p = ''
-      cd $HOME/Projects && \
-        cd $(
-          find -mindepth 1 -maxdepth 1 -type d |
-            fzf \
-              --border-label="Projects" \
-              --preview "ls -lha {-1}" \
-              --preview-window 'right:70%'
-        )
-    '';
-    # navigation
-    s = ''
-      cd $HOME/Projects/social-protocols && \
-        cd $(
-          find -mindepth 1 -maxdepth 1 -type d |
-            fzf \
-              --border-label="Projects" \
-              --preview "ls -lha {-1}" \
-              --preview-window 'right:70%'
-        )
-    '';
-    c = "cd $(ls -a | fzf --border-label='Change Directory') && ll";
 
     # trash-cli aliases (see: $HOME/bin/byebye)
     brm = "byebye remove";
@@ -258,6 +222,25 @@
     bfe = "byebye forever";
     rm = "echo \"REMEMBER DECEMBER 2023, MORON?\"; false";
   };
+
+  programs.jq.enable = true;
+  programs.fd.enable = true;
+  programs.btop.enable = true;
+
+  programs.ripgrep.enable = true;
+
+  # --- to try:
+  # programs.ripgrep-all.enable = true;
+  # programs.thefuck.enable = true;
+  # programs.carapace.enable = true;
+
+  # programs.atuin = {
+  #   enable = true;
+  #   settings.invert = true;
+  #   # settings.enter_accept = true;
+  # };
+
+  programs.feh.enable = true;
 
   programs.bash.enable = true;
 
@@ -369,10 +352,11 @@
   programs.rofi = {
     # application launcher, window switcher, ssh launcher
     enable = true;
-    theme = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/rofi/5350da41a11814f950c3354f090b90d4674a95ce/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
-      sha256 = "0n9cixyv4ladvcfbybq5dsfyzklfh732cd8nmvjckd09pjkb62f1";
-    };
+    # theme = builtins.fetchurl {
+    #   url = "https://raw.githubusercontent.com/catppuccin/rofi/5350da41a11814f950c3354f090b90d4674a95ce/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
+    #   sha256 = "0n9cixyv4ladvcfbybq5dsfyzklfh732cd8nmvjckd09pjkb62f1";
+    # };
+    theme = "paper-float";
     font = "Commit Mono 18";
 
     plugins = with pkgs; [rofi-vpn rofi-calc rofi-emoji rofi-systemd rofi-bluetooth rofi-pulse-select rofi-file-browser];

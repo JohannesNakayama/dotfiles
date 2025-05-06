@@ -24,6 +24,8 @@ require("lazy").setup({
   'folke/tokyonight.nvim',
   'catppuccin/nvim',
 
+  'yorickpeterse/vim-paper',
+
   -- File tree
   {
     'nvim-tree/nvim-tree.lua',
@@ -211,6 +213,9 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
+
+  -- Recursive browsing of zip files (required for some lsp functionalities)
+  { 'lbrayner/vim-rzip' },
 
   -- Syntax highlighting for EARTHFILEs
   { 'earthly/earthly.vim' },

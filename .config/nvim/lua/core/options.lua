@@ -41,8 +41,8 @@ vim.opt.breakindentopt = { shift = 2 }
 
 -- Tabs/Shift
 vim.opt.list = true
--- vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
-vim.opt.listchars = { tab = '│·', trail = '·', }
+vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
+-- vim.opt.listchars = { tab = '│·', trail = '·', }
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
@@ -54,3 +54,8 @@ vim.opt.gdefault = true
 vim.opt.undofile = true
 
 vim.opt.history = 10000
+
+
+-- Disable netrw (replaced by nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

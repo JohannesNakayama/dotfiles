@@ -17,6 +17,8 @@ require('lspconfig').emmet_ls.setup({
   }
 })
 
+require('lspconfig').pyright.setup({})
+
 -- Load capabilities of nvim-cmp to replace default nvim lsp capabilities
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 

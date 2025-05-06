@@ -5,7 +5,7 @@ require('bufferline').setup({
         filetype = 'NvimTree',
         text = 'Files',
         highlight = 'Directory',
-        separator = true,
+        separator = false,
       },
     },
     diagnostics = "nvim_lsp",
@@ -17,6 +17,7 @@ require('bufferline').setup({
         s = s .. n .. sym
       end
       return s
-    end
+    end,
+    separator_style = "slant",
   },
 })

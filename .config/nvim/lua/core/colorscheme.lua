@@ -1,6 +1,6 @@
 require('tokyonight').setup({
   style = "storm",
-  transparent = true,
+  transparent = false,
   styles = {
     sidebars = "transparent",
     floats = "transparent",
@@ -8,6 +8,8 @@ require('tokyonight').setup({
 })
 
 vim.cmd [[ colorscheme tokyonight ]]
+
+-- vim.cmd [[ colorscheme paper ]]
 
 -- vim.cmd [[ set background=light ]]
 -- vim.cmd [[ colorscheme catppuccin ]]

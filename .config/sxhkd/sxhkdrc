@@ -127,7 +127,7 @@ super + {Left,Down,Up,Right}
 # =====================================================
 # =========== COMPUTER STATE ==========================
 
-ctrl + shift + super + alt + p
+ctrl + shift + super + alt + q
   poweroff
 
 ctrl + shift + super + alt + r
