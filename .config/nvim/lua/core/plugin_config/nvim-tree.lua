@@ -8,7 +8,7 @@ require('nvim-tree').setup({
     timeout = 500,
   },
   view = {
-    side = "left",
-    width = 40,
+    side = "right",
+    width = 80,
   },
 })
