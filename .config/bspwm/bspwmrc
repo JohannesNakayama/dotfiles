@@ -43,11 +43,11 @@ syncthing --no-browser &
 
 # Workspace setup
 # --> adapted from https://protesilaos.com/codelog/multihead-bspwm-polybar/
-if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ]; then
-	bspwm_dual_monitor_setup
-fi
+# if [ -x $HOME/.config/bspwm/bspwm_dual_monitor_setup ]; then
+# 	bspwm_dual_monitor_setup
+# fi
 bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
-bspc monitor 'HDMI-1' -d A B C D E
+# bspc monitor 'HDMI-1' -d A B C D E
 
 # Start polybar
 if [ -x /etc/profiles/per-user/johannes/bin/polybar ]; then
