@@ -191,7 +191,7 @@
   };
 
 
-
+  programs.i3lock.enable = true;
 
 
   nixpkgs.config.allowUnfree = true;
