@@ -33,7 +33,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.johannes = import ./home.nix;
+            home-manager.users.johannes = {
+              imports = [ ./home.nix ];
+            };
           }
           ./hardware-configuration.nix
           nix-index-database.nixosModules.nix-index
