@@ -35,8 +35,9 @@ while pgrep -u $UID -x sxhkd >/dev/null; do sleep 1; done
 sxhkd -m 1 &
 
 # See: $HOME/bin/wallpaper
-wallpaper download &
+# wallpaper download &
 # wallpaper setnewest
+feh --bg-fill $HOME/Pictures/wallpapers/nix-snowflake.png &
 
 # Start syncthing
 syncthing --no-browser &
