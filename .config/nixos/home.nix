@@ -6,8 +6,6 @@
   home.username = "johannes";
   home.homeDirectory = "/home/johannes";
 
-  nix.gc.automatic = true;
-
   home.sessionPath = [
     "$HOME/bin"
     "/usr/local/bin"
@@ -20,6 +18,8 @@
     THEME = "dark";
     PISTOL_CHROMA_STYLE = "tokyonight-night";
   };
+
+  nix.gc.automatic = true;
 
   home.packages = with pkgs; [
     # --- terminal
@@ -44,7 +44,7 @@
 
     # --- remote
     curl
-    flyctl
+    # flyctl -> probably project-level
     wget
     magic-wormhole
     networkmanagerapplet
@@ -54,38 +54,40 @@
     # --- system
     ntfs3g
     parted
+    bleachbit
+    lshw
+    ncdu
 
     # --- build
     gnumake
-    # libstdcxx5
     cmake
     gcc
     glibc
     libclang
     libgcc
+    patchelf
 
     # --- browsers
     brave
     firefox
+    nyxt
 
     # --- desktop utils
     libsForQt5.dolphin
     libsForQt5.gwenview
     shutter
+    thunderbird
+    signal-desktop
+    code-cursor
+    # windsurf
     # libreoffice-still
     # xournalpp
     # openshot-qt
-    thunderbird
-    signal-desktop
-    vscode
     # vlc
-    code-cursor
-    windsurf
 
     # --- terminal utils
     cloc
     p7zip
-    # taskwarrior
     trash-cli
     tree-sitter
     unzip
@@ -96,9 +98,10 @@
     pv
     devbox
     neomutt
+    alsa-utils
 
     # -- IRC
-    weechat
+    # weechat
 
     # nix utils
     nix-output-monitor
@@ -124,6 +127,8 @@
     # visualvm
     # scalafmt
 
+    (import ./tshPackage.nix { inherit pkgs; })
+
     # --- window manager
     bspwm
     i3lock-color
@@ -142,6 +147,13 @@
     gnupg
     pinentry-curses
     libsecret.out
+
+    # --- kubernetes
+    # kubectl
+    # minicube
+    # docker-compose
+    # k9s
+    # kubernetes-helm
   ];
 
   home.shellAliases = {
@@ -184,11 +196,15 @@
     gn = "git reset";
     gcl = "git clone";
     gco = "git checkout";
+    gsw = "git switch";
     gb = "git branch";
     gri = "git rebase -i HEAD~10";
     gps = "git push";
     gpl = "git pull";
     tig = "tig status";
+
+    # kubernetes
+    # k = k9s;
 
     # config aliases
     cst = "cfg status";
@@ -234,15 +250,12 @@
   # programs.thefuck.enable = true;
   # programs.carapace.enable = true;
 
-  # programs.atuin = {
-  #   enable = true;
-  #   settings.invert = true;
-  #   # settings.enter_accept = true;
-  # };
-
   programs.feh.enable = true;
+  programs.zathura.enable = true;
 
   programs.bash.enable = true;
+
+  programs.vscode.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -258,7 +271,7 @@
 
     # old config:
     # -- https://github.com/JohannesNakayama/dotfiles/blob/2123a75323d6ece588930c823f08ee4d957f4d95/.zshrc
-    initExtra = ''
+    initContent = ''
       # Options
       unsetopt autocd
       setopt SHARE_HISTORY # share history between sessions
@@ -352,26 +365,33 @@
   programs.rofi = {
     # application launcher, window switcher, ssh launcher
     enable = true;
-    # theme = builtins.fetchurl {
-    #   url = "https://raw.githubusercontent.com/catppuccin/rofi/5350da41a11814f950c3354f090b90d4674a95ce/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
-    #   sha256 = "0n9cixyv4ladvcfbybq5dsfyzklfh732cd8nmvjckd09pjkb62f1";
-    # };
-    theme = "paper-float";
+    theme = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/catppuccin/rofi/5350da41a11814f950c3354f090b90d4674a95ce/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
+      sha256 = "0n9cixyv4ladvcfbybq5dsfyzklfh732cd8nmvjckd09pjkb62f1";
+    };
     font = "Commit Mono 18";
-
-    plugins = with pkgs; [rofi-vpn rofi-calc rofi-emoji rofi-systemd rofi-bluetooth rofi-pulse-select rofi-file-browser];
+    plugins = with pkgs; [
+      rofi-vpn
+      rofi-calc
+      rofi-emoji
+      rofi-systemd
+      rofi-bluetooth
+      rofi-pulse-select
+      rofi-file-browser
+    ];
   };
 
   programs.git = {
     enable = true;
     userName = "Johannes Nakayama";
     userEmail = "johannes.nakayama@rwth-aachen.de";
-    difftastic = {
-      enable = true;
-    };
+    difftastic.enable = true;
+    lfs.enable = true;
     extraConfig = {
       core = {
         pager = "diff-so-fancy | less --tabs=4 -RFX";
+        # might be necessary when working with Windows people:
+        # autocrlf = "input";
       };
       interactive = {
         diffFilter = "diff-so-fancy --patch";
@@ -478,10 +498,17 @@
     enable = true;
   };
 
+  programs.nyxt.enable = true;
+
+  # services.redshift.enable = true;
+  # services.redshift.provider = "geoclue2";
+
   services.unclutter = {
     # hide mouse after some seconds of no movement
     enable = true;
   };
+
+  services.ollama.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
