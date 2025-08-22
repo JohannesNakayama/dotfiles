@@ -8,6 +8,21 @@ require('lspconfig').rust_analyzer.setup({})
 
 require('typescript-tools').setup({})
 
+require('lspconfig').pyright.setup({})
+
+-- If I have to use csharp:
+-- require('lspconfig').omnisharp.setup({
+--   on_attach = function(client, bufnr)
+--     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+--     local opts = { noremap = true, silent = true }
+--
+--     -- Enable go to definition
+--     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--
+--     capabilities = require('cmp_nvim_lsp').default_capabilities(),
+--   end
+-- })
+
 -- emmet setup for HTML boilerplate
 require('lspconfig').emmet_ls.setup({
   capabilities = capabilities,
