@@ -6,6 +6,7 @@ require('copilot').setup({
     markdown = false,
     gitcommit = true,
     json = true,
+    ["*"] = false,
   },
 })
 
