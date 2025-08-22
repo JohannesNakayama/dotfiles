@@ -114,7 +114,7 @@
 
   # Enable sound with pipewire
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true; # allows certain user-level processes to run with real-time priorities, good for media editing and playing
   services.pipewire = {
     # alternative to pulseaudio with better bluetooth support
