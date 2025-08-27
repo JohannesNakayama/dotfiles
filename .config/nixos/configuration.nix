@@ -84,9 +84,12 @@
       };
     };
 
-    displayManager.autoLogin = {
-      enable = true;
-      user = "johannes";
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "johannes";
+      };
+      defaultSession = "none+bspwm";
     };
 
     xserver = {
@@ -95,11 +98,17 @@
         layout = "de";
         variant = "neo"; # neo keyboard layout
       };
-      displayManager.lightdm.enable = true;
-      windowManager.bspwm.enable = true;
+      displayManager = {
+        lightdm.enable = true;
+        session = [{
+          manage = "window";
+          name = "bspwm";
+          start = ''
+            ${pkgs.xorg.xinit}/bin/xinit ~/.xsession
+          '';
+        }];
+      };
     };
-
-    picom.enable = true;
 
     blueman.enable = true;
 
@@ -192,7 +201,6 @@
 
 
   programs.i3lock.enable = true;
-
 
   nixpkgs.config.allowUnfree = true;
 
