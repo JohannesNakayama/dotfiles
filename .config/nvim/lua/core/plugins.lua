@@ -164,31 +164,67 @@ require("lazy").setup({
   },
 
   {
-    "scalameta/nvim-metals",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      -- {
+      --   "<leader>xX",
+      --   "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+      --   desc = "Buffer Diagnostics (Trouble)",
+      -- },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      -- {
+      --   "<leader>cl",
+      --   "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      --   desc = "LSP Definitions / references / ... (Trouble)",
+      -- },
+      -- {
+      --   "<leader>xL",
+      --   "<cmd>Trouble loclist toggle<cr>",
+      --   desc = "Location List (Trouble)",
+      -- },
+      -- {
+      --   "<leader>xQ",
+      --   "<cmd>Trouble qflist toggle<cr>",
+      --   desc = "Quickfix List (Trouble)",
+      -- },
     },
-    ft = { "scala", "sbt", "java" },
-    opts = function()
-      local metals_config = require("metals").bare_config()
-      metals_config.on_attach = function(client, bufnr)
-        -- your on_attach function
-      end
-
-      return metals_config
-    end,
-    config = function(self, metals_config)
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = self.ft,
-        callback = function()
-          require("metals").initialize_or_attach(metals_config)
-        end,
-        group = nvim_metals_group,
-      })
-    end
   },
 
+  -- {
+  --   "scalameta/nvim-metals",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   ft = { "scala", "sbt", "java" },
+  --   opts = function()
+  --     local metals_config = require("metals").bare_config()
+  --     metals_config.on_attach = function(client, bufnr)
+  --       -- your on_attach function
+  --     end
+  --     return metals_config
+  --   end,
+  --   config = function(self, metals_config)
+  --     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+  --     vim.api.nvim_create_autocmd("FileType", {
+  --       pattern = self.ft,
+  --       callback = function()
+  --         require("metals").initialize_or_attach(metals_config)
+  --       end,
+  --       group = nvim_metals_group,
+  --     })
+  --   end
+  -- },
 
   -- Handle swap file issues when opening the same file in two buffers
   'gioele/vim-autoswap',
@@ -217,8 +253,8 @@ require("lazy").setup({
   -- Recursive browsing of zip files (required for some lsp functionalities)
   { 'lbrayner/vim-rzip' },
 
-  -- Syntax highlighting for EARTHFILEs
-  { 'earthly/earthly.vim' },
+  -- -- Syntax highlighting for EARTHFILEs
+  -- { 'earthly/earthly.vim' },
 
   -- Syntax highlighting for justfiles
   { 'NoahTheDuke/vim-just' },
