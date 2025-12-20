@@ -2,60 +2,48 @@
 -- === OPITONS ================================================================
 -- ============================================================================
 
--- Leader mappings
+-- Leader settings
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '_'
 
--- Use system clipboard
-vim.o.clipboard = 'unnamedplus'
+-- Wrapping, indentation, and line breaks
+vim.opt.wrap = true -- wrap long lines
+vim.opt.linebreak = true -- break wrapped lines at words
+vim.opt.breakindent = true -- maintain indentation level for wrapped lines
+vim.opt.breakindentopt = { shift = 2 } -- add extra 2-space indentation to wrapped lines
+vim.opt.list = true -- show invisible characters
+vim.opt.listchars = { tab = '·-', trail = '·', } -- define how invisible characters are shown
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true -- convert tabs into spaces
 
--- Disable automatic pairing (for parens, quotes, etc.)
-vim.g.minipairs_disable = true
+-- Search settings
+vim.opt.ignorecase = true -- case-insensitive search
+vim.opt.smartcase = true -- override ignorecase if capital letter is typed
+vim.opt.hls = true -- keep search results highlighted
 
--- Set GUI font
-vim.opt.guifont = { 'RobotoMono Nerd Font', ':h8' }
-
--- No autoformating on save by default
-vim.g.autoformat = true
-
--- Sane defaults
-vim.o.termguicolors = true
-vim.o.showcmd = false
-vim.o.cursorline = true
-vim.o.laststatus = 2
-vim.o.number = true
--- vim.o.updatetime = 100
-vim.o.startofline = false
-vim.o.confirm = true
-
--- Search options
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hls = true
-
--- Wrapping and indenting
-vim.o.wrap = true
-vim.opt.linebreak = true
-vim.o.breakindent = true
-vim.opt.breakindentopt = { shift = 2 }
-
--- Tabs/Shift
-vim.opt.list = true
-vim.opt.listchars = { tab = '⊳\\' , trail = '·', }
--- vim.opt.listchars = { tab = '│·', trail = '·', }
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-
-
--- TODO: describe (automatic g in s/../../g <-)
-vim.opt.gdefault = true
-
-vim.opt.undofile = true
-
-vim.opt.history = 10000
-
-
--- Disable netrw (replaced by nvim-tree)
-vim.g.loaded_netrw = 1
+-- Disable unnecessary default functionality
+vim.g.loaded_netrw = 1 -- disable built-in file explorer (not needed because of nvim-tree)
 vim.g.loaded_netrwPlugin = 1
+vim.g.minipairs_disable = true -- disable automatic pairing (for parens, quotes, etc.)
+
+-- Other settings
+vim.opt.clipboard = 'unnamedplus' -- share system clipboard
+vim.opt.gdefault = true -- omit `/g` flag in replacement commands
+vim.opt.undofile = true -- persistent undo file (undo even after file closed and re-opened)
+vim.opt.history = 10000 -- remember last 10000 commands
+
+-- IDE settings
+vim.opt.guifont = { 'RobotoMono Nerd Font', ':h8' }
+vim.opt.termguicolors = true -- enable 24-bit RGB colors
+vim.opt.showcmd = false -- don't show command in bottom right corner
+vim.opt.cursorline = true -- highlight line where cursor is currently located
+vim.opt.laststatus = 2 -- always show status line for every window (TODO: perhaps change to 3 -> global status line)
+vim.opt.number = true -- show line numbers on left side
+vim.opt.startofline = false -- keep cursor at current vertical position when navigating up and down
+vim.opt.confirm = true -- ask to save changes when exiting unsaved work
+
+-- --- TODO -------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+
+vim.g.autoformat = true -- TODO: INVESTIGATE

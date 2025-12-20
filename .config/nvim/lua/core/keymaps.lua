@@ -2,68 +2,39 @@
 -- === KEY MAPPINGS ===========================================================
 -- ============================================================================
 
--- l/L: next/prev buffer
+-- l/L: next/prev buffer [1]
 -- L was: place cursor at bottom of screen
--- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L34
-vim.keymap.set('n', 'l', ':bnext<CR>')
-vim.keymap.set('v', 'l', ':bnext<CR>')
-vim.keymap.set('n', 'L', ':bprev<CR>')
-vim.keymap.set('v', 'L', ':bprev<CR>')
+vim.keymap.set('n', 'l', ':bnext<CR>', { desc = "Next buffer" })
+vim.keymap.set('v', 'l', ':bnext<CR>', { desc = "Next buffer" })
+vim.keymap.set('n', 'L', ':bprev<CR>', { desc = "Previous buffer" })
+vim.keymap.set('v', 'L', ':bprev<CR>', { desc = "Previous buffer" })
 
--- Efficient one-button save/close bindings for neo2 layout
--- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L41
-vim.keymap.set('n', 'ö', ':update<CR>')
-vim.keymap.set('v', 'ö', '<esc>:update<CR>gv')
-vim.keymap.set('n', 'ä', ':q<CR>')
-vim.keymap.set('v', 'ä', '<esc>:q<CR>')
-vim.keymap.set('n', 'ü', ':bd<CR>')
-vim.keymap.set('v', 'ü', '<esc>:q<CR>')
+-- Efficient one-button save/close bindings for neo2 layout [2]
+vim.keymap.set('n', 'ö', ':update<CR>', { desc = "Save buffer" })
+vim.keymap.set('v', 'ö', '<esc>:update<CR>gv', { desc = "Save buffer" })
+vim.keymap.set('n', 'ä', ':q<CR>', { desc = "Quit" })
+vim.keymap.set('v', 'ä', '<esc>:q<CR>', { desc = "Quit" })
+vim.keymap.set('n', 'ü', ':bd<CR>', { desc = "Close buffer" })
+vim.keymap.set('v', 'ü', '<esc>:bd<CR>', { desc = "Close buffer" })
 
--- Source/edit nvim config
--- --> https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
--- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
-vim.keymap.set('n', '<leader>sv', ':luafile $MYVIMRC<CR>')
-vim.keymap.set('v', '<leader>sv', ':luafile $MYVIMRC<CR>')
-vim.keymap.set('n', '<leader>vv', ':e $MYVIMRC<CR>')
+-- Edit nvim config [3, 4]
+vim.keymap.set('n', '<leader>vv', ':e $MYVIMRC<CR>', { desc = "Edit neovim config" })
 
 -- Open dotfiles todo file
-vim.keymap.set('n', '<leader>vt', ':e $HOME/Sync/notes/todo/dotfiles.md<CR>')
+vim.keymap.set('n', '<leader>vt', ':e $HOME/Sync/notes/todo/dotfiles.md<CR>', { desc = "Edit dotfiles todo file" })
 
--- Don't lose selection when indenting //<- fdietze/dotfiles
--- --> https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
-vim.keymap.set('v', '>', '>gv')
-vim.keymap.set('v', '<', '<gv')
-vim.keymap.set('v', '=', '=gv')
+-- Don't lose selection when indenting [5]
+vim.keymap.set('v', '>', '>gv', { desc = "Indent right" })
+vim.keymap.set('v', '<', '<gv', { desc = "Indent left" })
+vim.keymap.set('v', '=', '=gv', { desc = "Reset indentation" })
 
 -- Highlight off after search
-vim.keymap.set('n', '<leader>h', ':nohl<CR>')
+vim.keymap.set('n', '<leader>h', ':nohl<CR>', { desc = "Switch off highlighting" })
 
-vim.keymap.set('n', 'Y', 'y$', { desc = 'yank till end of line. (Y behaves like D and C)' })
-vim.keymap.set('n', "<leader>p", "v$<Left>pgvy", { desc = 'paste over rest of line' })
-
-
-vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-i>', '<cmd> TmuxNavigateLeft<cr>')
-vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-e>', '<cmd> TmuxNavigateRight<cr>')
-vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-l>', '<cmd> TmuxNavigateUp<cr>')
-vim.keymap.set({ 'n', 'v', 'i' }, '<c-m-a>', '<cmd> TmuxNavigateDown<cr>')
-
-vim.keymap.set('n', "<leader>n",
-  function()
-    local has_errors = next(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })) ~= nil
-    if has_errors then
-      vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR, float = true }
-    else
-      local has_warnings = next(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })) ~=
-          nil
-      if has_warnings then
-        vim.diagnostic.goto_next { severity = vim.diagnostic.severity.WARN, float = true }
-      else
-        vim.diagnostic.goto_next { float = true }
-      end
-    end
-  end,
-  { desc = "Jump to next LSP diagnostic" }
-)
+-- Convenient yanking/pasting
+vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank till end of line. (Y behaves like D and C)' })
+vim.keymap.set('n', "<leader>p", "v$<Left>pgvy", { desc = 'Paste over rest of line' })
+vim.keymap.set('v', 'p', 'pgvy', { desc = "Keep clipboard when pasting over selection" })
 
 -- Toggle a specific character at the end of the current line
 local function toggle_char_at_eol(target_char)
@@ -78,8 +49,11 @@ local function toggle_char_at_eol(target_char)
   end
 end
 
-vim.keymap.set('n', '<leader>,', function() toggle_char_at_eol(',') end, { desc = 'toggle , at end of line' })
-vim.keymap.set('n', '<leader>;', function() toggle_char_at_eol(';') end, { desc = 'toggle ; at end of line' })
+vim.keymap.set('n', '<leader>,', function() toggle_char_at_eol(',') end, { desc = 'Toggle , at end of line' })
+vim.keymap.set('n', '<leader>;', function() toggle_char_at_eol(';') end, { desc = 'Toggle ; at end of line' })
 
-vim.keymap.set('n', "<leader>p", "v$<Left>pgvy", { desc = 'paste over rest of line' })
-vim.keymap.set('v', 'p', 'pgvy', { desc = "keep clipboard when pasting over selection" })
+-- [1] https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L34
+-- [2] https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L41
+-- [3] https://learnvimscriptthehardway.stevelosh.com/chapters/07.html
+-- [4] https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L135
+-- [5] https://github.com/fdietze/dotfiles/blob/9d2e5110cb59ad271af3d3f15b35f47fd9bd8f56/.vimrc_keybindings#L104
