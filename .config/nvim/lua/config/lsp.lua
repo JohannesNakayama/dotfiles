@@ -9,30 +9,30 @@ local lsps = {
     },
   },
   { 'pyright', { flags = {}, } },
-  {
-    'lua-language-server',
-    {
-      cmd = { 'lua-language-server' },
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            globals = { 'vim' } -- get language server to recognize `vim`
-          },
-          workspace = {
-            -- Make server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false, -- disable annoying popups about environment
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   'lua-language-server',
+  --   {
+  --     cmd = { 'lua-language-server' },
+  --     settings = {
+  --       Lua = {
+  --         runtime = {
+  --           version = 'LuaJIT',
+  --         },
+  --         diagnostics = {
+  --           globals = { 'vim' } -- get language server to recognize `vim`
+  --         },
+  --         workspace = {
+  --           -- Make server aware of Neovim runtime files
+  --           library = vim.api.nvim_get_runtime_file("", true),
+  --           checkThirdParty = false, -- disable annoying popups about environment
+  --         },
+  --         telemetry = {
+  --           enable = false,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }
 
 for _, lsp in pairs(lsps) do
