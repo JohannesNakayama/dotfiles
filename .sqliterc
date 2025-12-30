@@ -6,12 +6,11 @@
 .eqp on
 pragma foreign_keys = ON;
 
-.print "Databases:"
+.print "Databases:\n----------"
 .databases
-.print "\nTables:"
+.print "\nTables:\n-------"
 .tables
 .print "\n"
-
 
 .changes on
 .timer on
