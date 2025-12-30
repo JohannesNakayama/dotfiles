@@ -1,15 +1,16 @@
-# Questions
+# Plugins to figure out
 
-- What is the difference between the leader and the localleader?
+- manipulate text objects using treesitter: `'nvim-treesitter/nvim-treesitter-textobjects'`
+- linting/formatting: `'mfussenegger/nvim-lint'`
+- modern multicursor: `'jake-stewart/multicursor.nvim'`
 
-localleader only for specific scope (e.g., only Python files)
+- TypeScript tools, incl. LSP:
+```
+{
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  opts = {},
+},
+```
 
-- Is `vim.o` and `vim.opt` the same thing?
-
-## Still Todo
-
-- snippet management
-
-- setup formatter
-
-- configure lsp
+- integration with tmux: `'christoomey/vim-tmux-navigator'`

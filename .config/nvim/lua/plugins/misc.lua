@@ -1,200 +1,38 @@
 return {
-  -- Multiple cursors in visual mode
-  'mg979/vim-visual-multi',
+	-- Multiple cursors in visual mode
+	"mg979/vim-visual-multi",
 
-  -- Commenting
-  'tpope/vim-commentary',
+	-- Commenting
+	"tpope/vim-commentary",
 
-  -- Open file in same place where you left off last time
-  'farmergreg/vim-lastplace',
+	-- Open file in same place where you left off last time
+	"farmergreg/vim-lastplace",
 
-  -- Indentation guides
-  'lukas-reineke/indent-blankline.nvim',
+	-- Indentation guides
+	"lukas-reineke/indent-blankline.nvim",
 
-  -- Nice UI
-  'stevearc/dressing.nvim',
+	-- Nice UI
+	"stevearc/dressing.nvim",
 
-  -- Julia plugin
-  'JuliaEditorSupport/julia-vim',
+	-- Julia plugin
+	"JuliaEditorSupport/julia-vim",
 
-  -- Refactoring
-  'smjonas/inc-rename.nvim',
+	-- Refactoring
+	"smjonas/inc-rename.nvim",
 
-  -- Automatically create directories when opening a non-existent file with vim
-  'arp242/auto_mkdir2.vim',
+	-- Automatically create directories when opening a non-existent file with vim
+	"arp242/auto_mkdir2.vim",
 
-  -- Handle swap file issues when opening the same file in two buffers
-  'gioele/vim-autoswap',
+	-- Handle swap file issues when opening the same file in two buffers
+	"gioele/vim-autoswap",
 
-  -- Recursive browsing of zip files (required for some lsp functionalities)
-  'lbrayner/vim-rzip',
+	-- Recursive browsing of zip files (required for some lsp functionalities)
+	"lbrayner/vim-rzip",
 
-  -- Syntax highlighting for justfiles
-  'NoahTheDuke/vim-just',
+	-- Syntax highlighting for justfiles
+	"NoahTheDuke/vim-just",
+
+	-- Toggle between one-line/multi-line constructs
+	-- ("gS" to split, "gJ" to join)
+	"AndrewRadev/splitjoin.vim",
 }
-
--- --- TODO --------------------------------------------------------------------
-
--- TODO: look into https://github.com/jake-stewart/multicursor.nvim for multicursor
-
--- {
-  -- TODO
-  -- -- Linting/Formatting
-  -- 'mfussenegger/nvim-lint',
-  -- 'mhartington/formatter.nvim',
-  -- 'MunifTanjim/prettier.nvim',
-  --
-  -- 'AndrewRadev/splitjoin.vim',
-  --
-  -- LSP none-ls
-  -- {
-  --   'nvimtools/none-ls.nvim',
-  --   dependencies = 'nvim-lua/plenary.nvim',
-  --   config = function()
-  --     local null_ls = require("null-ls")
-
-  --     local sources = {
-  --       null_ls.builtins.formatting.alejandra, -- nix formatter
-  --     }
-  --     null_ls.setup()
-  --   end,
-  -- },
-  --
-  -- TypeScript tools, incl. LSP
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  --   opts = {},
-  -- },
--- }
-
-
--- TODO:
--- -- FIGURE OUT THE FOLLOWING CONFIGURATIONS
-
--- {
---   "dundalek/lazy-lsp.nvim",
---   dependencies = {
---     "neovim/nvim-lspconfig",
---     { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
---     "hrsh7th/cmp-nvim-lsp",
---     "hrsh7th/nvim-cmp",
---   },
---   config = function()
---     local lsp_zero = require("lsp-zero")
-
---     lsp_zero.on_attach(function(client, bufnr)
---       -- see :help lsp-zero-keybindings to learn the available actions
---       lsp_zero.default_keymaps({
---         buffer = bufnr,
---         preserve_mappings = false
---       })
---     end)
-
---     -- completion menu
---     local cmp = require('cmp')
---     local cmp_mapping = require('cmp.config.mapping')
---     cmp.setup {
---       mapping = cmp_mapping.preset.insert {
---         ['<C-Space>'] = cmp.mapping.complete(),
---         ['<CR>'] = cmp.mapping.confirm({ select = true }),
---         ['<tab>'] = cmp.mapping.confirm({ select = true }),
---       },
---     }
-
---     -- format on save
---     -- TODO: toggle with keybinding
---     vim.api.nvim_create_autocmd("BufWritePre", {
---       pattern = { "*" },
---       callback = function()
---         if vim.bo.filetype ~= "json" then
---           vim.lsp.buf.format({
---             async = false,
---             filter = function(client) return client.name ~= "tsserver" end
---           })
---         end
---       end,
---     })
-
---     require("lazy-lsp").setup {
---       excluded_servers = {
---         "denols", "quick_lint_js", "pylyzer", "marksman", "ltex"
---       },
---       -- Override config for specific servers that will passed down to lspconfig setup.
---       -- Note that the default_config will be merged with this specific configuration so you don't need to specify everything twice.
---       configs = {
---         eslint = {
---           on_attach = function(client, bufnr)
---             vim.api.nvim_create_autocmd("BufWritePre", {
---               buffer = bufnr,
---               command = "EslintFixAll",
---             })
---           end,
---         },
---         lua_ls = {
---           settings = {
---             Lua = {
---               diagnostics = {
---                 -- Get the language server to recognize the `vim` global
---                 globals = { "vim" },
---               },
---             },
---           },
---         },
---         rust_analyzer = {
---           settings = {
---             ["rust-analyzer"] = {
---               procMacro = {
---                 enable = true,
---               },
---               check = {
---                 command = "clippy",
---               },
---               cargo = {
---                 -- To prevent rustanalyzer from locking the target dir (blocking cargo build/run)
---                 -- https://github.com/rust-lang/rust-analyzer/issues/6007#issuecomment-1523204067
---                 extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = 'dev', },
---                 extraArgs = { "--profile", "rust-analyzer", },
---                 allFeatures = true,          -- enable all features, so that all optional dependencies are loaded
---                 loadOutDirsFromCheck = true, -- everybody seems to enable this
---               },
---               diagnostics = {
---                 -- show code, even if disabled via feature flags
---                 disabled = { "inactive-code" },
---               },
---             },
---           },
---         },
---       },
---     }
---   end,
--- },
-
--- {
---   "folke/which-key.nvim",
---   event = "VeryLazy",
---   init = function()
---     vim.o.timeout = true
---     vim.o.timeoutlen = 300
---   end,
---   opts = {
---     -- TODO:
---     -- -- your configuration comes here
---     -- -- or leave it empty to use the default settings
---     -- -- refer to the configuration section below
---   }
--- },
-
--- --   -- Integration with tmux
--- --   'christoomey/vim-tmux-navigator'
-
--- TODO:
--- -- none-ls setup (following snippet is previous config)
-
--- local null_ls = require("null-ls")
-
--- null_ls.setup {
---   sources = {
---     null_ls.builtins.formatting.alejandra, -- nix formatter
---   }
--- }
