@@ -10,12 +10,13 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      # Absolute essentials.
+      alejandra # nix language formatter
       clang
       curl
       file
       lshw # hardware lister
       ncdu # analyze storage on hard drive
+      nix-output-monitor # human-readable logs for some nix commands
       ntfs3g # FUSE-based NTFS driver with full write support
       openssl
       p7zip
@@ -32,13 +33,6 @@ in {
       xdo # perform elementary actions on windows
       xkbutils
       zip
-
-      # Nix utils.
-      nix-output-monitor
-      alejandra # nix language formatter
-
-      # --- Lua utils (TODO: maybe create flake for neovim configuration)
-      # lua-language-server
     ];
 
     programs = {
