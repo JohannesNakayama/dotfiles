@@ -26,35 +26,31 @@
       cleanOnBoot = true;
     };
 
-    # support ntfs (for external drives)
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = ["ntfs"]; # support ntfs (for external drives)
   };
 
   networking = {
     hostName = "nixos";
     enableIPv6 = true;
     networkmanager.enable = true;
-
-    # defaultGateway6 = {
-    #   address = "fe80::1"; 
-    #   interface = "wlp1s0";
-    # };
+    firewall.enable = true; # true by default, but let's make it explicit
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  hardware.bluetooth = {
+    # See: https://nixos.wiki/wiki/Bluetooth.
+    enable = true; # makes bluetoothctl available
+    powerOnBoot = true;
+    settings.General.Experimental = true; # bluetooth battery percentage
+  };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Allow certain user-level processes to run with real-time priorities.
+  # (Good for media editing and playing, useful when using pipewire.)
+  security.rtkit.enable = true;
 
+  # Uncomment if manual time zone setting is needed (need to disable services.automatic-timezoned first).
+  # time.timeZone = "Europe/Berlin";
 
-  home-manager.backupFileExtension = "backup";
-
-  # services.automatic-timezoned.enable = true;
-  time.timeZone = "Europe/Berlin";
-
-  location.provider = "geoclue2";
-  services.geoclue2.enable = true;
+  console.keyMap = "neo"; # use neo2 layout in console
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -69,6 +65,74 @@
       LC_PAPER = "de_DE.UTF-8";
       LC_TELEPHONE = "de_DE.UTF-8";
       LC_TIME = "de_DE.UTF-8";
+    };
+  };
+
+  fonts = {
+    enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
+    packages = with pkgs; [
+      corefonts # Arial, Verdana, ...
+      google-fonts # Droid Sans, Roboto, ...
+      commit-mono # https://commitmono.com/
+
+      # Nerdfonts (common fonts with icons and glyphs): https://www.nerdfonts.com/.
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+    ];
+    fontconfig = {
+      includeUserConf = false; # no user fonts.conf
+      defaultFonts.monospace = ["Commit Mono" "Noto Color Emoji"];
+    };
+    fontDir.enable = true;
+  };
+
+  location.provider = "geoclue2"; # requires services.geoclue2.enable = true
+
+  nixpkgs.config.allowUnfree = true;
+
+  nix = {
+    package = pkgs.nixVersions.stable;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+
+    settings = {
+      experimental-features = ["nix-command" "flakes"]; # essential setting (flakes, the nix tool)!
+      auto-optimise-store = true;
+    };
+
+    # When looking up things in the registry, look for nixpkgs downloaded in my flake-inputs first.
+    registry.unstable.flake = flake-inputs.nixpkgs;
+
+    # Nix path to correspond to my flakes.
+    nixPath = ["nixpkgs=${flake-inputs.nixpkgs}"];
+
+    # Nixdirenv requires this to stop nix from garbage collecting its stuff.
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+
+    daemonIOSchedPriority = 7;
+    daemonCPUSchedPolicy = "idle";
+  };
+
+  # Make sure zsh is available system-wide.
+  environment.shells = with pkgs; [zsh]; # crucial setting (otherwise might cause problems with zsh not available)!
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users = {
+    defaultUserShell = pkgs.zsh; # set default shell to zsh
+    extraUsers = {
+      johannes = {
+        isNormalUser = true;
+        description = "johannes";
+        extraGroups = ["networkmanager" "wheel" "docker"];
+      };
     };
   };
 
@@ -100,203 +164,78 @@
       };
       displayManager = {
         lightdm.enable = true;
-        session = [{
-          manage = "window";
-          name = "bspwm";
-          start = ''
-            ${pkgs.xorg.xinit}/bin/xinit ~/.xsession
-          '';
-        }];
+        session = [
+          {
+            manage = "window";
+            name = "bspwm";
+            start = "${pkgs.xorg.xinit}/bin/xinit ~/.xsession";
+          }
+        ];
+        sessionCommands = "${pkgs.xorg.setxkbmap}/bin/setxkbmap de neo";
       };
     };
 
-    blueman.enable = true;
+    # Automatic timezone detection.
+    automatic-timezoned.enable = true; # requires location.provider to be set and time.timeZone to not be set
 
-    # Enable CUPS to print documents
+    # Location detection.
+    geoclue2.enable = true;
+
+    # Enable CUPS to print documents.
     printing.enable = true;
 
-    # periodic SSD TRIM of mounted partitions in background
+    # Periodic SSD TRIM of mounted partitions in background.
     fstrim.enable = true;
-  };
 
-  console.keyMap = "neo";
+    # Smart card support (not currently needed, but keep for potential future use).
+    pcscd.enable = true;
 
-  # Enable sound with pipewire
-  # sound.enable = true;
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true; # allows certain user-level processes to run with real-time priorities, good for media editing and playing
-  services.pipewire = {
-    # alternative to pulseaudio with better bluetooth support
-    # -- https://nixos.wiki/wiki/PipeWire
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    # Enable sound with pipewire (alternative to pulseaudio with better bluetooth support).
+    pulseaudio.enable = false; # make sure pulseaudio is disabled (fights over the sound card with pipewire)
+    pipewire = {
+      # See: https://nixos.wiki/wiki/PipeWire.
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # jack.enable = true; # uncomment if using Bitwig or any other sophisticated audio tool
 
-    wireplumber.configPackages = [
-      (
-        pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-          bluez_monitor.properties = {
-          	["bluez5.enable-sbc-xq"] = true,
-          	["bluez5.enable-msbc"] = true,
-          	["bluez5.enable-hw-volume"] = true,
-          	["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-          }
-        ''
-      )
-    ];
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    # set default shell to zsh
-    defaultUserShell = pkgs.zsh;
-
-    # define user account
-    extraUsers = {
-      johannes = {
-        isNormalUser = true;
-        description = "johannes";
-        extraGroups = ["networkmanager" "wheel" "docker"];
-      };
+      wireplumber.configPackages = [
+        (
+          pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua"
+          # lua
+          ''
+            bluez_monitor.properties = {
+              ["bluez5.enable-sbc-xq"] = true,
+              ["bluez5.enable-msbc"] = true,
+              ["bluez5.enable-hw-volume"] = true,
+              ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+            }
+          ''
+        )
+      ];
     };
   };
 
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = true; # enable registry
-
-    daemon.settings = {
-      data-root = "/var/lib/docker";
-    };
+    enableOnBoot = true;
   };
 
+  programs = {
+    ssh.startAgent = true; # enabled here for seemless integration with keepassxc
+    zsh.enable = true;
 
-  # Optional: Setup local private registry
-  virtualisation.docker.extraOptions = ''
-    --insecure-registry localhost:5000
-  '';
-
-  # If you want to run a local registry container
-  systemd.services.docker-registry = {
-    description = "Local Docker Registry";
-    after = [ "docker.service" ];
-    requires = [ "docker.service" ];
-    serviceConfig = {
-      ExecStart = ''${pkgs.docker}/bin/docker run \
-        -p 5000:5000 \
-        --restart=always \
-        --name registry \
-        -v /path/to/registry/storage:/var/lib/registry \
-        registry:2'';
-      ExecStop = "${pkgs.docker}/bin/docker stop registry";
-      ExecStopPost = "${pkgs.docker}/bin/docker rm registry";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-
-  programs.i3lock.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-  ];
-
-  services.pcscd.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
-  };
-
-  fonts = {
-    enableDefaultPackages = true;
-    enableGhostscriptFonts = true;
-    packages = with pkgs; [
-      corefonts # Arial, Verdana, ...
-      # vistafonts # Consolas, ...
-      google-fonts # Droid Sans, Roboto, ...
-      # ubuntu_font_family
-      # nerdfonts: common fonts with icons and glyphs: https://www.nerdfonts.com/
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      commit-mono # https://commitmono.com/
-    ];
-    fontconfig = {
-      includeUserConf = false; # no user fonts.conf
-      defaultFonts.monospace = ["Commit Mono" "Noto Color Emoji"];
-    };
-    fontDir.enable = true;
-  };
-
-  hardware.bluetooth = {
-    # https://nixos.wiki/wiki/Bluetooth
-    enable = true;
-    powerOnBoot = true;
-    settings.General.Experimental = true; # bluetooth battery percentage
-  };
-
-  environment = {
-    shells = with pkgs; [zsh];
-    variables = {
-      EDITOR = "vim";
-    };
-  };
-
-  # TODO: keybinding
-  programs.light.enable = true; # adjust screen brightness
-
-  programs.ssh.startAgent = true;
-
-  programs.zsh.enable = true;
-
-  programs.command-not-found.enable = false;
-
-  nix = {
-    package = pkgs.nixVersions.stable;
-
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+    i3lock = {
+      enable = true; # enabled here because it interacts with the PAM
+      package = pkgs.i3lock-color;
     };
 
-    settings.experimental-features = ["nix-command" "flakes"];
-    settings.auto-optimise-store = true;
-
-    # registry entries
-    registry.unstable.flake = flake-inputs.nixpkgs;
-
-    # nix path to correspond to my flakes
-    nixPath = [
-      "nixpkgs=${flake-inputs.nixpkgs}"
-    ];
-
-    # nixdirenv requires this to stop nix from garbage collecting its stuff
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-    '';
-
-    daemonIOSchedPriority = 7;
-    daemonCPUSchedPolicy = "idle";
+    gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
   };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
