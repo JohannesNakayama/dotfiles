@@ -9,6 +9,7 @@
     ./modules/home/android.nix
     ./modules/home/core.nix
     ./modules/home/development.nix
+    ./modules/home/dotfiles.nix
     ./modules/home/file-manager.nix
     ./modules/home/git.nix
     ./modules/home/kubernetes.nix
@@ -21,6 +22,7 @@
     android.enable = false;
     core.enable = true;
     development.enable = true;
+    dotfiles.enable = true;
     file-manager.enable = true;
     git.enable = true;
     kubernetes.enable = false;
