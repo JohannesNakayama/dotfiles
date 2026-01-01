@@ -13,6 +13,7 @@
     ./modules/home/file-manager.nix
     ./modules/home/git.nix
     ./modules/home/kubernetes.nix
+    ./modules/home/scripts.nix
     ./modules/home/terminal.nix
     ./modules/home/utilities.nix
     ./modules/home/window-manager.nix
@@ -26,6 +27,7 @@
     file-manager.enable = true;
     git.enable = true;
     kubernetes.enable = false;
+    scripts.enable = true;
     terminal.enable = true;
     utilities.enable = true;
     window-manager.enable = true;
