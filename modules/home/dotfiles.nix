@@ -42,7 +42,7 @@ in {
       ".config/snownews" = {
         source = ../dotfiles/snownews;
         recursive = true;
-      }
+      };
     };
   };
 }
