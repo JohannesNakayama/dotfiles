@@ -99,9 +99,15 @@ in {
       polybar = {
         # inspired in part by [3]
         enable = true;
-        package = pkgs.polybar.override {
-          pulseSupport = true;
-        };
+        # TODO: remove once fix is published
+        package = (pkgs.polybar.override {pulseSupport = true;}).overrideAttrs (oldAttrs: {
+          # This finds all source files and prepends the include header to them
+          postPatch =
+            (oldAttrs.postPatch or "")
+            + ''
+              find src include -type f \( -name "*.cpp" -o -name "*.hpp" \) -exec sed -i '1i#include <cstdint>' {} +
+            '';
+        });
         # config = "~/.config/polybar/config.ini";
         script = "polybar -r main &";
       };
