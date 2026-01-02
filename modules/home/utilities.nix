@@ -36,7 +36,7 @@ in {
       # xournalpp # pdf editing tool
 
       # Custom note taking tool.
-      (import ../../packages/tsh.nix {inherit pkgs;})
+      # (import ../../packages/tsh.nix {inherit pkgs;})
     ];
 
     programs = {
