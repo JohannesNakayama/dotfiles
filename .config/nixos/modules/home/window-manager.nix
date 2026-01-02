@@ -39,6 +39,13 @@ in {
       };
     };
 
+    systemd.user.services.sxhkd = {
+      Service = {
+        # Delay sxhkd long enough for neo2 layout to apply
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
+      };
+    };
+
     services = {
       picom.enable = true;
 
