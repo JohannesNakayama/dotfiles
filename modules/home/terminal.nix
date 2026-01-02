@@ -189,3 +189,4 @@ in {
 # --- REFERENCES ---------------------------------------------------------------
 # ------------------------------------------------------------------------------
 # [1] https://unix.stackexchange.com/questions/96510/search-for-a-previous-command-with-the-same-prefix-when-i-press-up-at-a-shell-pr
+
