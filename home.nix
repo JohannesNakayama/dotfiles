@@ -112,14 +112,16 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    desktop = "${config.home.homeDirectory}/state/desktop";
     documents = "${config.home.homeDirectory}/state/documents";
     download = "${config.home.homeDirectory}/state/download";
-    music = "${config.home.homeDirectory}/state/music";
     pictures = "${config.home.homeDirectory}/state/pictures";
-    publicShare = "${config.home.homeDirectory}/state/public";
-    templates = "${config.home.homeDirectory}/state/templates";
-    videos = "${config.home.homeDirectory}/state/videos";
+
+    # Unnecessary xdg user directories are set to null.
+    desktop = null;
+    music = null;
+    publicShare = null;
+    templates = null;
+    videos = null;
   };
 
   systemd.user.tmpfiles.rules = [
