@@ -9,10 +9,6 @@ in {
   options.johannes.window-manager.enable = lib.mkEnableOption "Window manager";
 
   config = lib.mkIf cfg.enable {
-    # home.packages = with pkgs; [
-    #   i3lock-color
-    # ];
-
     xsession = {
       enable = true;
       windowManager.bspwm = {
@@ -53,7 +49,7 @@ in {
         enable = true;
         extraOptions = ["-m 1"];
         keybindings = {
-          # --- Shortcuts
+          # Shortcuts.
           "alt + Return" = "alacritty --working-directory $(xcwd)";
           "alt + b" = "brave";
           "alt + t" = "alacritty -e todo";
@@ -63,17 +59,17 @@ in {
           "alt + d" = "rofi -show drun"; # launcher
           "alt + f" = "alacritty -e yazi"; # file manager
 
-          # --- Poweroff/reboot
+          # Poweroff/reboot.
           "ctrl + shift + super + alt + q" = "poweroff";
           "ctrl + shift + super + alt + r" = "reboot";
 
-          # --- Window manager general
+          # Window manager general.
           "ctrl + alt + {q,r}" = "bspc {quit,wm -r}"; # quit/restart bspwm
           "alt + {_,shift + }c" = "bspc node -{c,k}"; # close/kill window
           "alt + Escape" = "pkill -USR1 -x sxhkd"; # reload sxhkd config
           "alt + g" = "i3lock -i ~/Pictures/wallpaper.jpg -b -f -C"; # lock screen
 
-          # --- Window management
+          # Window management.
           "alt + mod3 + {n,t}" = "bspc desktop -f {prev,next}"; # Next/previous desktop
           "super + mod3 + {m,comma,period,n,r,t,h,g,f}" = "bspc desktop -f {1,2,3,4,5,6,7,8,9,10}"; # Navigate to specific desktop
           "alt + {_,shift + }{i,a,l,e}" = "bspc node -{f,s} {west,south,north,east}"; # Focus/shift node in given direction
@@ -84,19 +80,16 @@ in {
           "alt + shift + {n,t}" = "bspc node @/ -C {forward,backward}"; # Rotate tree [1]
           "alt + super + {n,t}" = "id=\$(bspc query --nodes --node); bspc node --to-desktop {prev,next}; bspc desktop --focus next; bspc node --focus \${id}"; # Move focused window to the next workspace and then switch to that workspace [2]
 
-          # --- Window state
+          # Window state.
           "alt + m" = "bspc desktop -l next"; # toggle tiled/monocle mode
           "super + {t,shift + t,s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}"; # set the window state
           "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}"; # move a floating window
 
-          # --- Screen brightness
+          # Screen brightness.
           "XF86MonBrightnessUp" = "brightnessctl set 10%+";
           "XF86MonBrightnessDown" = "brightnessctl set 10%-";
 
-          # "XF86MonBrightnessUp" = "xrandr --output eDP-1 --brightness 1.0"; # bright screen
-          # "XF86MonBrightnessDown" = "xrandr --output eDP-1 --brightness 0.5"; # dimmed screen
-
-          # --- Volume
+          # Volume.
           "XF86AudioLowerVolume" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 0.0";
           "XF86AudioRaiseVolume" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0";
           "XF86AudioMute" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
