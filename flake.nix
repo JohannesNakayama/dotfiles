@@ -34,9 +34,9 @@
           ./hardware-configuration.nix
 
           # Apply hardware optimizations.
-          nixos-hardware.nixosModules.common-cpu-amd
-          nixos-hardware.nixosModules.common-gpu-amd
-          nixos-hardware.nixosModules.common-pc-ssd
+          # nixos-hardware.nixosModules.common-cpu-amd
+          # nixos-hardware.nixosModules.common-gpu-amd
+          # nixos-hardware.nixosModules.common-pc-ssd
 
           # Load home manager module.
           home-manager.nixosModules.home-manager
