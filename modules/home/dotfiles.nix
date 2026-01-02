@@ -37,7 +37,7 @@ in {
         recursive = true;
       };
 
-      ".tmate.conf" = ../dotfiles/.tmate.conf;
+      ".tmate.conf".source = ../dotfiles/.tmate.conf;
 
       ".config/snownews" = {
         source = ../dotfiles/snownews;
