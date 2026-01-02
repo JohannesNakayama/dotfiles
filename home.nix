@@ -118,9 +118,9 @@
   };
 
   systemd.user.tmpfiles.rules = [
-    "d /home/johannes/state/projects 0755 users -"
-    "d /home/johannes/state/notes 0755 users -"
-    "d /home/johannes/state/backups 0755 users -"
+    "d /home/johannes/state/projects 0755 johannes users -"
+    "d /home/johannes/state/notes 0755 johannes users -"
+    "d /home/johannes/state/backups 0755 johannes users -"
   ];
 
   # This value determines the Home Manager release that your
