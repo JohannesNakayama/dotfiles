@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.johannes.scripts;
 in {
   options.johannes.scripts.enable = lib.mkEnableOption "Scripts";
