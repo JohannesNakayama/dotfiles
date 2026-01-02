@@ -112,9 +112,14 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    desktop = "${config.home.homeDirectory}/state/desktop";
     download = "${config.home.homeDirectory}/state/download";
     documents = "${config.home.homeDirectory}/state/documents";
+    music = "${config.home.homeDirectory}/state/music";
     pictures = "${config.home.homeDirectory}/state/pictures";
+    public = "${config.home.homeDirectory}/state/public";
+    templates = "${config.home.homeDirectory}/state/templates";
+    videos = "${config.home.homeDirectory}/state/videos";
   };
 
   systemd.user.tmpfiles.rules = [
