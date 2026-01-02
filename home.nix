@@ -43,6 +43,12 @@
       "$HOME/.local/bin"
     ];
 
+    # Symlink downloads and documents directories to state directory (otherwise some apps might recreate those).
+    file = {
+      "downloads".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/state/downloads";
+      "documents".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/state/documents";
+    };
+
     sessionVariables = {
       EDITOR = "nvim";
       THEME = "dark";
@@ -102,6 +108,20 @@
       rm = "echo \"REMEMBER DECEMBER 2023, MORON?\"; false";
     };
   };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    download = "${config.home.homeDirectory}/state/download";
+    documents = "${config.home.homeDirectory}/state/documents";
+    pictures = "${config.home.homeDirectory}/state/pictures";
+  };
+
+  systemd.user.tmpfiles.rules = [
+    "d /home/johannes/state/projects 0755 users -"
+    "d /home/johannes/state/notes 0755 users -"
+    "d /home/johannes/state/backups 0755 users -"
+  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
