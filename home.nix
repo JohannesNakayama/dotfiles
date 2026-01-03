@@ -45,7 +45,7 @@
 
     # Symlink downloads and documents directories to state directory (otherwise some apps might recreate those).
     file = {
-      "downloads".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/state/downloads";
+      "download".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/state/download";
       "documents".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/state/documents";
     };
 
