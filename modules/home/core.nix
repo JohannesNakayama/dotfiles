@@ -14,6 +14,7 @@ in {
       clang
       curl
       file
+      gnumake
       lshw # hardware lister
       ncdu # analyze storage on hard drive
       nix-output-monitor # human-readable logs for some nix commands
