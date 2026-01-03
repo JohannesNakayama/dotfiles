@@ -78,6 +78,10 @@ in {
                 reset_packpath = false, -- don't reset packpath
                 rtp = { reset = false }, -- don't reset runtimepath
               },
+
+              -- Write lazy lockfile to ~/.local/share/nvim/lazy-lock.json.
+              -- This is necessary because home manager owns the ~/.config/nvim directory.
+              lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
             })
 
             require("config.lsp")
