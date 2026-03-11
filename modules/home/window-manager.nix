@@ -37,7 +37,7 @@ in {
 
     systemd.user.services.sxhkd = {
       Service = {
-        # Delay sxhkd long enough for neo2 layout to apply
+        # Delay sxhkd long enough for neo2 layout to apply.
         ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
       };
     };
@@ -97,7 +97,6 @@ in {
       };
 
       polybar = {
-        # inspired in part by [3]
         enable = true;
         # TODO: remove once fix is published
         package = (pkgs.polybar.override {pulseSupport = true;}).overrideAttrs (oldAttrs: {
@@ -125,5 +124,4 @@ in {
 # ------------------------------------------------------------------------------
 # [1] https://my-take-on.tech/2020/07/03/some-tricks-for-sxhkd-and-bspwm/
 # [2] https://www.reddit.com/r/bspwm/comments/6jj6le/move_window_to_workspace_and_then_switch_to_that/
-# [3] https://github.com/notusknot/dotfiles
 

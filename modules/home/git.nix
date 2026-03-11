@@ -16,7 +16,7 @@ in {
       ];
 
       shellAliases = {
-        # --- Even shorter git aliases
+        # Even shorter git aliases.
         g = "git";
         ga = "git add";
         gst = "git status";
@@ -31,7 +31,7 @@ in {
         gpl = "git pull";
         tig = "tig status";
 
-        # --- Config aliases
+        # Config aliases.
         cst = "cfg status";
         ca = "cfg add";
         cy = "cfg commit";
@@ -52,8 +52,7 @@ in {
           };
           core = {
             pager = "diff-so-fancy | less --tabs=4 -RFX";
-            # might be necessary when working with Windows people:
-            # autocrlf = "input";
+            # autocrlf = "input"; # might be necessary when working with Windows people
           };
           interactive = {
             diffFilter = "diff-so-fancy --patch";
