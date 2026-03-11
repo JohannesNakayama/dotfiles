@@ -13,6 +13,7 @@
     ./modules/home/file-manager.nix
     ./modules/home/git.nix
     ./modules/home/kubernetes.nix
+    ./modules/home/neovim.nix
     ./modules/home/scripts.nix
     ./modules/home/terminal.nix
     ./modules/home/utilities.nix
@@ -27,6 +28,7 @@
     file-manager.enable = true;
     git.enable = true;
     kubernetes.enable = false;
+    neovim.enable = true;
     scripts.enable = true;
     terminal.enable = true;
     utilities.enable = true;
