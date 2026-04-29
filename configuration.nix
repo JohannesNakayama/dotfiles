@@ -168,10 +168,10 @@
           {
             manage = "window";
             name = "bspwm";
-            start = "${pkgs.xorg.xinit}/bin/xinit ~/.xsession";
+            start = "${pkgs.xinit}/bin/xinit ~/.xsession";
           }
         ];
-        sessionCommands = "${pkgs.xorg.setxkbmap}/bin/setxkbmap de neo";
+        sessionCommands = "${pkgs.setxkbmap}/bin/setxkbmap de neo";
       };
     };
 

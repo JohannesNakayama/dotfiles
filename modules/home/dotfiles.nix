@@ -10,10 +10,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.file = {
-      ".config/nvim" = {
-        source = ../dotfiles/nvim;
-        recursive = true;
-      };
+      # ".config/nvim" = {
+      #   source = ../dotfiles/nvim;
+      #   recursive = true;
+      # };
 
       ".config/polybar" = {
         source = ../dotfiles/polybar;
@@ -41,6 +41,11 @@ in {
 
       ".config/snownews" = {
         source = ../dotfiles/snownews;
+        recursive = true;
+      };
+
+      ".config/opencode" = {
+        source = ../dotfiles/opencode;
         recursive = true;
       };
     };

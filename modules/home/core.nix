@@ -37,59 +37,59 @@ in {
     ];
 
     programs = {
-      neovim = {
-        enable = true;
-        viAlias = true;
-        vimAlias = true;
-        plugins = with pkgs.vimPlugins; [nvim-treesitter.withAllGrammars];
+      # neovim = {
+      #   enable = false;
+      #   viAlias = true;
+      #   vimAlias = true;
+      #   plugins = with pkgs.vimPlugins; [nvim-treesitter.withAllGrammars];
 
-        # This config essentially replaces the previous `init.lua` in `~/.config/nvim` (symlinked by home manager).
-        extraLuaConfig =
-          # lua
-          ''
-            require("core.options")
-            require("config.lazy")
+      #   # This config essentially replaces the previous `init.lua` in `~/.config/nvim` (symlinked by home manager).
+      #   extraLuaConfig =
+      #     # lua
+      #     ''
+      #       require("core.options")
+      #       require("config.lazy")
 
-            require("lazy").setup({
-              spec = {
-                { import = "plugins" },
-                {
-                  "nvim-treesitter",
-                  dir = "${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}", -- use nvim-treesitter installed by nix
-                  lazy = false,
-                  priority = 1000,
-                  config = function()
-                    require("nvim-treesitter.configs").setup({
-                      highlight = {
-                        enable = true,
-                        additional_vim_regex_highlighting = false,
-                      },
-                      indent = { enable = true },
+      #       require("lazy").setup({
+      #         spec = {
+      #           { import = "plugins" },
+      #           {
+      #             "nvim-treesitter",
+      #             dir = "${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}", -- use nvim-treesitter installed by nix
+      #             lazy = false,
+      #             priority = 1000,
+      #             config = function()
+      #               require("nvim-treesitter.configs").setup({
+      #                 highlight = {
+      #                   enable = true,
+      #                   additional_vim_regex_highlighting = false,
+      #                 },
+      #                 indent = { enable = true },
 
-                      -- Since treesitter grammars are installed with nix, don't auto-install anything!
-                      auto_install = false,
-                      ensure_installed = {},
-                    })
-                  end,
-                },
-              },
+      #                 -- Since treesitter grammars are installed with nix, don't auto-install anything!
+      #                 auto_install = false,
+      #                 ensure_installed = {},
+      #               })
+      #             end,
+      #           },
+      #         },
 
-              -- This is very important to not interfere with plugins that were installed with nix!
-              performance = {
-                reset_packpath = false, -- don't reset packpath
-                rtp = { reset = false }, -- don't reset runtimepath
-              },
+      #         -- This is very important to not interfere with plugins that were installed with nix!
+      #         performance = {
+      #           reset_packpath = false, -- don't reset packpath
+      #           rtp = { reset = false }, -- don't reset runtimepath
+      #         },
 
-              -- Write lazy lockfile to ~/.local/share/nvim/lazy-lock.json.
-              -- This is necessary because home manager owns the ~/.config/nvim directory.
-              lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
-            })
+      #         -- Write lazy lockfile to ~/.local/share/nvim/lazy-lock.json.
+      #         -- This is necessary because home manager owns the ~/.config/nvim directory.
+      #         lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
+      #       })
 
-            require("config.lsp")
-            require("core.keymaps")
-            vim.cmd [[ colorscheme everforest ]]
-          '';
-      };
+      #       require("config.lsp")
+      #       require("core.keymaps")
+      #       vim.cmd [[ colorscheme everforest ]]
+      #     '';
+      # };
 
       btop.enable = true;
     };

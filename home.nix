@@ -6,6 +6,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./modules/home/ai.nix
     ./modules/home/android.nix
     ./modules/home/core.nix
     ./modules/home/development.nix
@@ -21,7 +22,8 @@
   ];
 
   johannes = {
-    android.enable = false;
+    ai.enable = true;
+    android.enable = true;
     core.enable = true;
     development.enable = true;
     dotfiles.enable = true;
@@ -114,6 +116,8 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
+
     documents = "${config.home.homeDirectory}/state/documents";
     download = "${config.home.homeDirectory}/state/download";
     pictures = "${config.home.homeDirectory}/state/pictures";

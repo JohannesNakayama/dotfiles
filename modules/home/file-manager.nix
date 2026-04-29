@@ -21,7 +21,10 @@ in {
     };
 
     programs = {
-      yazi.enable = true;
+      yazi = {
+        enable = true;
+        shellWrapperName = "y";
+      };
 
       pistol = {
         enable = true;

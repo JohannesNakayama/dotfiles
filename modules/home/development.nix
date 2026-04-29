@@ -14,7 +14,7 @@ in {
       devbox
       flyctl
       libffi
-      litecli
+      # litecli # TODO (bug)
       nodejs_20
       python3
       sqlite-interactive
@@ -40,7 +40,8 @@ in {
       };
 
       vscode.enable = false;
-      opencode.enable = true; # coding agent
+
+      opencode.enable = true;
     };
   };
 }

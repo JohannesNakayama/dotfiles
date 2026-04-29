@@ -27,8 +27,8 @@ project() {
 }
 
 dot() {
-  cd $HOME
-  FILENAME="$(cfg ls-files | fzf --preview 'pistol {}' --preview-window '~3' --border-label 'Dotfiles')"
+  cd $HOME/dotfiles
+  FILENAME="$(git ls-files | fzf --preview 'pistol {}' --preview-window '~3' --border-label 'Dotfiles')"
   [ -n $FILENAME ] && $EDITOR +cd\ %:p:h "$HOME/$FILENAME"
 }
 

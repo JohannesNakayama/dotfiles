@@ -41,7 +41,10 @@ in {
 
     programs = {
       nyxt.enable = true; # hacker browser
-      firefox.enable = true;
+      firefox = {
+        enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
+      };
       feh.enable = true; # display images
       zathura.enable = true; # display pdfs
 

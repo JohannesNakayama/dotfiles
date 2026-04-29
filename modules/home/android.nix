@@ -11,12 +11,14 @@ in {
   config = lib.mkIf cfg.enable {
     home = {
       packages = with pkgs; [
-        android-studio
+        # android-studio
         android-tools
-        android-udev-rules
-        flutter-unwrapped
-        jdk17
-        usbutils
+        # android-udev-rules
+        # flutter-unwrapped
+        # jdk17
+        # usbutils
+        adbfs-rootless
+        adb-sync
       ];
 
       sessionVariables = {
