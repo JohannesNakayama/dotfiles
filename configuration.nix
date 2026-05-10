@@ -2,7 +2,6 @@
 # -- NixOS manual: run 'nixos-help'
 # -- configuration.nix(5) man page
 {
-  config,
   pkgs,
   flake-inputs,
   ...
@@ -36,11 +35,14 @@
     firewall.enable = true; # true by default, but let's make it explicit
   };
 
-  hardware.bluetooth = {
-    # See: https://nixos.wiki/wiki/Bluetooth.
-    enable = true; # makes bluetoothctl available
-    powerOnBoot = true;
-    settings.General.Experimental = true; # bluetooth battery percentage
+  hardware = {
+    bluetooth = {
+      # See: https://nixos.wiki/wiki/Bluetooth.
+      enable = true; # makes bluetoothctl available
+      powerOnBoot = true;
+      settings.General.Experimental = true; # bluetooth battery percentage
+    };
+    graphics.enable = true;
   };
 
   # Allow certain user-level processes to run with real-time priorities.
