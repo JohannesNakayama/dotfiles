@@ -18,8 +18,15 @@ in {
                 baseURL = "https://api.anthropic.com/v1";
               };
             };
+            openrouter = {
+              options = {
+                baseURL = "https://openrouter.ai/api/v1";
+              };
+            };
           };
-          model = "anthropic/claude-sonnet-4-5";
+          # model = "anthropic/claude-sonnet-4-5";
+          # model = "openrouter/mistralai/codestral-2508";
+          model = "opencode/big-pickle";
           permission = {
             bash = "ask";
             edit = "allow";

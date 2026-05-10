@@ -1,6 +1,8 @@
 ---
 description: Analyzes code for redundancies and refactors it to make it more elegant
 mode: "primary"
+# model: openrouter/mistralai/codestral-2508
+model: opencode/big-pickle
 temperature: 0.1
 ---
 
