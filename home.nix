@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.home-manager.enable = true;
 
   imports = [
@@ -62,22 +58,7 @@
 
     shellAliases = {
       # Open frequently modified files in neovim (see also: $HOME/bin/v).
-      vv = "cd $HOME/.config/nvim && v";
-      vn = "cd $HOME/.config/nixos && v";
-      vd = "v dot";
-
-      # Todo tool.
-      tp = "todo plan";
-      ts = "todo no-spawn"; # "todo select"
-
-      # Note tool.
-      n = "note";
-      nn = "note new";
-      ns = "note search";
-
-      # Shop tool.
-      sr = "shop recipe";
-      si = "shop item";
+      vd = "cd $HOME/dotfiles && v";
 
       # Listing things.
       ls = "ls --group-directories-first --color=auto";
@@ -86,25 +67,28 @@
       la = "ls -A";
       lt = "tree -L 2";
       lt3 = "tree -L 3";
+      lt4 = "tree -L 4";
 
       # Freqently used commands with long names.
+      oc = "opencode";
       tclip = "tmate display -p \"#{tmate_ssh}\" | xclip -selection clipboard"; # tmate session token to clipboard
       bt = "bluetoothctl";
-      syncdash = "brave 127.0.0.1:8384 &"; # syncthing dashboard
-      done = "cd ~/Documents/local-notes && nvim done.md";
       ws = "wallpaper set";
 
       # Nix.
-      nrs = "sudo nixos-rebuild switch --flake /etc/nixos";
-      nfu = "nix flake update --flake /etc/nixos";
-      nur = "nfu && nrs";
+      # nrs = "sudo nixos-rebuild switch --flake /etc/nixos";
+      # nfu = "nix flake update --flake /etc/nixos";
+      # nur = "nfu && nrs";
+      switch = "sudo nixos-rebuild switch --flake $HOME/dotfiles";
       nixup =
         # bash
         ''
+          cd $HOME/dotfiles
           sudo -v
-          nix flake update --flake /etc/nixos
-          nixos-rebuild build --flake /etc/nixos --log-format internal-json --no-link |& nom --json
-          sudo nixos-rebuild switch --flake /etc/nixos
+          nix flake update --flake .
+          sudo -v # build can take a long time -> validate credentials once more before running it
+          nixos-rebuild build --flake . --log-format internal-json --no-link |& nom --json
+          sudo nixos-rebuild switch --flake .
         '';
 
       # Remove files safely (see: $HOME/bin/byebye).
@@ -123,6 +107,7 @@
     documents = "${config.home.homeDirectory}/state/documents";
     download = "${config.home.homeDirectory}/state/download";
     pictures = "${config.home.homeDirectory}/state/pictures";
+    projects = "${config.home.homeDirectory}/state/projects";
 
     # Unnecessary xdg user directories are set to null.
     desktop = null;
@@ -133,9 +118,9 @@
   };
 
   systemd.user.tmpfiles.rules = [
-    "d /home/johannes/state/projects 0755 johannes users -"
-    "d /home/johannes/state/notes 0755 johannes users -"
     "d /home/johannes/state/backups 0755 johannes users -"
+    "d /home/johannes/state/music 0755 johannes users -"
+    "d /home/johannes/state/notes 0755 johannes users -"
   ];
 
   # This value determines the Home Manager release that your

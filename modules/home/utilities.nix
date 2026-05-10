@@ -19,7 +19,7 @@ in {
       imagemagick
       keepassxc
       # libreoffice-still
-      libsecret.out
+      libsecret
       magic-wormhole
       # neomutt
       networkmanagerapplet
