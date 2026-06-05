@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.johannes.ai;
@@ -8,6 +9,10 @@ in {
   options.johannes.ai.enable = lib.mkEnableOption "AI";
 
   config = lib.mkIf cfg.enable {
+    packages = with pkgs; [
+      nono # sandbox for AI agents
+    ];
+
     programs = {
       opencode = {
         enable = true;

@@ -15,7 +15,7 @@ in {
       flyctl
       libffi
       # litecli # TODO (bug)
-      nodejs_20
+      nodejs
       python3
       sqlite-interactive
       tmate # shared terminal sessions

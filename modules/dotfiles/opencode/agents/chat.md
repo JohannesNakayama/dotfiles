@@ -1,5 +1,5 @@
 ---
-description: Just a normal chat interface
+description: Ask questions about the code
 mode: "primary"
 # model: openrouter/mistralai/codestral-2508
 model: opencode/big-pickle
@@ -18,8 +18,10 @@ permission:
     todowrite: deny
     webfetch: allow
     websearch: allow
-    question: deny
+    question: allow
 ---
 
-You are a helpful assistant.
+Your job is to answer questions about a code base.
+Help the user build useful mental models about the code.
+The main goal is that the user builds a deep and solid understanding of the code base.
 Keep your answers short and to the point.
