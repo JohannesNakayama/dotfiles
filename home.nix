@@ -70,7 +70,7 @@
       lt4 = "tree -L 4";
 
       # Freqently used commands with long names.
-      oc = "opencode";
+      sboc = "sandboxed-opencode";
       tclip = "tmate display -p \"#{tmate_ssh}\" | xclip -selection clipboard"; # tmate session token to clipboard
       bt = "bluetoothctl";
       ws = "wallpaper set";

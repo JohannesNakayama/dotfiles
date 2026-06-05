@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+exec nono run \
+  --profile opencode \
+  --read /nix/store \
+  --read /run/current-system/sw \
+  --allow-cwd \
+  -- \
+  opencode "$@"

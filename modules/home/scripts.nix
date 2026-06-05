@@ -14,6 +14,7 @@ in {
       (pkgs.writeShellScriptBin "byebye" (builtins.readFile ../../scripts/byebye))
       (pkgs.writeShellScriptBin "cfg" (builtins.readFile ../../scripts/cfg))
       (pkgs.writeShellScriptBin "note" (builtins.readFile ../../scripts/note))
+      (pkgs.writeShellScriptBin "sandboxed-opencode" (builtins.readFile ../../scripts/sandboxed-opencode))
       (pkgs.writeShellScriptBin "post" (builtins.readFile ../../scripts/post))
       (pkgs.writeShellScriptBin "recipe" (builtins.readFile ../../scripts/recipe))
       (pkgs.writeShellScriptBin "shop" (builtins.readFile ../../scripts/shop))
