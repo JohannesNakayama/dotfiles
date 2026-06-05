@@ -9,7 +9,7 @@ in {
   options.johannes.ai.enable = lib.mkEnableOption "AI";
 
   config = lib.mkIf cfg.enable {
-    packages = with pkgs; [
+    home.packages = with pkgs; [
       nono # sandbox for AI agents
     ];
 
