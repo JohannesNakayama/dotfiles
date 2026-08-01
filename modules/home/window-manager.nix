@@ -9,6 +9,10 @@ in {
   options.johannes.window-manager.enable = lib.mkEnableOption "Window manager";
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      caffeine-ng # no screen locking in fullscreen mode or when media is playing
+    ];
+
     xsession = {
       enable = true;
       windowManager.bspwm = {
@@ -29,6 +33,7 @@ in {
         };
         # TODO: configure with home manager?
         startupPrograms = [
+          "caffeine"
           "feh --bg-fill $HOME/state/pictures/wallpapers/forest-landscape-panorama.jpg"
           "syncthing --no-browser"
         ];
@@ -46,6 +51,7 @@ in {
       picom = {
         enable = true;
         vSync = true;
+        backend = "glx";
       };
 
       sxhkd = {

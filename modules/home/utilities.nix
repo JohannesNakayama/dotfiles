@@ -34,6 +34,7 @@ in {
       vlc
       # weechat
       # xournalpp # pdf editing tool
+      zoom-us
 
       # Custom note taking tool.
       # (import ../../packages/tsh.nix {inherit pkgs;})

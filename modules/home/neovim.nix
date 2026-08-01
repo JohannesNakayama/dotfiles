@@ -324,15 +324,15 @@ in {
       plugins = {
         bufferline = {
           enable = true;
-          options = {
+          settings.options = {
             filetype = "NvimTree";
             text = "Files";
             highlight = "Directory";
             separator = false;
+            separator_style = "slant";
+            diagnostics = "nvim_lsp";
+            # TODO: diagnostics indicator function
           };
-          diagnostics = "nvim_lsp";
-          # TODO: diagnostics indicator function
-          separator_style = "slant";
         };
 
         colorizer.enable = true;
@@ -452,7 +452,7 @@ in {
         trouble = {
           # TODO: check if this works when lsp is setup
           enable = true;
-          keymaps = [
+          settings.keymaps = [
             {
               key = "<leader>xx";
               action = "<cmd>Trouble diagnostics toggle<cr>";
