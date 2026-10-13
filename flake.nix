@@ -28,13 +28,13 @@
     ...
   } @ inputs: {
     nixosConfigurations = {
-      "nixos" = nixpkgs.lib.nixosSystem {
+      "framework" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs.flake-inputs = inputs; # make current inputs available as "flake-inputs" in configuration.nix
         modules = [
           # Load system configuration.
-          ./configuration.nix
-          ./hardware-configuration.nix
+          ./hosts/framework/configuration.nix
+          ./hosts/framework/hardware-configuration.nix
 
           # Apply hardware optimizations.
           nixos-hardware.nixosModules.framework-amd-ai-300-series
@@ -59,7 +59,7 @@
 
               users.johannes = {
                 imports = [
-                  ./home.nix
+                  ./users/johannes/framework.nix
                   nix-index-database.homeModules.default
                   nixvim.homeModules.nixvim
                 ];
