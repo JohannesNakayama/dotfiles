@@ -18,7 +18,7 @@ in {
       nodejs
       python3
       sqlite-interactive
-      tmate # shared terminal sessions
+      # tmate # shared terminal sessions
       tree-sitter
 
       # AI editors.

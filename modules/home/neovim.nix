@@ -12,8 +12,10 @@ in {
       enable = true;
 
       # colorschemes.tokyonight.enable = true;
-      colorschemes.everforest.enable = true;
-      # colorschemes.nord.enable = true;
+      # colorschemes.everforest.enable = true;
+      colorschemes.nord.enable = true;
+      # colorschemes.argonaut.enable = true;
+      # colorschemes.solarized-osaka.enable = true;
       # colorschemes.modus.enable = true;
       # colorschemes.nightfox.enable = true;
 

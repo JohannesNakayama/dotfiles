@@ -2,7 +2,7 @@
 description: Ask questions about the code
 mode: "primary"
 # model: openrouter/mistralai/codestral-2508
-model: opencode/big-pickle
+# model: opencode/big-pickle
 temperature: 0.5
 permission:
     bash: deny

@@ -27,7 +27,7 @@ in {
         enable = true;
         settings = {
           font = {
-            size = 8.0;
+            size = 12.0;
             normal = {
               family = "FiraCode Nerd Font";
               style = "Regular";
@@ -42,7 +42,9 @@ in {
             };
           };
         };
-        theme = "everforest_dark";
+        # theme = "everforest_dark";
+        # theme = "nord";
+        theme = "argonaut";
       };
 
       zsh = {
@@ -139,6 +141,8 @@ in {
         enable = true;
         enableZshIntegration = true;
       };
+
+      zellij.enable = true;
 
       fzf = {
         enable = true;

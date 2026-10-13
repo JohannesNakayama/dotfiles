@@ -2,7 +2,7 @@
 description: Keeps the project tidy
 mode: "primary"
 # model: openrouter/mistralai/codestral-2508
-model: opencode/big-pickle
+# model: opencode/big-pickle
 temperature: 0.1
 ---
 

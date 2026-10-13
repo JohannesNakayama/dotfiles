@@ -42,7 +42,10 @@
       powerOnBoot = true;
       settings.General.Experimental = true; # bluetooth battery percentage
     };
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   # Allow certain user-level processes to run with real-time priorities.
@@ -176,6 +179,9 @@
         sessionCommands = "${pkgs.setxkbmap}/bin/setxkbmap de neo";
       };
     };
+
+    # BIOS updates through LVFS.
+    fwupd.enable = true;
 
     # Automatic timezone detection.
     automatic-timezoned.enable = true; # requires location.provider to be set and time.timeZone to not be set

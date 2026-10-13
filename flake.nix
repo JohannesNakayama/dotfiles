@@ -37,9 +37,11 @@
           ./hardware-configuration.nix
 
           # Apply hardware optimizations.
-          nixos-hardware.nixosModules.common-cpu-intel
-          nixos-hardware.nixosModules.common-gpu-intel
-          nixos-hardware.nixosModules.common-pc-ssd
+          nixos-hardware.nixosModules.framework-amd-ai-300-series
+
+          # nixos-hardware.nixosModules.common-cpu-intel
+          # nixos-hardware.nixosModules.common-gpu-intel
+          # nixos-hardware.nixosModules.common-pc-ssd
 
           # Load home manager module.
           home-manager.nixosModules.home-manager
@@ -52,6 +54,8 @@
 
               # If home manager overrides an existing config, keep the file with this extension.
               backupFileExtension = "backup";
+
+              extraSpecialArgs = {inherit inputs;}; # expose flake inputs in home manager
 
               users.johannes = {
                 imports = [

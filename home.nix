@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  dotfilesHome = "${config.home.homeDirectory}/dotfiles";
+in {
   programs.home-manager.enable = true;
 
   imports = [
@@ -20,14 +22,14 @@
 
   johannes = {
     ai.enable = true;
-    android.enable = true;
+    android.enable = false;
     core.enable = true;
     development.enable = true;
     dotfiles.enable = true;
     file-manager.enable = true;
     git.enable = true;
-    kubernetes.enable = false;
-    music.enable = true;
+    kubernetes.enable = true;
+    music.enable = false;
     neovim.enable = true;
     scripts.enable = true;
     terminal.enable = true;
@@ -40,9 +42,9 @@
     homeDirectory = "/home/johannes";
 
     sessionPath = [
-      "$HOME/bin"
+      "${config.home.homeDirectory}/bin"
+      "${config.home.homeDirectory}/.local/bin"
       "/usr/local/bin"
-      "$HOME/.local/bin"
     ];
 
     # Symlink downloads and documents directories to state directory (otherwise some apps might recreate those).
@@ -58,10 +60,10 @@
 
     shellAliases = {
       # Open frequently modified files in neovim (see also: $HOME/bin/v).
-      vd = "cd $HOME/dotfiles && v";
+      vd = "cd ${dotfilesHome} && v";
 
       # Listing things.
-      ls = "ls --group-directories-first --color=auto";
+      ls = "ls --group-directories-first --color=auto -tr";
       l = "ls -lh";
       ll = "ls -AlhF";
       la = "ls -A";
@@ -70,7 +72,7 @@
       lt4 = "tree -L 4";
 
       # Freqently used commands with long names.
-      sboc = "sandboxed-opencode";
+      sboc = "nono run --profile nolabs-ai/opencode --allow-cwd --allow-domain api.anthropic.com --read ~/.claude -- opencode";
       tclip = "tmate display -p \"#{tmate_ssh}\" | xclip -selection clipboard"; # tmate session token to clipboard
       bt = "bluetoothctl";
       ws = "wallpaper set";
@@ -79,11 +81,11 @@
       # nrs = "sudo nixos-rebuild switch --flake /etc/nixos";
       # nfu = "nix flake update --flake /etc/nixos";
       # nur = "nfu && nrs";
-      switch = "sudo nixos-rebuild switch --flake $HOME/dotfiles";
+      switch = "sudo nixos-rebuild switch --flake ${dotfilesHome}";
       nixup =
         # bash
         ''
-          cd $HOME/dotfiles
+          cd ${dotfilesHome}
           sudo -v
           nix flake update --flake .
           sudo -v # build can take a long time -> validate credentials once more before running it

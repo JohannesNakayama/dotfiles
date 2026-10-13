@@ -9,8 +9,33 @@ in {
   options.johannes.window-manager.enable = lib.mkEnableOption "Window manager";
 
   config = lib.mkIf cfg.enable {
+    # --------------------------------------------------------------------------
+    # HiDPI / Font Scaling Configuration
+    # --------------------------------------------------------------------------
+    xresources.properties = {
+      "Xft.dpi" = 144; # 144 DPI = 150% scaling (144 / 96 = 1.5)
+      "Xft.autohint" = 0;
+      "Xft.lcdfilter" = "lcddefault";
+      "Xft.hintstyle" = "hintslight";
+      "Xft.hinting" = 1;
+      "Xft.antialias" = 1;
+      "Xft.rgba" = "rgb";
+    };
+
+    home.sessionVariables = {
+      # GTK works better with fractional DPI scaling when GDK_SCALE is 1
+      GDK_SCALE = "1";
+      GDK_DPI_SCALE = "1";
+
+      # Qt scaling
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+      QT_ENABLE_HIGHDPI_SCALING = "1";
+      QT_SCALE_FACTOR = "1.5";
+    };
+
     home.packages = with pkgs; [
       caffeine-ng # no screen locking in fullscreen mode or when media is playing
+      libnotify # send desktop notifications to notification daemon
     ];
 
     xsession = {
@@ -33,8 +58,14 @@ in {
         };
         # TODO: configure with home manager?
         startupPrograms = [
+          # Update systemd's environment first so Dunst and other user services know where to draw.
+          "systemctl --user import-environment DISPLAY XAUTHORITY"
+          # Restart Dunst explicitly once DISPLAY is registered.
+          "systemctl --user restart dunst"
+
+          # Other startup programs.
           "caffeine"
-          "feh --bg-fill $HOME/state/pictures/wallpapers/forest-landscape-panorama.jpg"
+          "feh --bg-fill $HOME/state/pictures/wallpaper.jpg"
           "syncthing --no-browser"
         ];
       };
@@ -125,6 +156,54 @@ in {
         enable = true;
         lockCmd = "i3lock -i ~/Pictures/wallpaper.jpg -b -f -C";
         inactiveInterval = 5; # minutes
+      };
+
+      dunst = {
+        enable = true;
+        settings = {
+          global = {
+            # Positioning.
+            origin = "bottom-right"; # Anchor to bottom right
+            offset = "20x20"; # Distance (X x Y) from screen edge in pixels
+            width = "(250, 400)"; # Min width 250px, max width 400px
+            height = 150; # Max height
+            notification_limit = 5;
+
+            # Visual Styling.
+            font = "Sans 10";
+            corner_radius = 10; # Works alongside picom corner settings
+            frame_width = 2;
+            frame_color = "#44465a";
+            separator_color = "frame";
+            padding = 12;
+            horizontal_padding = 12;
+
+            # Behavior.
+            mouse_left_click = "close_current";
+            mouse_middle_click = "do_action, close_current";
+            mouse_right_click = "close_all";
+          };
+
+          # Urgency Colors.
+          urgency_low = {
+            background = "#1e1e2e";
+            foreground = "#cdd6f4";
+            timeout = 5;
+          };
+
+          urgency_normal = {
+            background = "#1e1e2e";
+            foreground = "#cdd6f4";
+            timeout = 8;
+          };
+
+          urgency_critical = {
+            background = "#1e1e2e";
+            foreground = "#f38ba8";
+            frame_color = "#f38ba8";
+            timeout = 0; # Stays until dismissed
+          };
+        };
       };
     };
   };

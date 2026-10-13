@@ -12,7 +12,7 @@ in {
     home = {
       packages = with pkgs; [
         kubectl
-        minikube
+        # minikube
         k9s
         kubernetes-helm
       ];

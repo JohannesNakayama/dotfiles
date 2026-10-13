@@ -10,6 +10,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      _1password-cli
+      _1password-gui
       alsa-utils
       bleachbit # clean up tool
       brave
@@ -28,12 +30,14 @@ in {
       pinentry-curses
       shutter
       signal-desktop
+      slack
       syncthing
       thunderbird
       tor-browser
       vlc
       # weechat
       # xournalpp # pdf editing tool
+      zbar
       zoom-us
 
       # Custom note taking tool.
