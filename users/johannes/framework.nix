@@ -12,7 +12,7 @@ in {
     ../../modules/home/extra-tools/communication.nix
     ../../modules/home/extra-tools/encryption.nix
     ../../modules/home/extra-tools/kubernetes.nix
-    ../../modules/home/extra-tools/utilities.nix
+    ../../modules/home/extra-tools/etcetera.nix
 
     ../../modules/home/scripts
   ];

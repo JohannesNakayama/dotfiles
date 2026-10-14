@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     bleachbit # clean up tool
     imagemagick
-    libreoffice-still
+    libreoffice
     magic-wormhole
     shutter
     visualvm # view information about Java applications
